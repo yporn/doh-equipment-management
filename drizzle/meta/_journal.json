@@ -1,0 +1,118 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1787493754022,
+      "tag": "0000_dear_hemingway",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1787495611066,
+      "tag": "0001_chunky_preak",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1787991180246,
+      "tag": "0002_supreme_leopardon",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1787991192735,
+      "tag": "0003_majestic_tyger_tiger",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1787995638053,
+      "tag": "0004_tense_carlie_cooper",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1788076079560,
+      "tag": "0005_hot_bushwacker",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1788077757920,
+      "tag": "0006_overconfident_night_thrasher",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "6",
+      "when": 1788096103225,
+      "tag": "0007_fair_living_tribunal",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "6",
+      "when": 1788307200000,
+      "tag": "0008_import_workbook_registry",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "6",
+      "when": 1788325200000,
+      "tag": "0009_machinery_condition",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "6",
+      "when": 1788408633361,
+      "tag": "0010_dashing_ironclad",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "6",
+      "when": 1788422863311,
+      "tag": "0011_redundant_cloak",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "6",
+      "when": 1788424502975,
+      "tag": "0012_complex_skin",
+      "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "6",
+      "when": 1788492675924,
+      "tag": "0013_talented_rawhide_kid",
+      "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "6",
+      "when": 1788509972015,
+      "tag": "0014_daily_blonde_phantom",
+      "breakpoints": true
+    },
+    {
+      "idx": 15,
+      "version": "6",
+      "when": 1788753874508,
+      "tag": "0015_flawless_mephisto",
+      "breakpoints": true
+    }
+  ]
+}

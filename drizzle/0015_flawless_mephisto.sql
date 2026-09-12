@@ -1,0 +1,1 @@
+ALTER TABLE `repair_records` ADD `repair_type` text;

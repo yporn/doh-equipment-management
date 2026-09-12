@@ -1,0 +1,6836 @@
+{
+  "00-0069-76-0": {
+    "acquisitionDate": "1995-10-02",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 6456,
+        "monthlyRate": 610,
+        "weeklyRate": 169,
+        "dailyRate": 38,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 5841,
+        "monthlyRate": 552,
+        "weeklyRate": 153,
+        "dailyRate": 34,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 4612,
+        "monthlyRate": 436,
+        "weeklyRate": 121,
+        "dailyRate": 27,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 3074,
+        "monthlyRate": 290,
+        "weeklyRate": 81,
+        "dailyRate": 18,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "01-0225-95-0": {
+    "acquisitionDate": "1995-06-20",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 107068,
+        "monthlyRate": 10315,
+        "weeklyRate": 2865,
+        "dailyRate": 637,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 96871,
+        "monthlyRate": 9332,
+        "weeklyRate": 2592,
+        "dailyRate": 576,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 76477,
+        "monthlyRate": 7368,
+        "weeklyRate": 2047,
+        "dailyRate": 455,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 50985,
+        "monthlyRate": 4912,
+        "weeklyRate": 1364,
+        "dailyRate": 303,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "01-0226-95-1": {
+    "acquisitionDate": "1995-06-20",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 107068,
+        "monthlyRate": 10315,
+        "weeklyRate": 2865,
+        "dailyRate": 637,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 96871,
+        "monthlyRate": 9332,
+        "weeklyRate": 2592,
+        "dailyRate": 576,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 76477,
+        "monthlyRate": 7368,
+        "weeklyRate": 2047,
+        "dailyRate": 455,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 50985,
+        "monthlyRate": 4912,
+        "weeklyRate": 1364,
+        "dailyRate": 303,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "01-6024-02-9": {
+    "acquisitionDate": "2002-08-05",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 95420,
+        "monthlyRate": 9317,
+        "weeklyRate": 2588,
+        "dailyRate": 575,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 86332,
+        "monthlyRate": 8340,
+        "weeklyRate": 2342,
+        "dailyRate": 520,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 68157,
+        "monthlyRate": 6655,
+        "weeklyRate": 1849,
+        "dailyRate": 411,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 45438,
+        "monthlyRate": 4437,
+        "weeklyRate": 1232,
+        "dailyRate": 274,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "15-6479-15-9": {
+    "acquisitionDate": "2015-10-28",
+    "standardLifeYears": 12,
+    "bands": [
+      {
+        "yearlyRate": 193224,
+        "monthlyRate": 20919,
+        "weeklyRate": 5811,
+        "dailyRate": 1291,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 174822,
+        "monthlyRate": 18927,
+        "weeklyRate": 5257,
+        "dailyRate": 1168,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 138017,
+        "monthlyRate": 14942,
+        "weeklyRate": 4151,
+        "dailyRate": 922,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 92011,
+        "monthlyRate": 9962,
+        "weeklyRate": 2767,
+        "dailyRate": 615,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "16-6005-95-5": {
+    "acquisitionDate": "1995-08-11",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 103809,
+        "monthlyRate": 10674,
+        "weeklyRate": 2965,
+        "dailyRate": 659,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 93923,
+        "monthlyRate": 9658,
+        "weeklyRate": 2683,
+        "dailyRate": 596,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 74149,
+        "monthlyRate": 7624,
+        "weeklyRate": 2118,
+        "dailyRate": 471,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 49433,
+        "monthlyRate": 5083,
+        "weeklyRate": 1412,
+        "dailyRate": 314,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "16-6011-96-3": {
+    "acquisitionDate": "1996-12-20",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 85579,
+        "monthlyRate": 8817,
+        "weeklyRate": 2449,
+        "dailyRate": 544,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 77429,
+        "monthlyRate": 7978,
+        "weeklyRate": 2216,
+        "dailyRate": 492,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 61128,
+        "monthlyRate": 6298,
+        "weeklyRate": 1749,
+        "dailyRate": 389,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 40752,
+        "monthlyRate": 4199,
+        "weeklyRate": 1166,
+        "dailyRate": 259,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "16-6013-96-5": {
+    "acquisitionDate": "1996-12-20",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 85579,
+        "monthlyRate": 8817,
+        "weeklyRate": 2449,
+        "dailyRate": 544,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 77429,
+        "monthlyRate": 7978,
+        "weeklyRate": 2216,
+        "dailyRate": 492,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 61128,
+        "monthlyRate": 6298,
+        "weeklyRate": 1749,
+        "dailyRate": 389,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 40752,
+        "monthlyRate": 4199,
+        "weeklyRate": 1166,
+        "dailyRate": 259,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "20-6311-19-0": {
+    "acquisitionDate": "2019-01-21",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 291732,
+        "monthlyRate": 27394,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 263948,
+        "monthlyRate": 24785,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 208380,
+        "monthlyRate": 19567,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 138920,
+        "monthlyRate": 13045,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "21-6513-15-0": {
+    "acquisitionDate": "2015-08-04",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 317165,
+        "monthlyRate": 28889,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 286959,
+        "monthlyRate": 26137,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 226546,
+        "monthlyRate": 20635,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 151031,
+        "monthlyRate": 13757,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "21-6653-17-0": {
+    "acquisitionDate": "2017-02-09",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 274625,
+        "monthlyRate": 24974,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 248470,
+        "monthlyRate": 22596,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 196161,
+        "monthlyRate": 17839,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 130774,
+        "monthlyRate": 11893,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "21-6723-25-8": {
+    "acquisitionDate": "2025-02-27",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 375246,
+        "monthlyRate": 34422,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 339508,
+        "monthlyRate": 31143,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 268033,
+        "monthlyRate": 24587,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 178689,
+        "monthlyRate": 16391,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "23-6158-97-6": {
+    "acquisitionDate": "1997-08-07",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 387008,
+        "monthlyRate": 36207,
+        "weeklyRate": 10058,
+        "dailyRate": 2235,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 350150,
+        "monthlyRate": 32759,
+        "weeklyRate": 9100,
+        "dailyRate": 2022,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 276434,
+        "monthlyRate": 25862,
+        "weeklyRate": 7184,
+        "dailyRate": 1596,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 184289,
+        "monthlyRate": 17242,
+        "weeklyRate": 4789,
+        "dailyRate": 1064,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "23-6159-97-7": {
+    "acquisitionDate": "1997-08-07",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 387008,
+        "monthlyRate": 36207,
+        "weeklyRate": 10058,
+        "dailyRate": 2235,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 350150,
+        "monthlyRate": 32759,
+        "weeklyRate": 9100,
+        "dailyRate": 2022,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 276434,
+        "monthlyRate": 25862,
+        "weeklyRate": 7184,
+        "dailyRate": 1596,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 184289,
+        "monthlyRate": 17242,
+        "weeklyRate": 4789,
+        "dailyRate": 1064,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "23-6178-97-0": {
+    "acquisitionDate": "1997-08-07",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 387008,
+        "monthlyRate": 36207,
+        "weeklyRate": 10058,
+        "dailyRate": 2235,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 350150,
+        "monthlyRate": 32759,
+        "weeklyRate": 9100,
+        "dailyRate": 2022,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 276434,
+        "monthlyRate": 25862,
+        "weeklyRate": 7184,
+        "dailyRate": 1596,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 184289,
+        "monthlyRate": 17242,
+        "weeklyRate": 4789,
+        "dailyRate": 1064,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "23-6198-97-3": {
+    "acquisitionDate": "1997-08-07",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 387008,
+        "monthlyRate": 36207,
+        "weeklyRate": 10058,
+        "dailyRate": 2235,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 350150,
+        "monthlyRate": 32759,
+        "weeklyRate": 9100,
+        "dailyRate": 2022,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 276434,
+        "monthlyRate": 25862,
+        "weeklyRate": 7184,
+        "dailyRate": 1596,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 184289,
+        "monthlyRate": 17242,
+        "weeklyRate": 4789,
+        "dailyRate": 1064,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "23-6237-04-9": {
+    "acquisitionDate": "2004-06-28",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 473830,
+        "monthlyRate": 44461,
+        "weeklyRate": 12350,
+        "dailyRate": 2745,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 428703,
+        "monthlyRate": 40227,
+        "weeklyRate": 11174,
+        "dailyRate": 2483,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 338450,
+        "monthlyRate": 31758,
+        "weeklyRate": 8822,
+        "dailyRate": 1960,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 225633,
+        "monthlyRate": 21172,
+        "weeklyRate": 5881,
+        "dailyRate": 1307,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "23-6239-04-0": {
+    "acquisitionDate": "2004-06-28",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 473830,
+        "monthlyRate": 44461,
+        "weeklyRate": 12350,
+        "dailyRate": 2745,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 428703,
+        "monthlyRate": 40227,
+        "weeklyRate": 11174,
+        "dailyRate": 2483,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 338450,
+        "monthlyRate": 31758,
+        "weeklyRate": 8822,
+        "dailyRate": 1960,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 225633,
+        "monthlyRate": 21172,
+        "weeklyRate": 5881,
+        "dailyRate": 1307,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "23-6240-04-4": {
+    "acquisitionDate": "2004-06-28",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 473830,
+        "monthlyRate": 44461,
+        "weeklyRate": 12350,
+        "dailyRate": 2745,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 428703,
+        "monthlyRate": 40227,
+        "weeklyRate": 11174,
+        "dailyRate": 2483,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 338450,
+        "monthlyRate": 31758,
+        "weeklyRate": 8822,
+        "dailyRate": 1960,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 225633,
+        "monthlyRate": 21172,
+        "weeklyRate": 5881,
+        "dailyRate": 1307,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "23-6241-04-5": {
+    "acquisitionDate": "2004-06-28",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 473830,
+        "monthlyRate": 44461,
+        "weeklyRate": 12350,
+        "dailyRate": 2745,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 428703,
+        "monthlyRate": 40227,
+        "weeklyRate": 11174,
+        "dailyRate": 2483,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 338450,
+        "monthlyRate": 31758,
+        "weeklyRate": 8822,
+        "dailyRate": 1960,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 225633,
+        "monthlyRate": 21172,
+        "weeklyRate": 5881,
+        "dailyRate": 1307,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "23-6242-04-6": {
+    "acquisitionDate": "2004-06-28",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 473830,
+        "monthlyRate": 44461,
+        "weeklyRate": 12350,
+        "dailyRate": 2745,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 428703,
+        "monthlyRate": 40227,
+        "weeklyRate": 11174,
+        "dailyRate": 2483,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 338450,
+        "monthlyRate": 31758,
+        "weeklyRate": 8822,
+        "dailyRate": 1960,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 225633,
+        "monthlyRate": 21172,
+        "weeklyRate": 5881,
+        "dailyRate": 1307,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "23-6243-04-7": {
+    "acquisitionDate": "2004-06-28",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 473830,
+        "monthlyRate": 44461,
+        "weeklyRate": 12350,
+        "dailyRate": 2745,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 428703,
+        "monthlyRate": 40227,
+        "weeklyRate": 11174,
+        "dailyRate": 2483,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 338450,
+        "monthlyRate": 31758,
+        "weeklyRate": 8822,
+        "dailyRate": 1960,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 225633,
+        "monthlyRate": 21172,
+        "weeklyRate": 5881,
+        "dailyRate": 1307,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "23-6244-04-8": {
+    "acquisitionDate": "2004-06-28",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 473830,
+        "monthlyRate": 44461,
+        "weeklyRate": 12350,
+        "dailyRate": 2745,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 428703,
+        "monthlyRate": 40227,
+        "weeklyRate": 11174,
+        "dailyRate": 2483,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 338450,
+        "monthlyRate": 31758,
+        "weeklyRate": 8822,
+        "dailyRate": 1960,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 225633,
+        "monthlyRate": 21172,
+        "weeklyRate": 5881,
+        "dailyRate": 1307,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "23-6262-08-8": {
+    "acquisitionDate": "2008-08-25",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 540742,
+        "monthlyRate": 50753,
+        "weeklyRate": 14098,
+        "dailyRate": 3133,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 489243,
+        "monthlyRate": 45919,
+        "weeklyRate": 12755,
+        "dailyRate": 2835,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 386244,
+        "monthlyRate": 36252,
+        "weeklyRate": 10070,
+        "dailyRate": 2238,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 257496,
+        "monthlyRate": 24168,
+        "weeklyRate": 6713,
+        "dailyRate": 1492,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "23-6307-16-5": {
+    "acquisitionDate": "2016-08-01",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 879735,
+        "monthlyRate": 82629,
+        "weeklyRate": 22952,
+        "dailyRate": 5101,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 795951,
+        "monthlyRate": 74759,
+        "weeklyRate": 20767,
+        "dailyRate": 4615,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 628382,
+        "monthlyRate": 59021,
+        "weeklyRate": 16395,
+        "dailyRate": 3643,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 418922,
+        "monthlyRate": 39347,
+        "weeklyRate": 10930,
+        "dailyRate": 2429,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "23-6308-16-6": {
+    "acquisitionDate": "2016-08-01",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 879735,
+        "monthlyRate": 82629,
+        "weeklyRate": 22952,
+        "dailyRate": 5101,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 795951,
+        "monthlyRate": 74759,
+        "weeklyRate": 20767,
+        "dailyRate": 4615,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 628382,
+        "monthlyRate": 59021,
+        "weeklyRate": 16395,
+        "dailyRate": 3643,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 418922,
+        "monthlyRate": 39347,
+        "weeklyRate": 10930,
+        "dailyRate": 2429,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "23-6353-18-0": {
+    "acquisitionDate": "2018-07-11",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 444842,
+        "monthlyRate": 41777,
+        "weeklyRate": 11605,
+        "dailyRate": 2579,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 402476,
+        "monthlyRate": 37799,
+        "weeklyRate": 10500,
+        "dailyRate": 2333,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 317745,
+        "monthlyRate": 29841,
+        "weeklyRate": 8289,
+        "dailyRate": 1842,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 211830,
+        "monthlyRate": 19894,
+        "weeklyRate": 5526,
+        "dailyRate": 1228,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "23-6354-18-0": {
+    "acquisitionDate": "2018-07-11",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 444842,
+        "monthlyRate": 41777,
+        "weeklyRate": 11605,
+        "dailyRate": 2579,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 402476,
+        "monthlyRate": 37799,
+        "weeklyRate": 10500,
+        "dailyRate": 2333,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 317745,
+        "monthlyRate": 29841,
+        "weeklyRate": 8289,
+        "dailyRate": 1842,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 211830,
+        "monthlyRate": 19894,
+        "weeklyRate": 5526,
+        "dailyRate": 1228,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "23-6410-20-6": {
+    "acquisitionDate": "2004-06-28",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 903058,
+        "monthlyRate": 84881,
+        "weeklyRate": 23578,
+        "dailyRate": 5240,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 817053,
+        "monthlyRate": 76797,
+        "weeklyRate": 21332,
+        "dailyRate": 4741,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 545042,
+        "monthlyRate": 60629,
+        "weeklyRate": 16841,
+        "dailyRate": 3743,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 430028,
+        "monthlyRate": 40419,
+        "weeklyRate": 11228,
+        "dailyRate": 2495,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "23-6411-20-7": {
+    "acquisitionDate": "2004-06-28",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 903058,
+        "monthlyRate": 84881,
+        "weeklyRate": 23578,
+        "dailyRate": 5240,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 817053,
+        "monthlyRate": 76797,
+        "weeklyRate": 21332,
+        "dailyRate": 4741,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 545042,
+        "monthlyRate": 60629,
+        "weeklyRate": 16841,
+        "dailyRate": 3743,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 430028,
+        "monthlyRate": 40419,
+        "weeklyRate": 11228,
+        "dailyRate": 2495,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "23-6488-22-5": {
+    "acquisitionDate": "2022-07-26",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 933772,
+        "monthlyRate": 87710,
+        "weeklyRate": 24364,
+        "dailyRate": 5414,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 844841,
+        "monthlyRate": 79357,
+        "weeklyRate": 22044,
+        "dailyRate": 4899,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 666980,
+        "monthlyRate": 62650,
+        "weeklyRate": 17403,
+        "dailyRate": 3867,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 444653,
+        "monthlyRate": 41767,
+        "weeklyRate": 11605,
+        "dailyRate": 2578,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "23-6489-22-6": {
+    "acquisitionDate": "2022-07-26",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 933772,
+        "monthlyRate": 87710,
+        "weeklyRate": 24364,
+        "dailyRate": 5414,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 844841,
+        "monthlyRate": 79357,
+        "weeklyRate": 22044,
+        "dailyRate": 4899,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 666980,
+        "monthlyRate": 62650,
+        "weeklyRate": 17403,
+        "dailyRate": 3867,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 444653,
+        "monthlyRate": 41767,
+        "weeklyRate": 11605,
+        "dailyRate": 2578,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "23-6490-22-0": {
+    "acquisitionDate": "2022-07-26",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 933772,
+        "monthlyRate": 87710,
+        "weeklyRate": 24364,
+        "dailyRate": 5414,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 844841,
+        "monthlyRate": 79357,
+        "weeklyRate": 22044,
+        "dailyRate": 4899,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 666980,
+        "monthlyRate": 62650,
+        "weeklyRate": 17403,
+        "dailyRate": 3867,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 444653,
+        "monthlyRate": 41767,
+        "weeklyRate": 11605,
+        "dailyRate": 2578,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "23-6581-24-1": {
+    "acquisitionDate": "2024-07-12",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 957624,
+        "monthlyRate": 89953,
+        "weeklyRate": 24987,
+        "dailyRate": 5553,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 866421,
+        "monthlyRate": 81386,
+        "weeklyRate": 22607,
+        "dailyRate": 5024,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 684017,
+        "monthlyRate": 64252,
+        "weeklyRate": 17848,
+        "dailyRate": 3966,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 456011,
+        "monthlyRate": 42835,
+        "weeklyRate": 11899,
+        "dailyRate": 2644,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "23-6595-25-1": {
+    "acquisitionDate": "2025-09-17",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 942004,
+        "monthlyRate": 88484,
+        "weeklyRate": 24579,
+        "dailyRate": 5462,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 852289,
+        "monthlyRate": 80057,
+        "weeklyRate": 22238,
+        "dailyRate": 4942,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 672860,
+        "monthlyRate": 63203,
+        "weeklyRate": 17556,
+        "dailyRate": 3901,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 448573,
+        "monthlyRate": 42135,
+        "weeklyRate": 11704,
+        "dailyRate": 2601,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "23-6612-26-2": {
+    "acquisitionDate": "2026-06-24",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 951291,
+        "monthlyRate": 89357,
+        "weeklyRate": 24821,
+        "dailyRate": 5516,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 860692,
+        "monthlyRate": 80847,
+        "weeklyRate": 22458,
+        "dailyRate": 4991,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 679494,
+        "monthlyRate": 63827,
+        "weeklyRate": 17730,
+        "dailyRate": 3940,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 452996,
+        "monthlyRate": 42551,
+        "weeklyRate": 11820,
+        "dailyRate": 2627,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "25-0743-95-7": {
+    "acquisitionDate": "1995-10-01",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 308888,
+        "monthlyRate": 32088,
+        "weeklyRate": 8913,
+        "dailyRate": 1981,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 279470,
+        "monthlyRate": 29032,
+        "weeklyRate": 8064,
+        "dailyRate": 1792,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 220634,
+        "monthlyRate": 22920,
+        "weeklyRate": 6367,
+        "dailyRate": 1415,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 147089,
+        "monthlyRate": 15280,
+        "weeklyRate": 4244,
+        "dailyRate": 943,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "25-0753-97-9": {
+    "acquisitionDate": "1997-10-01",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 308888,
+        "monthlyRate": 32088,
+        "weeklyRate": 8913,
+        "dailyRate": 1981,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 279470,
+        "monthlyRate": 29032,
+        "weeklyRate": 8064,
+        "dailyRate": 1792,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 220634,
+        "monthlyRate": 22920,
+        "weeklyRate": 6367,
+        "dailyRate": 1415,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 147089,
+        "monthlyRate": 15280,
+        "weeklyRate": 4244,
+        "dailyRate": 943,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "25-6377-92-5": {
+    "acquisitionDate": "1992-01-17",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 308888,
+        "monthlyRate": 32088,
+        "weeklyRate": 8913,
+        "dailyRate": 1981,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 279470,
+        "monthlyRate": 29032,
+        "weeklyRate": 8064,
+        "dailyRate": 1792,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 220634,
+        "monthlyRate": 22920,
+        "weeklyRate": 6367,
+        "dailyRate": 1415,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 147089,
+        "monthlyRate": 15280,
+        "weeklyRate": 4244,
+        "dailyRate": 943,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "25-6506-95-9": {
+    "acquisitionDate": "1995-12-25",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 308888,
+        "monthlyRate": 32088,
+        "weeklyRate": 8913,
+        "dailyRate": 1981,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 279470,
+        "monthlyRate": 29032,
+        "weeklyRate": 8064,
+        "dailyRate": 1792,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 220634,
+        "monthlyRate": 22920,
+        "weeklyRate": 6367,
+        "dailyRate": 1415,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 147089,
+        "monthlyRate": 15280,
+        "weeklyRate": 4244,
+        "dailyRate": 943,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "25-6558-97-0": {
+    "acquisitionDate": "1997-06-10",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 308888,
+        "monthlyRate": 32088,
+        "weeklyRate": 8913,
+        "dailyRate": 1981,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 279470,
+        "monthlyRate": 29032,
+        "weeklyRate": 8064,
+        "dailyRate": 1792,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 220634,
+        "monthlyRate": 22920,
+        "weeklyRate": 6367,
+        "dailyRate": 1415,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 147089,
+        "monthlyRate": 15280,
+        "weeklyRate": 4244,
+        "dailyRate": 943,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "25-6609-97-5": {
+    "acquisitionDate": "1997-06-10",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 308888,
+        "monthlyRate": 32088,
+        "weeklyRate": 8913,
+        "dailyRate": 1981,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 279470,
+        "monthlyRate": 29032,
+        "weeklyRate": 8064,
+        "dailyRate": 1792,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 220634,
+        "monthlyRate": 22920,
+        "weeklyRate": 6367,
+        "dailyRate": 1415,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 147089,
+        "monthlyRate": 15280,
+        "weeklyRate": 4244,
+        "dailyRate": 943,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "25-6610-97-9": {
+    "acquisitionDate": "1997-06-10",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 308888,
+        "monthlyRate": 32088,
+        "weeklyRate": 8913,
+        "dailyRate": 1981,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 279470,
+        "monthlyRate": 29032,
+        "weeklyRate": 8064,
+        "dailyRate": 1792,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 220634,
+        "monthlyRate": 22920,
+        "weeklyRate": 6367,
+        "dailyRate": 1415,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 147089,
+        "monthlyRate": 15280,
+        "weeklyRate": 4244,
+        "dailyRate": 943,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "25-6611-97-0": {
+    "acquisitionDate": "1997-06-10",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 308888,
+        "monthlyRate": 32088,
+        "weeklyRate": 8913,
+        "dailyRate": 1981,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 279470,
+        "monthlyRate": 29032,
+        "weeklyRate": 8064,
+        "dailyRate": 1792,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 220634,
+        "monthlyRate": 22920,
+        "weeklyRate": 6367,
+        "dailyRate": 1415,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 147089,
+        "monthlyRate": 15280,
+        "weeklyRate": 4244,
+        "dailyRate": 943,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "25-6612-97-0": {
+    "acquisitionDate": "1997-06-10",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 308888,
+        "monthlyRate": 32088,
+        "weeklyRate": 8913,
+        "dailyRate": 1981,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 279470,
+        "monthlyRate": 29032,
+        "weeklyRate": 8064,
+        "dailyRate": 1792,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 220634,
+        "monthlyRate": 22920,
+        "weeklyRate": 6367,
+        "dailyRate": 1415,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 147089,
+        "monthlyRate": 15280,
+        "weeklyRate": 4244,
+        "dailyRate": 943,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "25-6673-01-2": {
+    "acquisitionDate": "2001-04-26",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 308888,
+        "monthlyRate": 32088,
+        "weeklyRate": 8913,
+        "dailyRate": 1981,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 279470,
+        "monthlyRate": 29032,
+        "weeklyRate": 8064,
+        "dailyRate": 1792,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 220634,
+        "monthlyRate": 22920,
+        "weeklyRate": 6367,
+        "dailyRate": 1415,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 147089,
+        "monthlyRate": 15280,
+        "weeklyRate": 4244,
+        "dailyRate": 943,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "25-6685-02-8": {
+    "acquisitionDate": "2002-03-18",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 362112,
+        "monthlyRate": 34162,
+        "weeklyRate": 9489,
+        "dailyRate": 2109,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 327625,
+        "monthlyRate": 30908,
+        "weeklyRate": 8586,
+        "dailyRate": 1908,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 258652,
+        "monthlyRate": 24401,
+        "weeklyRate": 6778,
+        "dailyRate": 1506,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 172434,
+        "monthlyRate": 16267,
+        "weeklyRate": 4519,
+        "dailyRate": 1004,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "25-6686-02-9": {
+    "acquisitionDate": "2002-03-18",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 362112,
+        "monthlyRate": 34162,
+        "weeklyRate": 9489,
+        "dailyRate": 2109,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 327625,
+        "monthlyRate": 30908,
+        "weeklyRate": 8586,
+        "dailyRate": 1908,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 258652,
+        "monthlyRate": 24401,
+        "weeklyRate": 6778,
+        "dailyRate": 1506,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 172434,
+        "monthlyRate": 16267,
+        "weeklyRate": 4519,
+        "dailyRate": 1004,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "25-6725-02-0": {
+    "acquisitionDate": "2002-03-18",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 362112,
+        "monthlyRate": 34162,
+        "weeklyRate": 9489,
+        "dailyRate": 2109,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 327625,
+        "monthlyRate": 30908,
+        "weeklyRate": 8586,
+        "dailyRate": 1908,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 258652,
+        "monthlyRate": 24401,
+        "weeklyRate": 6778,
+        "dailyRate": 1506,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 172434,
+        "monthlyRate": 16267,
+        "weeklyRate": 4519,
+        "dailyRate": 1004,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "25-6726-02-1": {
+    "acquisitionDate": "2002-03-18",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 362112,
+        "monthlyRate": 34162,
+        "weeklyRate": 9489,
+        "dailyRate": 2109,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 327625,
+        "monthlyRate": 30908,
+        "weeklyRate": 8586,
+        "dailyRate": 1908,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 258652,
+        "monthlyRate": 24401,
+        "weeklyRate": 6778,
+        "dailyRate": 1506,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 172434,
+        "monthlyRate": 16267,
+        "weeklyRate": 4519,
+        "dailyRate": 1004,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "25-6727-02-2": {
+    "acquisitionDate": "2002-03-18",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 362112,
+        "monthlyRate": 34162,
+        "weeklyRate": 9489,
+        "dailyRate": 2109,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 327625,
+        "monthlyRate": 30908,
+        "weeklyRate": 8586,
+        "dailyRate": 1908,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 258652,
+        "monthlyRate": 24401,
+        "weeklyRate": 6778,
+        "dailyRate": 1506,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 172434,
+        "monthlyRate": 16267,
+        "weeklyRate": 4519,
+        "dailyRate": 1004,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "25-6728-02-3": {
+    "acquisitionDate": "2002-03-18",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 362112,
+        "monthlyRate": 34162,
+        "weeklyRate": 9489,
+        "dailyRate": 2109,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 327625,
+        "monthlyRate": 30908,
+        "weeklyRate": 8586,
+        "dailyRate": 1908,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 258652,
+        "monthlyRate": 24401,
+        "weeklyRate": 6778,
+        "dailyRate": 1506,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 172434,
+        "monthlyRate": 16267,
+        "weeklyRate": 4519,
+        "dailyRate": 1004,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "25-6753-04-3": {
+    "acquisitionDate": "2004-09-10",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 264254,
+        "monthlyRate": 24930,
+        "weeklyRate": 6925,
+        "dailyRate": 1539,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 239087,
+        "monthlyRate": 22555,
+        "weeklyRate": 6265,
+        "dailyRate": 1392,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 188753,
+        "monthlyRate": 17807,
+        "weeklyRate": 4946,
+        "dailyRate": 1099,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 125835,
+        "monthlyRate": 11871,
+        "weeklyRate": 3298,
+        "dailyRate": 733,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "25-6763-04-5": {
+    "acquisitionDate": "2004-09-10",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 264254,
+        "monthlyRate": 24930,
+        "weeklyRate": 6925,
+        "dailyRate": 1539,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 239087,
+        "monthlyRate": 22555,
+        "weeklyRate": 6265,
+        "dailyRate": 1392,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 188753,
+        "monthlyRate": 17807,
+        "weeklyRate": 4946,
+        "dailyRate": 1099,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 125835,
+        "monthlyRate": 11871,
+        "weeklyRate": 3298,
+        "dailyRate": 733,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "26-0032-79-3": {
+    "acquisitionDate": "1980-03-21",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 387360,
+        "monthlyRate": 40078,
+        "weeklyRate": 11133,
+        "dailyRate": 2474,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 350469,
+        "monthlyRate": 36261,
+        "weeklyRate": 10073,
+        "dailyRate": 2238,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 276686,
+        "monthlyRate": 28627,
+        "weeklyRate": 7952,
+        "dailyRate": 1767,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 184457,
+        "monthlyRate": 19085,
+        "weeklyRate": 5301,
+        "dailyRate": 1178,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "26-6003-95-2": {
+    "acquisitionDate": "1995-01-11",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 387360,
+        "monthlyRate": 40078,
+        "weeklyRate": 11133,
+        "dailyRate": 2474,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 350469,
+        "monthlyRate": 36261,
+        "weeklyRate": 10073,
+        "dailyRate": 2238,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 276686,
+        "monthlyRate": 28627,
+        "weeklyRate": 7952,
+        "dailyRate": 1767,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 184457,
+        "monthlyRate": 19085,
+        "weeklyRate": 5301,
+        "dailyRate": 1178,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "26-6005-95-4": {
+    "acquisitionDate": "1995-01-11",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 387360,
+        "monthlyRate": 40078,
+        "weeklyRate": 11133,
+        "dailyRate": 2474,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 350469,
+        "monthlyRate": 36261,
+        "weeklyRate": 10073,
+        "dailyRate": 2238,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 276686,
+        "monthlyRate": 28627,
+        "weeklyRate": 7952,
+        "dailyRate": 1767,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 184457,
+        "monthlyRate": 19085,
+        "weeklyRate": 5301,
+        "dailyRate": 1178,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "26-6007-95-6": {
+    "acquisitionDate": "1995-01-11",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 387360,
+        "monthlyRate": 40078,
+        "weeklyRate": 11133,
+        "dailyRate": 2474,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 350469,
+        "monthlyRate": 36261,
+        "weeklyRate": 10073,
+        "dailyRate": 2238,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 276686,
+        "monthlyRate": 28627,
+        "weeklyRate": 7952,
+        "dailyRate": 1767,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 184457,
+        "monthlyRate": 19085,
+        "weeklyRate": 5301,
+        "dailyRate": 1178,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "26-6011-95-2": {
+    "acquisitionDate": "1995-01-11",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 387360,
+        "monthlyRate": 40078,
+        "weeklyRate": 11133,
+        "dailyRate": 2474,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 350469,
+        "monthlyRate": 36261,
+        "weeklyRate": 10073,
+        "dailyRate": 2238,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 276686,
+        "monthlyRate": 28627,
+        "weeklyRate": 7952,
+        "dailyRate": 1767,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 184457,
+        "monthlyRate": 19085,
+        "weeklyRate": 5301,
+        "dailyRate": 1178,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "27-0080-63-5": {
+    "acquisitionDate": "1963-10-02",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 426590,
+        "monthlyRate": 40343,
+        "weeklyRate": 11206,
+        "dailyRate": 2490,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 385962,
+        "monthlyRate": 36501,
+        "weeklyRate": 10139,
+        "dailyRate": 2253,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 304707,
+        "monthlyRate": 28816,
+        "weeklyRate": 8005,
+        "dailyRate": 1779,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 203138,
+        "monthlyRate": 19211,
+        "weeklyRate": 5336,
+        "dailyRate": 1186,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "27-6009-88-2": {
+    "acquisitionDate": "1988-08-09",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 426590,
+        "monthlyRate": 40343,
+        "weeklyRate": 11206,
+        "dailyRate": 2490,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 385962,
+        "monthlyRate": 36501,
+        "weeklyRate": 10139,
+        "dailyRate": 2253,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 304707,
+        "monthlyRate": 28816,
+        "weeklyRate": 8005,
+        "dailyRate": 1779,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 203138,
+        "monthlyRate": 19211,
+        "weeklyRate": 5336,
+        "dailyRate": 1186,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "27-6011-88-7": {
+    "acquisitionDate": "1988-08-09",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 426590,
+        "monthlyRate": 40343,
+        "weeklyRate": 11206,
+        "dailyRate": 2490,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 385962,
+        "monthlyRate": 36501,
+        "weeklyRate": 10139,
+        "dailyRate": 2253,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 304707,
+        "monthlyRate": 28816,
+        "weeklyRate": 8005,
+        "dailyRate": 1779,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 203138,
+        "monthlyRate": 19211,
+        "weeklyRate": 5336,
+        "dailyRate": 1186,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "27-6012-88-8": {
+    "acquisitionDate": "1988-08-09",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 426590,
+        "monthlyRate": 40343,
+        "weeklyRate": 11206,
+        "dailyRate": 2490,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 385962,
+        "monthlyRate": 36501,
+        "weeklyRate": 10139,
+        "dailyRate": 2253,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 304707,
+        "monthlyRate": 28816,
+        "weeklyRate": 8005,
+        "dailyRate": 1779,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 203138,
+        "monthlyRate": 19211,
+        "weeklyRate": 5336,
+        "dailyRate": 1186,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "27-6015-89-0": {
+    "acquisitionDate": "1989-04-03",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 426590,
+        "monthlyRate": 40343,
+        "weeklyRate": 11206,
+        "dailyRate": 2490,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 385962,
+        "monthlyRate": 36501,
+        "weeklyRate": 10139,
+        "dailyRate": 2253,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 304707,
+        "monthlyRate": 28816,
+        "weeklyRate": 8005,
+        "dailyRate": 1779,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 203138,
+        "monthlyRate": 19211,
+        "weeklyRate": 5336,
+        "dailyRate": 1186,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "27-6023-92-0": {
+    "acquisitionDate": "1992-11-05",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 426590,
+        "monthlyRate": 40343,
+        "weeklyRate": 11206,
+        "dailyRate": 2490,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 385962,
+        "monthlyRate": 36501,
+        "weeklyRate": 10139,
+        "dailyRate": 2253,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 304707,
+        "monthlyRate": 28816,
+        "weeklyRate": 8005,
+        "dailyRate": 1779,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 203138,
+        "monthlyRate": 19211,
+        "weeklyRate": 5336,
+        "dailyRate": 1186,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "27-6144-22-6": {
+    "acquisitionDate": "2022-04-01",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 291914,
+        "monthlyRate": 27582,
+        "weeklyRate": 7662,
+        "dailyRate": 1703,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 264113,
+        "monthlyRate": 24955,
+        "weeklyRate": 6932,
+        "dailyRate": 1540,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 208510,
+        "monthlyRate": 19701,
+        "weeklyRate": 5473,
+        "dailyRate": 1216,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 139007,
+        "monthlyRate": 13134,
+        "weeklyRate": 3648,
+        "dailyRate": 811,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "31-0504-85-4": {
+    "acquisitionDate": "1986-01-28",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 462719,
+        "monthlyRate": 45419,
+        "weeklyRate": 12616,
+        "dailyRate": 2804,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 418651,
+        "monthlyRate": 41094,
+        "weeklyRate": 11415,
+        "dailyRate": 2537,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 330514,
+        "monthlyRate": 32442,
+        "weeklyRate": 9012,
+        "dailyRate": 2003,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 220343,
+        "monthlyRate": 21628,
+        "weeklyRate": 6008,
+        "dailyRate": 1335,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "31-0543-95-0": {
+    "acquisitionDate": "1995-05-19",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 462719,
+        "monthlyRate": 45419,
+        "weeklyRate": 12616,
+        "dailyRate": 2804,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 418651,
+        "monthlyRate": 41094,
+        "weeklyRate": 11415,
+        "dailyRate": 2537,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 330514,
+        "monthlyRate": 32442,
+        "weeklyRate": 9012,
+        "dailyRate": 2003,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 220343,
+        "monthlyRate": 21628,
+        "weeklyRate": 6008,
+        "dailyRate": 1335,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "31-0556-96-5": {
+    "acquisitionDate": "1995-05-19",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 462719,
+        "monthlyRate": 45419,
+        "weeklyRate": 12616,
+        "dailyRate": 2804,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 418651,
+        "monthlyRate": 41094,
+        "weeklyRate": 11415,
+        "dailyRate": 2537,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 330514,
+        "monthlyRate": 32442,
+        "weeklyRate": 9012,
+        "dailyRate": 2003,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 220343,
+        "monthlyRate": 21628,
+        "weeklyRate": 6008,
+        "dailyRate": 1335,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "31-6219-95-3": {
+    "acquisitionDate": "1995-06-20",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 462719,
+        "monthlyRate": 45419,
+        "weeklyRate": 12616,
+        "dailyRate": 2804,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 418651,
+        "monthlyRate": 41094,
+        "weeklyRate": 11415,
+        "dailyRate": 2537,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 330514,
+        "monthlyRate": 32442,
+        "weeklyRate": 9012,
+        "dailyRate": 2003,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 220343,
+        "monthlyRate": 21628,
+        "weeklyRate": 6008,
+        "dailyRate": 1335,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "31-6266-97-0": {
+    "acquisitionDate": "1997-05-02",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 462719,
+        "monthlyRate": 45419,
+        "weeklyRate": 12616,
+        "dailyRate": 2804,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 418651,
+        "monthlyRate": 41094,
+        "weeklyRate": 11415,
+        "dailyRate": 2537,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 330514,
+        "monthlyRate": 32442,
+        "weeklyRate": 9012,
+        "dailyRate": 2003,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 220343,
+        "monthlyRate": 21628,
+        "weeklyRate": 6008,
+        "dailyRate": 1335,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "31-6274-97-0": {
+    "acquisitionDate": "1997-05-02",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 462719,
+        "monthlyRate": 45419,
+        "weeklyRate": 12616,
+        "dailyRate": 2804,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 418651,
+        "monthlyRate": 41094,
+        "weeklyRate": 11415,
+        "dailyRate": 2537,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 330514,
+        "monthlyRate": 32442,
+        "weeklyRate": 9012,
+        "dailyRate": 2003,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 220343,
+        "monthlyRate": 21628,
+        "weeklyRate": 6008,
+        "dailyRate": 1335,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "31-6286-97-3": {
+    "acquisitionDate": "1997-05-02",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 462719,
+        "monthlyRate": 45419,
+        "weeklyRate": 12616,
+        "dailyRate": 2804,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 418651,
+        "monthlyRate": 41094,
+        "weeklyRate": 11415,
+        "dailyRate": 2537,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 330514,
+        "monthlyRate": 32442,
+        "weeklyRate": 9012,
+        "dailyRate": 2003,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 220343,
+        "monthlyRate": 21628,
+        "weeklyRate": 6008,
+        "dailyRate": 1335,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "31-6287-97-4": {
+    "acquisitionDate": "1997-05-02",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 462719,
+        "monthlyRate": 45419,
+        "weeklyRate": 12616,
+        "dailyRate": 2804,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 418651,
+        "monthlyRate": 41094,
+        "weeklyRate": 11415,
+        "dailyRate": 2537,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 330514,
+        "monthlyRate": 32442,
+        "weeklyRate": 9012,
+        "dailyRate": 2003,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 220343,
+        "monthlyRate": 21628,
+        "weeklyRate": 6008,
+        "dailyRate": 1335,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "31-6515-15-8": {
+    "acquisitionDate": "2015-07-28",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 682566,
+        "monthlyRate": 66085,
+        "weeklyRate": 18357,
+        "dailyRate": 4079,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 617559,
+        "monthlyRate": 59791,
+        "weeklyRate": 16609,
+        "dailyRate": 3691,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 487547,
+        "monthlyRate": 47204,
+        "weeklyRate": 13112,
+        "dailyRate": 2914,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 325031,
+        "monthlyRate": 31469,
+        "weeklyRate": 8741,
+        "dailyRate": 1943,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "31-6517-15-0": {
+    "acquisitionDate": "2015-07-28",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 682566,
+        "monthlyRate": 66085,
+        "weeklyRate": 18357,
+        "dailyRate": 4079,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 617559,
+        "monthlyRate": 59791,
+        "weeklyRate": 16609,
+        "dailyRate": 3691,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 487547,
+        "monthlyRate": 47204,
+        "weeklyRate": 13112,
+        "dailyRate": 2914,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 325031,
+        "monthlyRate": 31469,
+        "weeklyRate": 8741,
+        "dailyRate": 1943,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "31-6528-17-1": {
+    "acquisitionDate": "2017-03-17",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 921832,
+        "monthlyRate": 91699,
+        "weeklyRate": 25472,
+        "dailyRate": 5660,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 834038,
+        "monthlyRate": 82966,
+        "weeklyRate": 23046,
+        "dailyRate": 5121,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 658451,
+        "monthlyRate": 65500,
+        "weeklyRate": 18194,
+        "dailyRate": 4043,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 438968,
+        "monthlyRate": 43666,
+        "weeklyRate": 12130,
+        "dailyRate": 2695,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "31-6568-20-6": {
+    "acquisitionDate": "2020-05-29",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 738614,
+        "monthlyRate": 71471,
+        "weeklyRate": 19853,
+        "dailyRate": 4412,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 668269,
+        "monthlyRate": 64665,
+        "weeklyRate": 17962,
+        "dailyRate": 3992,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 527581,
+        "monthlyRate": 51051,
+        "weeklyRate": 14181,
+        "dailyRate": 3151,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 351721,
+        "monthlyRate": 34034,
+        "weeklyRate": 9454,
+        "dailyRate": 2101,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "31-6592-21-0": {
+    "acquisitionDate": "2021-10-27",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 705771,
+        "monthlyRate": 68506,
+        "weeklyRate": 19029,
+        "dailyRate": 4229,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 638554,
+        "monthlyRate": 61982,
+        "weeklyRate": 17217,
+        "dailyRate": 3826,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 504122,
+        "monthlyRate": 48933,
+        "weeklyRate": 13592,
+        "dailyRate": 3021,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 336081,
+        "monthlyRate": 32622,
+        "weeklyRate": 9062,
+        "dailyRate": 2014,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "31-6610-21-8": {
+    "acquisitionDate": "2021-11-03",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 469303,
+        "monthlyRate": 46700,
+        "weeklyRate": 12972,
+        "dailyRate": 2883,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 424608,
+        "monthlyRate": 42252,
+        "weeklyRate": 11737,
+        "dailyRate": 2608,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 335217,
+        "monthlyRate": 33357,
+        "weeklyRate": 9266,
+        "dailyRate": 2059,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 223478,
+        "monthlyRate": 22238,
+        "weeklyRate": 6177,
+        "dailyRate": 1373,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "31-6615-22-7": {
+    "acquisitionDate": "2022-09-02",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 727422,
+        "monthlyRate": 70334,
+        "weeklyRate": 19537,
+        "dailyRate": 4342,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 658143,
+        "monthlyRate": 63635,
+        "weeklyRate": 17676,
+        "dailyRate": 3928,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 519587,
+        "monthlyRate": 50238,
+        "weeklyRate": 13955,
+        "dailyRate": 3101,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 346391,
+        "monthlyRate": 33492,
+        "weeklyRate": 9303,
+        "dailyRate": 2067,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "31-6672-25-9": {
+    "acquisitionDate": "2025-05-20",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 1327075,
+        "monthlyRate": 127743,
+        "weeklyRate": 35484,
+        "dailyRate": 7885,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 1200687,
+        "monthlyRate": 115577,
+        "weeklyRate": 32105,
+        "dailyRate": 7134,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 947911,
+        "monthlyRate": 91245,
+        "weeklyRate": 25346,
+        "dailyRate": 5632,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 631941,
+        "monthlyRate": 60830,
+        "weeklyRate": 16897,
+        "dailyRate": 3755,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "31-6700-26-2": {
+    "acquisitionDate": "2026-05-28",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 745154,
+        "monthlyRate": 71883,
+        "weeklyRate": 19967,
+        "dailyRate": 4437,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 674187,
+        "monthlyRate": 65037,
+        "weeklyRate": 18066,
+        "dailyRate": 4015,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 532253,
+        "monthlyRate": 51345,
+        "weeklyRate": 14262,
+        "dailyRate": 3169,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 354835,
+        "monthlyRate": 34230,
+        "weeklyRate": 9508,
+        "dailyRate": 2113,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "35-0479-97-6": {
+    "acquisitionDate": "1997-05-29",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 497456,
+        "monthlyRate": 48535,
+        "weeklyRate": 13482,
+        "dailyRate": 2996,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 450079,
+        "monthlyRate": 43913,
+        "weeklyRate": 12198,
+        "dailyRate": 2711,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 355325,
+        "monthlyRate": 34668,
+        "weeklyRate": 9630,
+        "dailyRate": 2140,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 236884,
+        "monthlyRate": 23112,
+        "weeklyRate": 6420,
+        "dailyRate": 1427,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "35-6036-94-5": {
+    "acquisitionDate": "1994-09-29",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 497456,
+        "monthlyRate": 48535,
+        "weeklyRate": 13482,
+        "dailyRate": 2996,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 450079,
+        "monthlyRate": 43913,
+        "weeklyRate": 12198,
+        "dailyRate": 2711,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 355325,
+        "monthlyRate": 34668,
+        "weeklyRate": 9630,
+        "dailyRate": 2140,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 236884,
+        "monthlyRate": 23112,
+        "weeklyRate": 6420,
+        "dailyRate": 1427,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "35-6076-97-2": {
+    "acquisitionDate": "1997-11-05",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 497456,
+        "monthlyRate": 48535,
+        "weeklyRate": 13482,
+        "dailyRate": 2996,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 450079,
+        "monthlyRate": 43913,
+        "weeklyRate": 12198,
+        "dailyRate": 2711,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 355325,
+        "monthlyRate": 34668,
+        "weeklyRate": 9630,
+        "dailyRate": 2140,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 236884,
+        "monthlyRate": 23112,
+        "weeklyRate": 6420,
+        "dailyRate": 1427,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "35-6077-97-3": {
+    "acquisitionDate": "1997-11-05",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 497456,
+        "monthlyRate": 48535,
+        "weeklyRate": 13482,
+        "dailyRate": 2996,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 450079,
+        "monthlyRate": 43913,
+        "weeklyRate": 12198,
+        "dailyRate": 2711,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 355325,
+        "monthlyRate": 34668,
+        "weeklyRate": 9630,
+        "dailyRate": 2140,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 236884,
+        "monthlyRate": 23112,
+        "weeklyRate": 6420,
+        "dailyRate": 1427,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "35-6078-97-4": {
+    "acquisitionDate": "1997-11-05",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 497456,
+        "monthlyRate": 48535,
+        "weeklyRate": 13482,
+        "dailyRate": 2996,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 450079,
+        "monthlyRate": 43913,
+        "weeklyRate": 12198,
+        "dailyRate": 2711,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 355325,
+        "monthlyRate": 34668,
+        "weeklyRate": 9630,
+        "dailyRate": 2140,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 236884,
+        "monthlyRate": 23112,
+        "weeklyRate": 6420,
+        "dailyRate": 1427,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "35-6098-99-8": {
+    "acquisitionDate": "1999-10-11",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 497456,
+        "monthlyRate": 48535,
+        "weeklyRate": 13482,
+        "dailyRate": 2996,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 450079,
+        "monthlyRate": 43913,
+        "weeklyRate": 12198,
+        "dailyRate": 2711,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 355325,
+        "monthlyRate": 34668,
+        "weeklyRate": 9630,
+        "dailyRate": 2140,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 236884,
+        "monthlyRate": 23112,
+        "weeklyRate": 6420,
+        "dailyRate": 1427,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "35-6114-19-3": {
+    "acquisitionDate": "2019-04-18",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 787040,
+        "monthlyRate": 76090,
+        "weeklyRate": 21136,
+        "dailyRate": 4697,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 712084,
+        "monthlyRate": 68843,
+        "weeklyRate": 19123,
+        "dailyRate": 4250,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 56172,
+        "monthlyRate": 54350,
+        "weeklyRate": 15097,
+        "dailyRate": 3355,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 374781,
+        "monthlyRate": 36233,
+        "weeklyRate": 10065,
+        "dailyRate": 2237,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "35-6115-19-4": {
+    "acquisitionDate": "2019-04-18",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 787040,
+        "monthlyRate": 76090,
+        "weeklyRate": 21136,
+        "dailyRate": 4697,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 712084,
+        "monthlyRate": 68843,
+        "weeklyRate": 19123,
+        "dailyRate": 4250,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 56172,
+        "monthlyRate": 54350,
+        "weeklyRate": 15097,
+        "dailyRate": 3355,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 374781,
+        "monthlyRate": 36233,
+        "weeklyRate": 10065,
+        "dailyRate": 2237,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "35-6116-19-5": {
+    "acquisitionDate": "2019-04-18",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 787040,
+        "monthlyRate": 76090,
+        "weeklyRate": 21136,
+        "dailyRate": 4697,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 712084,
+        "monthlyRate": 68843,
+        "weeklyRate": 19123,
+        "dailyRate": 4250,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 56172,
+        "monthlyRate": 54350,
+        "weeklyRate": 15097,
+        "dailyRate": 3355,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 374781,
+        "monthlyRate": 36233,
+        "weeklyRate": 10065,
+        "dailyRate": 2237,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "35-6117-19-6": {
+    "acquisitionDate": "2019-04-18",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 787040,
+        "monthlyRate": 76090,
+        "weeklyRate": 21136,
+        "dailyRate": 4697,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 712084,
+        "monthlyRate": 68843,
+        "weeklyRate": 19123,
+        "dailyRate": 4250,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 56172,
+        "monthlyRate": 54350,
+        "weeklyRate": 15097,
+        "dailyRate": 3355,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 374781,
+        "monthlyRate": 36233,
+        "weeklyRate": 10065,
+        "dailyRate": 2237,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "35-6126-26-2": {
+    "acquisitionDate": "2026-05-11",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 744735,
+        "monthlyRate": 71840,
+        "weeklyRate": 19956,
+        "dailyRate": 4435,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 673808,
+        "monthlyRate": 64998,
+        "weeklyRate": 18055,
+        "dailyRate": 4012,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 531954,
+        "monthlyRate": 51314,
+        "weeklyRate": 14254,
+        "dailyRate": 3168,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 354636,
+        "monthlyRate": 34210,
+        "weeklyRate": 9503,
+        "dailyRate": 2112,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "39-0003-26-1": {
+    "acquisitionDate": "2026-07-01",
+    "standardLifeYears": 12,
+    "bands": [
+      {
+        "yearlyRate": 3323887,
+        "monthlyRate": 329332,
+        "weeklyRate": 91481,
+        "dailyRate": 20329,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 3007326,
+        "monthlyRate": 297967,
+        "weeklyRate": 82769,
+        "dailyRate": 18393,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 2374205,
+        "monthlyRate": 235237,
+        "weeklyRate": 65344,
+        "dailyRate": 14521,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 1582803,
+        "monthlyRate": 156825,
+        "weeklyRate": 43562,
+        "dailyRate": 9681,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "39-0004-26-2": {
+    "acquisitionDate": "2026-07-01",
+    "standardLifeYears": 12,
+    "bands": [
+      {
+        "yearlyRate": 1736274,
+        "monthlyRate": 167496,
+        "weeklyRate": 46527,
+        "dailyRate": 10339,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 1570915,
+        "monthlyRate": 151544,
+        "weeklyRate": 42096,
+        "dailyRate": 9355,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 1240196,
+        "monthlyRate": 119640,
+        "weeklyRate": 33233,
+        "dailyRate": 7385,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 826797,
+        "monthlyRate": 79760,
+        "weeklyRate": 22156,
+        "dailyRate": 4923,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "41-5081-79-3": {
+    "acquisitionDate": "1979-07-17",
+    "standardLifeYears": 12,
+    "bands": [
+      {
+        "yearlyRate": 627164,
+        "monthlyRate": 59347,
+        "weeklyRate": 16485,
+        "dailyRate": 3663,
+        "hourlyRate": 611
+      },
+      {
+        "yearlyRate": 567434,
+        "monthlyRate": 53695,
+        "weeklyRate": 14915,
+        "dailyRate": 3315,
+        "hourlyRate": 553
+      },
+      {
+        "yearlyRate": 447974,
+        "monthlyRate": 42391,
+        "weeklyRate": 11775,
+        "dailyRate": 2617,
+        "hourlyRate": 436
+      },
+      {
+        "yearlyRate": 298649,
+        "monthlyRate": 28261,
+        "weeklyRate": 7850,
+        "dailyRate": 1744,
+        "hourlyRate": 291
+      }
+    ]
+  },
+  "41-5086-79-8": {
+    "acquisitionDate": "1979-07-17",
+    "standardLifeYears": 12,
+    "bands": [
+      {
+        "yearlyRate": 627164,
+        "monthlyRate": 59347,
+        "weeklyRate": 16485,
+        "dailyRate": 3663,
+        "hourlyRate": 611
+      },
+      {
+        "yearlyRate": 567434,
+        "monthlyRate": 53695,
+        "weeklyRate": 14915,
+        "dailyRate": 3315,
+        "hourlyRate": 553
+      },
+      {
+        "yearlyRate": 447974,
+        "monthlyRate": 42391,
+        "weeklyRate": 11775,
+        "dailyRate": 2617,
+        "hourlyRate": 436
+      },
+      {
+        "yearlyRate": 298649,
+        "monthlyRate": 28261,
+        "weeklyRate": 7850,
+        "dailyRate": 1744,
+        "hourlyRate": 291
+      }
+    ]
+  },
+  "41-6070-08-7": {
+    "acquisitionDate": "2008-06-18",
+    "standardLifeYears": 12,
+    "bands": [
+      {
+        "yearlyRate": 1073344,
+        "monthlyRate": 101460,
+        "weeklyRate": 28183,
+        "dailyRate": 6263,
+        "hourlyRate": 1044
+      },
+      {
+        "yearlyRate": 971121,
+        "monthlyRate": 91797,
+        "weeklyRate": 25499,
+        "dailyRate": 5666,
+        "hourlyRate": 944
+      },
+      {
+        "yearlyRate": 766675,
+        "monthlyRate": 72471,
+        "weeklyRate": 20131,
+        "dailyRate": 4474,
+        "hourlyRate": 746
+      },
+      {
+        "yearlyRate": 511116,
+        "monthlyRate": 48314,
+        "weeklyRate": 13421,
+        "dailyRate": 2982,
+        "hourlyRate": 497
+      }
+    ]
+  },
+  "41-6072-08-9": {
+    "acquisitionDate": "2008-06-18",
+    "standardLifeYears": 12,
+    "bands": [
+      {
+        "yearlyRate": 1073344,
+        "monthlyRate": 101460,
+        "weeklyRate": 28183,
+        "dailyRate": 6263,
+        "hourlyRate": 1044
+      },
+      {
+        "yearlyRate": 971121,
+        "monthlyRate": 91797,
+        "weeklyRate": 25499,
+        "dailyRate": 5666,
+        "hourlyRate": 944
+      },
+      {
+        "yearlyRate": 766675,
+        "monthlyRate": 72471,
+        "weeklyRate": 20131,
+        "dailyRate": 4474,
+        "hourlyRate": 746
+      },
+      {
+        "yearlyRate": 511116,
+        "monthlyRate": 48314,
+        "weeklyRate": 13421,
+        "dailyRate": 2982,
+        "hourlyRate": 497
+      }
+    ]
+  },
+  "41-6077-10-6": {
+    "acquisitionDate": "2010-01-28",
+    "standardLifeYears": 12,
+    "bands": [
+      {
+        "yearlyRate": 1177038,
+        "monthlyRate": 111256,
+        "weeklyRate": 30904,
+        "dailyRate": 6868,
+        "hourlyRate": 1145
+      },
+      {
+        "yearlyRate": 1064939,
+        "monthlyRate": 100660,
+        "weeklyRate": 27961,
+        "dailyRate": 6214,
+        "hourlyRate": 1036
+      },
+      {
+        "yearlyRate": 840741,
+        "monthlyRate": 79468,
+        "weeklyRate": 22075,
+        "dailyRate": 4905,
+        "hourlyRate": 818
+      },
+      {
+        "yearlyRate": 560494,
+        "monthlyRate": 52979,
+        "weeklyRate": 14716,
+        "dailyRate": 3270,
+        "hourlyRate": 545
+      }
+    ]
+  },
+  "41-6079-10-8": {
+    "acquisitionDate": "2010-01-28",
+    "standardLifeYears": 12,
+    "bands": [
+      {
+        "yearlyRate": 1177038,
+        "monthlyRate": 111256,
+        "weeklyRate": 30904,
+        "dailyRate": 6868,
+        "hourlyRate": 1145
+      },
+      {
+        "yearlyRate": 1064939,
+        "monthlyRate": 100660,
+        "weeklyRate": 27961,
+        "dailyRate": 6214,
+        "hourlyRate": 1036
+      },
+      {
+        "yearlyRate": 840741,
+        "monthlyRate": 79468,
+        "weeklyRate": 22075,
+        "dailyRate": 4905,
+        "hourlyRate": 818
+      },
+      {
+        "yearlyRate": 560494,
+        "monthlyRate": 52979,
+        "weeklyRate": 14716,
+        "dailyRate": 3270,
+        "hourlyRate": 545
+      }
+    ]
+  },
+  "41-6080-10-1": {
+    "acquisitionDate": "2010-01-28",
+    "standardLifeYears": 12,
+    "bands": [
+      {
+        "yearlyRate": 1177038,
+        "monthlyRate": 111256,
+        "weeklyRate": 30904,
+        "dailyRate": 6868,
+        "hourlyRate": 1145
+      },
+      {
+        "yearlyRate": 1064939,
+        "monthlyRate": 100660,
+        "weeklyRate": 27961,
+        "dailyRate": 6214,
+        "hourlyRate": 1036
+      },
+      {
+        "yearlyRate": 840741,
+        "monthlyRate": 79468,
+        "weeklyRate": 22075,
+        "dailyRate": 4905,
+        "hourlyRate": 818
+      },
+      {
+        "yearlyRate": 560494,
+        "monthlyRate": 52979,
+        "weeklyRate": 14716,
+        "dailyRate": 3270,
+        "hourlyRate": 545
+      }
+    ]
+  },
+  "41-6089-15-2": {
+    "acquisitionDate": "2015-09-23",
+    "standardLifeYears": 12,
+    "bands": [
+      {
+        "yearlyRate": 1280467,
+        "monthlyRate": 121027,
+        "weeklyRate": 33619,
+        "dailyRate": 7471,
+        "hourlyRate": 1245
+      },
+      {
+        "yearlyRate": 1158518,
+        "monthlyRate": 109501,
+        "weeklyRate": 30417,
+        "dailyRate": 6759,
+        "hourlyRate": 1127
+      },
+      {
+        "yearlyRate": 914619,
+        "monthlyRate": 86448,
+        "weeklyRate": 24013,
+        "dailyRate": 5336,
+        "hourlyRate": 889
+      },
+      {
+        "yearlyRate": 609746,
+        "monthlyRate": 57632,
+        "weeklyRate": 16009,
+        "dailyRate": 3558,
+        "hourlyRate": 593
+      }
+    ]
+  },
+  "41-6090-15-6": {
+    "acquisitionDate": "2015-09-23",
+    "standardLifeYears": 12,
+    "bands": [
+      {
+        "yearlyRate": 1280467,
+        "monthlyRate": 121027,
+        "weeklyRate": 33619,
+        "dailyRate": 7471,
+        "hourlyRate": 1245
+      },
+      {
+        "yearlyRate": 1158518,
+        "monthlyRate": 109501,
+        "weeklyRate": 30417,
+        "dailyRate": 6759,
+        "hourlyRate": 1127
+      },
+      {
+        "yearlyRate": 914619,
+        "monthlyRate": 86448,
+        "weeklyRate": 24013,
+        "dailyRate": 5336,
+        "hourlyRate": 889
+      },
+      {
+        "yearlyRate": 609746,
+        "monthlyRate": 57632,
+        "weeklyRate": 16009,
+        "dailyRate": 3558,
+        "hourlyRate": 593
+      }
+    ]
+  },
+  "41-6098-17-2": {
+    "acquisitionDate": "2017-06-30",
+    "standardLifeYears": 12,
+    "bands": [
+      {
+        "yearlyRate": 1280943,
+        "monthlyRate": 121072,
+        "weeklyRate": 33631,
+        "dailyRate": 7474,
+        "hourlyRate": 1246
+      },
+      {
+        "yearlyRate": 1158949,
+        "monthlyRate": 109541,
+        "weeklyRate": 30428,
+        "dailyRate": 6762,
+        "hourlyRate": 1127
+      },
+      {
+        "yearlyRate": 914960,
+        "monthlyRate": 86480,
+        "weeklyRate": 24022,
+        "dailyRate": 5338,
+        "hourlyRate": 890
+      },
+      {
+        "yearlyRate": 609973,
+        "monthlyRate": 57653,
+        "weeklyRate": 16015,
+        "dailyRate": 3559,
+        "hourlyRate": 593
+      }
+    ]
+  },
+  "41-6099-17-3": {
+    "acquisitionDate": "2017-06-30",
+    "standardLifeYears": 12,
+    "bands": [
+      {
+        "yearlyRate": 1280943,
+        "monthlyRate": 121072,
+        "weeklyRate": 33631,
+        "dailyRate": 7474,
+        "hourlyRate": 1246
+      },
+      {
+        "yearlyRate": 1158949,
+        "monthlyRate": 109541,
+        "weeklyRate": 30428,
+        "dailyRate": 6762,
+        "hourlyRate": 1127
+      },
+      {
+        "yearlyRate": 914960,
+        "monthlyRate": 86480,
+        "weeklyRate": 24022,
+        "dailyRate": 5338,
+        "hourlyRate": 890
+      },
+      {
+        "yearlyRate": 609973,
+        "monthlyRate": 57653,
+        "weeklyRate": 16015,
+        "dailyRate": 3559,
+        "hourlyRate": 593
+      }
+    ]
+  },
+  "41-6106-25-8": {
+    "acquisitionDate": "2025-06-24",
+    "standardLifeYears": 12,
+    "bands": [
+      {
+        "yearlyRate": 1248286,
+        "monthlyRate": 119839,
+        "weeklyRate": 33289,
+        "dailyRate": 7397,
+        "hourlyRate": 1479
+      },
+      {
+        "yearlyRate": 1129402,
+        "monthlyRate": 108426,
+        "weeklyRate": 30118,
+        "dailyRate": 6693,
+        "hourlyRate": 1339
+      },
+      {
+        "yearlyRate": 891633,
+        "monthlyRate": 85600,
+        "weeklyRate": 23778,
+        "dailyRate": 5284,
+        "hourlyRate": 1057
+      },
+      {
+        "yearlyRate": 594422,
+        "monthlyRate": 57066,
+        "weeklyRate": 15852,
+        "dailyRate": 3523,
+        "hourlyRate": 705
+      }
+    ]
+  },
+  "44-0029-17-1": {
+    "acquisitionDate": "2017-03-31",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 209069,
+        "monthlyRate": 18965,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 189158,
+        "monthlyRate": 17159,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 149335,
+        "monthlyRate": 13546,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 99557,
+        "monthlyRate": 9031,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-0030-17-5": {
+    "acquisitionDate": "2017-03-31",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 209069,
+        "monthlyRate": 18965,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 189158,
+        "monthlyRate": 17159,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 149335,
+        "monthlyRate": 13546,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 99557,
+        "monthlyRate": 9031,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-0031-17-6": {
+    "acquisitionDate": "2017-03-31",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 209069,
+        "monthlyRate": 18965,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 189158,
+        "monthlyRate": 17159,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 149335,
+        "monthlyRate": 13546,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 99557,
+        "monthlyRate": 9031,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-0687-18-7": {
+    "acquisitionDate": "2018-05-17",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 165289,
+        "monthlyRate": 14975,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 149547,
+        "monthlyRate": 13549,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 118064,
+        "monthlyRate": 10697,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 78709,
+        "monthlyRate": 7131,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-0688-18-8": {
+    "acquisitionDate": "2018-05-17",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 165289,
+        "monthlyRate": 14975,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 149547,
+        "monthlyRate": 13549,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 118064,
+        "monthlyRate": 10697,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 78709,
+        "monthlyRate": 7131,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-0689-18-9": {
+    "acquisitionDate": "2018-05-17",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 165289,
+        "monthlyRate": 14975,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 149547,
+        "monthlyRate": 13549,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 118064,
+        "monthlyRate": 10697,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 78709,
+        "monthlyRate": 7131,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-0690-18-2": {
+    "acquisitionDate": "2018-05-17",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 165289,
+        "monthlyRate": 14975,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 149547,
+        "monthlyRate": 13549,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 118064,
+        "monthlyRate": 10697,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 78709,
+        "monthlyRate": 7131,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-0691-18-3": {
+    "acquisitionDate": "2018-05-17",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 165289,
+        "monthlyRate": 14975,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 149547,
+        "monthlyRate": 13549,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 118064,
+        "monthlyRate": 10697,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 78709,
+        "monthlyRate": 7131,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-0692-18-4": {
+    "acquisitionDate": "2018-05-17",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 165289,
+        "monthlyRate": 14975,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 149547,
+        "monthlyRate": 13549,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 118064,
+        "monthlyRate": 10697,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 78709,
+        "monthlyRate": 7131,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-0693-18-5": {
+    "acquisitionDate": "2018-05-17",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 165289,
+        "monthlyRate": 14975,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 149547,
+        "monthlyRate": 13549,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 118064,
+        "monthlyRate": 10697,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 78709,
+        "monthlyRate": 7131,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-0694-18-6": {
+    "acquisitionDate": "2018-05-17",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 165289,
+        "monthlyRate": 14975,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 149547,
+        "monthlyRate": 13549,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 118064,
+        "monthlyRate": 10697,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 78709,
+        "monthlyRate": 7131,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-1029-20-6": {
+    "acquisitionDate": "2020-03-19",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 199969,
+        "monthlyRate": 18167,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 180925,
+        "monthlyRate": 16437,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 142835,
+        "monthlyRate": 12977,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 95224,
+        "monthlyRate": 8651,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-1605-22-0": {
+    "acquisitionDate": "2022-07-22",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 141385,
+        "monthlyRate": 13338,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 127920,
+        "monthlyRate": 12068,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 100989,
+        "monthlyRate": 9527,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 67326,
+        "monthlyRate": 6352,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-1606-22-0": {
+    "acquisitionDate": "2022-07-22",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 141385,
+        "monthlyRate": 13338,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 127920,
+        "monthlyRate": 12068,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 100989,
+        "monthlyRate": 9527,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 67326,
+        "monthlyRate": 6352,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-1607-22-1": {
+    "acquisitionDate": "2022-07-22",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 141385,
+        "monthlyRate": 13338,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 127920,
+        "monthlyRate": 12068,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 100989,
+        "monthlyRate": 9527,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 67326,
+        "monthlyRate": 6352,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-1608-22-2": {
+    "acquisitionDate": "2022-07-22",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 141385,
+        "monthlyRate": 13338,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 127920,
+        "monthlyRate": 12068,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 100989,
+        "monthlyRate": 9527,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 67326,
+        "monthlyRate": 6352,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-1609-22-3": {
+    "acquisitionDate": "2022-07-22",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 141385,
+        "monthlyRate": 13338,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 127920,
+        "monthlyRate": 12068,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 100989,
+        "monthlyRate": 9527,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 67326,
+        "monthlyRate": 6352,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-1610-22-7": {
+    "acquisitionDate": "2022-07-22",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 141385,
+        "monthlyRate": 13338,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 127920,
+        "monthlyRate": 12068,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 100989,
+        "monthlyRate": 9527,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 67326,
+        "monthlyRate": 6352,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-1663-23-3": {
+    "acquisitionDate": "2023-02-02",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 195548,
+        "monthlyRate": 18448,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 176924,
+        "monthlyRate": 16691,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 139677,
+        "monthlyRate": 13177,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 93118,
+        "monthlyRate": 8785,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-1725-23-1": {
+    "acquisitionDate": "2023-07-03",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 142567,
+        "monthlyRate": 13450,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 128989,
+        "monthlyRate": 12169,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 101833,
+        "monthlyRate": 9607,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 67889,
+        "monthlyRate": 6405,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-1804-24-5": {
+    "acquisitionDate": "2024-06-21",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 142651,
+        "monthlyRate": 13458,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 129065,
+        "monthlyRate": 12176,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 101894,
+        "monthlyRate": 9613,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 67929,
+        "monthlyRate": 6408,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-1805-24-6": {
+    "acquisitionDate": "2024-06-21",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 142651,
+        "monthlyRate": 13458,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 129065,
+        "monthlyRate": 12176,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 101894,
+        "monthlyRate": 9613,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 67929,
+        "monthlyRate": 6408,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-1855-24-6": {
+    "acquisitionDate": "2024-07-09",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 172259,
+        "monthlyRate": 16251,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 155853,
+        "monthlyRate": 14703,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 123042,
+        "monthlyRate": 11608,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 82028,
+        "monthlyRate": 7739,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-1856-24-6": {
+    "acquisitionDate": "2024-07-09",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 172259,
+        "monthlyRate": 16251,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 155853,
+        "monthlyRate": 14703,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 123042,
+        "monthlyRate": 11608,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 82028,
+        "monthlyRate": 7739,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-1953-26-6": {
+    "acquisitionDate": "2013-03-25",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 119155,
+        "monthlyRate": 10720,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 107807,
+        "monthlyRate": 9699,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 85111,
+        "monthlyRate": 7657,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 56741,
+        "monthlyRate": 5105,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-8944-10-0": {
+    "acquisitionDate": "2010-04-29",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 147018,
+        "monthlyRate": 13284,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 133016,
+        "monthlyRate": 12019,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 105013,
+        "monthlyRate": 9489,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 70008,
+        "monthlyRate": 6326,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-8957-11-9": {
+    "acquisitionDate": "2010-12-29",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 137707,
+        "monthlyRate": 12427,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 124592,
+        "monthlyRate": 11244,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 98362,
+        "monthlyRate": 887,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 65575,
+        "monthlyRate": 5918,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-8960-11-4": {
+    "acquisitionDate": "2010-12-29",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 137707,
+        "monthlyRate": 12427,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 124592,
+        "monthlyRate": 11244,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 98362,
+        "monthlyRate": 887,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 65575,
+        "monthlyRate": 5918,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-8961-11-5": {
+    "acquisitionDate": "2010-12-29",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 137707,
+        "monthlyRate": 12427,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 124592,
+        "monthlyRate": 11244,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 98362,
+        "monthlyRate": 887,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 65575,
+        "monthlyRate": 5918,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-8962-11-6": {
+    "acquisitionDate": "2010-12-29",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 137707,
+        "monthlyRate": 12427,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 124592,
+        "monthlyRate": 11244,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 98362,
+        "monthlyRate": 887,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 65575,
+        "monthlyRate": 5918,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-9099-13-1": {
+    "acquisitionDate": "2013-03-25",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 119155,
+        "monthlyRate": 10720,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 107807,
+        "monthlyRate": 9699,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 85111,
+        "monthlyRate": 7657,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 56741,
+        "monthlyRate": 5105,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-9100-13-0": {
+    "acquisitionDate": "2013-03-25",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 119155,
+        "monthlyRate": 10720,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 107807,
+        "monthlyRate": 9699,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 85111,
+        "monthlyRate": 7657,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 56741,
+        "monthlyRate": 5105,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-9130-13-6": {
+    "acquisitionDate": "2013-03-25",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 119155,
+        "monthlyRate": 10720,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 107807,
+        "monthlyRate": 9699,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 85111,
+        "monthlyRate": 7657,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 56741,
+        "monthlyRate": 5105,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-9132-13-8": {
+    "acquisitionDate": "2013-03-25",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 119155,
+        "monthlyRate": 10720,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 107807,
+        "monthlyRate": 9699,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 85111,
+        "monthlyRate": 7657,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 56741,
+        "monthlyRate": 5105,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-9133-13-9": {
+    "acquisitionDate": "2013-03-25",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 119155,
+        "monthlyRate": 10720,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 107807,
+        "monthlyRate": 9699,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 85111,
+        "monthlyRate": 7657,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 56741,
+        "monthlyRate": 5105,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-9138-13-3": {
+    "acquisitionDate": "2013-03-25",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 119155,
+        "monthlyRate": 10720,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 107807,
+        "monthlyRate": 9699,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 85111,
+        "monthlyRate": 7657,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 56741,
+        "monthlyRate": 5105,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-9584-14-8": {
+    "acquisitionDate": "2014-08-27",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 124601,
+        "monthlyRate": 11221,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 112734,
+        "monthlyRate": 10152,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 89001,
+        "monthlyRate": 8015,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 59334,
+        "monthlyRate": 5343,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-9643-15-8": {
+    "acquisitionDate": "2015-09-16",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 189818,
+        "monthlyRate": 17217,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 171740,
+        "monthlyRate": 15577,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 135584,
+        "monthlyRate": 12298,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 90390,
+        "monthlyRate": 8199,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-9720-16-0": {
+    "acquisitionDate": "2016-06-03",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 169920,
+        "monthlyRate": 15392,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 153737,
+        "monthlyRate": 13926,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 121371,
+        "monthlyRate": 10994,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 80914,
+        "monthlyRate": 7330,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-9721-16-0": {
+    "acquisitionDate": "2016-06-03",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 169920,
+        "monthlyRate": 15392,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 153737,
+        "monthlyRate": 13926,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 121371,
+        "monthlyRate": 10994,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 80914,
+        "monthlyRate": 7330,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-9722-16-1": {
+    "acquisitionDate": "2016-06-03",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 169920,
+        "monthlyRate": 15392,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 153737,
+        "monthlyRate": 13926,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 121371,
+        "monthlyRate": 10994,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 80914,
+        "monthlyRate": 7330,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-9723-16-2": {
+    "acquisitionDate": "2016-06-03",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 169920,
+        "monthlyRate": 15392,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 153737,
+        "monthlyRate": 13926,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 121371,
+        "monthlyRate": 10994,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 80914,
+        "monthlyRate": 7330,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-9849-16-5": {
+    "acquisitionDate": "2016-06-22",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 151472,
+        "monthlyRate": 13694,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 137046,
+        "monthlyRate": 12390,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 108194,
+        "monthlyRate": 9782,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 72129,
+        "monthlyRate": 6521,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-9851-16-0": {
+    "acquisitionDate": "2016-06-22",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 151472,
+        "monthlyRate": 13694,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 137046,
+        "monthlyRate": 12390,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 108194,
+        "monthlyRate": 9782,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 72129,
+        "monthlyRate": 6521,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-9852-16-0": {
+    "acquisitionDate": "2016-06-22",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 151472,
+        "monthlyRate": 13694,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 137046,
+        "monthlyRate": 12390,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 108194,
+        "monthlyRate": 9782,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 72129,
+        "monthlyRate": 6521,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-9967-17-5": {
+    "acquisitionDate": "2017-02-24",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 170025,
+        "monthlyRate": 15402,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 153833,
+        "monthlyRate": 13935,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 121447,
+        "monthlyRate": 11001,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 80964,
+        "monthlyRate": 7334,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-9968-17-6": {
+    "acquisitionDate": "2017-02-24",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 170025,
+        "monthlyRate": 15402,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 153833,
+        "monthlyRate": 13935,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 121447,
+        "monthlyRate": 11001,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 80964,
+        "monthlyRate": 7334,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "44-9969-17-7": {
+    "acquisitionDate": "2017-02-24",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 170025,
+        "monthlyRate": 15402,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 153833,
+        "monthlyRate": 13935,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 121447,
+        "monthlyRate": 11001,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 80964,
+        "monthlyRate": 7334,
+        "weeklyRate": null,
+        "dailyRate": null,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "46-6309-04-6": {
+    "acquisitionDate": "2004-08-05",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 194772,
+        "monthlyRate": 17305,
+        "weeklyRate": 4807,
+        "dailyRate": 1068,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 176223,
+        "monthlyRate": 15657,
+        "weeklyRate": 4349,
+        "dailyRate": 966,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 139123,
+        "monthlyRate": 12361,
+        "weeklyRate": 3434,
+        "dailyRate": 763,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 92749,
+        "monthlyRate": 8241,
+        "weeklyRate": 2289,
+        "dailyRate": 509,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "46-6563-07-2": {
+    "acquisitionDate": "2007-11-28",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 177397,
+        "monthlyRate": 15728,
+        "weeklyRate": 4369,
+        "dailyRate": 971,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 160502,
+        "monthlyRate": 14230,
+        "weeklyRate": 3953,
+        "dailyRate": 878,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 126712,
+        "monthlyRate": 11234,
+        "weeklyRate": 3121,
+        "dailyRate": 693,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 84475,
+        "monthlyRate": 7489,
+        "weeklyRate": 2080,
+        "dailyRate": 462,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "47-6067-90-0": {
+    "acquisitionDate": "1990-12-13",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 344201,
+        "monthlyRate": 32764,
+        "weeklyRate": 9101,
+        "dailyRate": 2022,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 311420,
+        "monthlyRate": 29643,
+        "weeklyRate": 8234,
+        "dailyRate": 1830,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 245858,
+        "monthlyRate": 23403,
+        "weeklyRate": 6501,
+        "dailyRate": 1445,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 163905,
+        "monthlyRate": 15602,
+        "weeklyRate": 4334,
+        "dailyRate": 963,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "47-6101-02-0": {
+    "acquisitionDate": "2002-11-05",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 261487,
+        "monthlyRate": 23201,
+        "weeklyRate": 6445,
+        "dailyRate": 1432,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 236583,
+        "monthlyRate": 20992,
+        "weeklyRate": 5831,
+        "dailyRate": 1296,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 186776,
+        "monthlyRate": 16572,
+        "weeklyRate": 4603,
+        "dailyRate": 1023,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 124517,
+        "monthlyRate": 11048,
+        "weeklyRate": 3069,
+        "dailyRate": 682,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "47-6102-02-1": {
+    "acquisitionDate": "2002-11-05",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 261487,
+        "monthlyRate": 23201,
+        "weeklyRate": 6445,
+        "dailyRate": 1432,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 236583,
+        "monthlyRate": 20992,
+        "weeklyRate": 5831,
+        "dailyRate": 1296,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 186776,
+        "monthlyRate": 16572,
+        "weeklyRate": 4603,
+        "dailyRate": 1023,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 124517,
+        "monthlyRate": 11048,
+        "weeklyRate": 3069,
+        "dailyRate": 682,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "61-6034-16-6": {
+    "acquisitionDate": "2016-01-14",
+    "standardLifeYears": 12,
+    "bands": [
+      {
+        "yearlyRate": 668481,
+        "monthlyRate": 68772,
+        "weeklyRate": 19103,
+        "dailyRate": 4245,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 604816,
+        "monthlyRate": 62223,
+        "weeklyRate": 17284,
+        "dailyRate": 3841,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 477487,
+        "monthlyRate": 49123,
+        "weeklyRate": 13645,
+        "dailyRate": 3032,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 318324,
+        "monthlyRate": 32749,
+        "weeklyRate": 9097,
+        "dailyRate": 2022,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "63-6010-19-9": {
+    "acquisitionDate": "2019-07-03",
+    "standardLifeYears": 12,
+    "bands": [
+      {
+        "yearlyRate": 1654673,
+        "monthlyRate": 156397,
+        "weeklyRate": 43444,
+        "dailyRate": 9654,
+        "hourlyRate": 1609
+      },
+      {
+        "yearlyRate": 1497085,
+        "monthlyRate": 141502,
+        "weeklyRate": 39306,
+        "dailyRate": 8735,
+        "hourlyRate": 1456
+      },
+      {
+        "yearlyRate": 1181909,
+        "monthlyRate": 111712,
+        "weeklyRate": 31031,
+        "dailyRate": 6896,
+        "hourlyRate": 1149
+      },
+      {
+        "yearlyRate": 787940,
+        "monthlyRate": 74475,
+        "weeklyRate": 20687,
+        "dailyRate": 4597,
+        "hourlyRate": 766
+      }
+    ]
+  },
+  "64-6019-97-7": {
+    "acquisitionDate": "1997-07-14",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 856363,
+        "monthlyRate": 91056,
+        "weeklyRate": 25293,
+        "dailyRate": 5621,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 774805,
+        "monthlyRate": 82384,
+        "weeklyRate": 22884,
+        "dailyRate": 5085,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 611688,
+        "monthlyRate": 65040,
+        "weeklyRate": 18067,
+        "dailyRate": 4015,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 407792,
+        "monthlyRate": 43360,
+        "weeklyRate": 12044,
+        "dailyRate": 2677,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "64-6024-02-1": {
+    "acquisitionDate": "2002-04-25",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 444204,
+        "monthlyRate": 41691,
+        "weeklyRate": 11581,
+        "dailyRate": 2574,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 401899,
+        "monthlyRate": 37721,
+        "weeklyRate": 10478,
+        "dailyRate": 2328,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 317288,
+        "monthlyRate": 29780,
+        "weeklyRate": 8272,
+        "dailyRate": 1838,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 211526,
+        "monthlyRate": 19853,
+        "weeklyRate": 5515,
+        "dailyRate": 1225,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "74-0111-91-9": {
+    "acquisitionDate": "1991-06-04",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 560497,
+        "monthlyRate": 53287,
+        "weeklyRate": 14802,
+        "dailyRate": 3289,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 507116,
+        "monthlyRate": 48212,
+        "weeklyRate": 13392,
+        "dailyRate": 2976,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 400355,
+        "monthlyRate": 38062,
+        "weeklyRate": 10573,
+        "dailyRate": 2350,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 266903,
+        "monthlyRate": 25375,
+        "weeklyRate": 7049,
+        "dailyRate": 1566,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "74-6002-91-8": {
+    "acquisitionDate": "1991-07-05",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 560497,
+        "monthlyRate": 53287,
+        "weeklyRate": 14802,
+        "dailyRate": 3289,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 507116,
+        "monthlyRate": 48212,
+        "weeklyRate": 13392,
+        "dailyRate": 2976,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 400355,
+        "monthlyRate": 38062,
+        "weeklyRate": 10573,
+        "dailyRate": 2350,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 266903,
+        "monthlyRate": 25375,
+        "weeklyRate": 7049,
+        "dailyRate": 1566,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "74-6061-02-2": {
+    "acquisitionDate": "2002-11-25",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 384562,
+        "monthlyRate": 36279,
+        "weeklyRate": 10078,
+        "dailyRate": 2239,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 347937,
+        "monthlyRate": 32824,
+        "weeklyRate": 9118,
+        "dailyRate": 2026,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 274687,
+        "monthlyRate": 25914,
+        "weeklyRate": 7198,
+        "dailyRate": 1600,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 18125,
+        "monthlyRate": 17276,
+        "weeklyRate": 4799,
+        "dailyRate": 1066,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "74-6078-05-4": {
+    "acquisitionDate": "2005-04-11",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 440921,
+        "monthlyRate": 41596,
+        "weeklyRate": 11555,
+        "dailyRate": 2568,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 398928,
+        "monthlyRate": 37635,
+        "weeklyRate": 10454,
+        "dailyRate": 2323,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 314943,
+        "monthlyRate": 29712,
+        "weeklyRate": 8253,
+        "dailyRate": 1834,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 20962,
+        "monthlyRate": 19808,
+        "weeklyRate": 5502,
+        "dailyRate": 1223,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "74-6086-05-4": {
+    "acquisitionDate": "2005-04-11",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 440921,
+        "monthlyRate": 41596,
+        "weeklyRate": 11555,
+        "dailyRate": 2568,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 398928,
+        "monthlyRate": 37635,
+        "weeklyRate": 10454,
+        "dailyRate": 2323,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 314943,
+        "monthlyRate": 29712,
+        "weeklyRate": 8253,
+        "dailyRate": 1834,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 20962,
+        "monthlyRate": 19808,
+        "weeklyRate": 5502,
+        "dailyRate": 1223,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "74-6143-09-6": {
+    "acquisitionDate": "2009-03-20",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 498123,
+        "monthlyRate": 46993,
+        "weeklyRate": 13054,
+        "dailyRate": 2901,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 450683,
+        "monthlyRate": 42517,
+        "weeklyRate": 11810,
+        "dailyRate": 2625,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 355802,
+        "monthlyRate": 33566,
+        "weeklyRate": 9324,
+        "dailyRate": 2072,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 237202,
+        "monthlyRate": 22378,
+        "weeklyRate": 6216,
+        "dailyRate": 1381,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "77-6136-11-4": {
+    "acquisitionDate": "2011-02-16",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 547296,
+        "monthlyRate": 53995,
+        "weeklyRate": 14999,
+        "dailyRate": 3333,
+        "hourlyRate": 556
+      },
+      {
+        "yearlyRate": 495173,
+        "monthlyRate": 48853,
+        "weeklyRate": 13570,
+        "dailyRate": 3016,
+        "hourlyRate": 503
+      },
+      {
+        "yearlyRate": 390926,
+        "monthlyRate": 38568,
+        "weeklyRate": 10713,
+        "dailyRate": 2381,
+        "hourlyRate": 397
+      },
+      {
+        "yearlyRate": 260617,
+        "monthlyRate": 25712,
+        "weeklyRate": 7142,
+        "dailyRate": 1587,
+        "hourlyRate": 265
+      }
+    ]
+  },
+  "77-6193-14-6": {
+    "acquisitionDate": "2014-02-20",
+    "standardLifeYears": 8,
+    "bands": [
+      {
+        "yearlyRate": 744827,
+        "monthlyRate": 73147,
+        "weeklyRate": 20319,
+        "dailyRate": 4515,
+        "hourlyRate": 753
+      },
+      {
+        "yearlyRate": 673891,
+        "monthlyRate": 66181,
+        "weeklyRate": 18384,
+        "dailyRate": 4085,
+        "hourlyRate": 681
+      },
+      {
+        "yearlyRate": 532019,
+        "monthlyRate": 52248,
+        "weeklyRate": 14513,
+        "dailyRate": 3225,
+        "hourlyRate": 538
+      },
+      {
+        "yearlyRate": 354680,
+        "monthlyRate": 34832,
+        "weeklyRate": 9676,
+        "dailyRate": 2150,
+        "hourlyRate": 358
+      }
+    ]
+  },
+  "78-6014-90-0": {
+    "acquisitionDate": "1990-12-18",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 1046002,
+        "monthlyRate": 99522,
+        "weeklyRate": 27645,
+        "dailyRate": 6143,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 946383,
+        "monthlyRate": 90044,
+        "weeklyRate": 25012,
+        "dailyRate": 5558,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 747144,
+        "monthlyRate": 71087,
+        "weeklyRate": 19747,
+        "dailyRate": 4388,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 498096,
+        "monthlyRate": 47392,
+        "weeklyRate": 13164,
+        "dailyRate": 2925,
+        "hourlyRate": null
+      }
+    ]
+  },
+  "82-6021-94-0": {
+    "acquisitionDate": "1994-06-30",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 850993,
+        "monthlyRate": 80532,
+        "weeklyRate": 22370,
+        "dailyRate": 4971,
+        "hourlyRate": 829
+      },
+      {
+        "yearlyRate": 769946,
+        "monthlyRate": 72863,
+        "weeklyRate": 20240,
+        "dailyRate": 4498,
+        "hourlyRate": 750
+      },
+      {
+        "yearlyRate": 607852,
+        "monthlyRate": 57523,
+        "weeklyRate": 15979,
+        "dailyRate": 3551,
+        "hourlyRate": 592
+      },
+      {
+        "yearlyRate": 405235,
+        "monthlyRate": 38349,
+        "weeklyRate": 10652,
+        "dailyRate": 2367,
+        "hourlyRate": 395
+      }
+    ]
+  },
+  "82-6023-94-2": {
+    "acquisitionDate": "1994-06-30",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 850993,
+        "monthlyRate": 80532,
+        "weeklyRate": 22370,
+        "dailyRate": 4971,
+        "hourlyRate": 829
+      },
+      {
+        "yearlyRate": 769946,
+        "monthlyRate": 72863,
+        "weeklyRate": 20240,
+        "dailyRate": 4498,
+        "hourlyRate": 750
+      },
+      {
+        "yearlyRate": 607852,
+        "monthlyRate": 57523,
+        "weeklyRate": 15979,
+        "dailyRate": 3551,
+        "hourlyRate": 592
+      },
+      {
+        "yearlyRate": 405235,
+        "monthlyRate": 38349,
+        "weeklyRate": 10652,
+        "dailyRate": 2367,
+        "hourlyRate": 395
+      }
+    ]
+  },
+  "82-6029-94-8": {
+    "acquisitionDate": "1994-06-30",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 850993,
+        "monthlyRate": 80532,
+        "weeklyRate": 22370,
+        "dailyRate": 4971,
+        "hourlyRate": 829
+      },
+      {
+        "yearlyRate": 769946,
+        "monthlyRate": 72863,
+        "weeklyRate": 20240,
+        "dailyRate": 4498,
+        "hourlyRate": 750
+      },
+      {
+        "yearlyRate": 607852,
+        "monthlyRate": 57523,
+        "weeklyRate": 15979,
+        "dailyRate": 3551,
+        "hourlyRate": 592
+      },
+      {
+        "yearlyRate": 405235,
+        "monthlyRate": 38349,
+        "weeklyRate": 10652,
+        "dailyRate": 2367,
+        "hourlyRate": 395
+      }
+    ]
+  },
+  "82-6037-97-8": {
+    "acquisitionDate": "1997-03-21",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 884362,
+        "monthlyRate": 83700,
+        "weeklyRate": 23250,
+        "dailyRate": 5167,
+        "hourlyRate": 861
+      },
+      {
+        "yearlyRate": 800137,
+        "monthlyRate": 75729,
+        "weeklyRate": 21036,
+        "dailyRate": 4675,
+        "hourlyRate": 779
+      },
+      {
+        "yearlyRate": 631687,
+        "monthlyRate": 59786,
+        "weeklyRate": 16607,
+        "dailyRate": 3690,
+        "hourlyRate": 615
+      },
+      {
+        "yearlyRate": 421125,
+        "monthlyRate": 39857,
+        "weeklyRate": 11071,
+        "dailyRate": 2460,
+        "hourlyRate": 410
+      }
+    ]
+  },
+  "82-6048-97-0": {
+    "acquisitionDate": "1997-03-21",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 884362,
+        "monthlyRate": 83700,
+        "weeklyRate": 23250,
+        "dailyRate": 5167,
+        "hourlyRate": 861
+      },
+      {
+        "yearlyRate": 800137,
+        "monthlyRate": 75729,
+        "weeklyRate": 21036,
+        "dailyRate": 4675,
+        "hourlyRate": 779
+      },
+      {
+        "yearlyRate": 631687,
+        "monthlyRate": 59786,
+        "weeklyRate": 16607,
+        "dailyRate": 3690,
+        "hourlyRate": 615
+      },
+      {
+        "yearlyRate": 421125,
+        "monthlyRate": 39857,
+        "weeklyRate": 11071,
+        "dailyRate": 2460,
+        "hourlyRate": 410
+      }
+    ]
+  },
+  "82-6057-01-1": {
+    "acquisitionDate": "2001-05-04",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 884362,
+        "monthlyRate": 83700,
+        "weeklyRate": 23250,
+        "dailyRate": 5167,
+        "hourlyRate": 861
+      },
+      {
+        "yearlyRate": 800137,
+        "monthlyRate": 75729,
+        "weeklyRate": 21036,
+        "dailyRate": 4675,
+        "hourlyRate": 779
+      },
+      {
+        "yearlyRate": 631687,
+        "monthlyRate": 59786,
+        "weeklyRate": 16607,
+        "dailyRate": 3690,
+        "hourlyRate": 615
+      },
+      {
+        "yearlyRate": 421125,
+        "monthlyRate": 39857,
+        "weeklyRate": 11071,
+        "dailyRate": 2460,
+        "hourlyRate": 410
+      }
+    ]
+  },
+  "82-6058-01-2": {
+    "acquisitionDate": "2001-05-04",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 884362,
+        "monthlyRate": 83700,
+        "weeklyRate": 23250,
+        "dailyRate": 5167,
+        "hourlyRate": 861
+      },
+      {
+        "yearlyRate": 800137,
+        "monthlyRate": 75729,
+        "weeklyRate": 21036,
+        "dailyRate": 4675,
+        "hourlyRate": 779
+      },
+      {
+        "yearlyRate": 631687,
+        "monthlyRate": 59786,
+        "weeklyRate": 16607,
+        "dailyRate": 3690,
+        "hourlyRate": 615
+      },
+      {
+        "yearlyRate": 421125,
+        "monthlyRate": 39857,
+        "weeklyRate": 11071,
+        "dailyRate": 2460,
+        "hourlyRate": 410
+      }
+    ]
+  },
+  "82-6060-01-7": {
+    "acquisitionDate": "2001-05-04",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 884362,
+        "monthlyRate": 83700,
+        "weeklyRate": 23250,
+        "dailyRate": 5167,
+        "hourlyRate": 861
+      },
+      {
+        "yearlyRate": 800137,
+        "monthlyRate": 75729,
+        "weeklyRate": 21036,
+        "dailyRate": 4675,
+        "hourlyRate": 779
+      },
+      {
+        "yearlyRate": 631687,
+        "monthlyRate": 59786,
+        "weeklyRate": 16607,
+        "dailyRate": 3690,
+        "hourlyRate": 615
+      },
+      {
+        "yearlyRate": 421125,
+        "monthlyRate": 39857,
+        "weeklyRate": 11071,
+        "dailyRate": 2460,
+        "hourlyRate": 410
+      }
+    ]
+  },
+  "82-6074-02-7": {
+    "acquisitionDate": "2002-07-08",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 751119,
+        "monthlyRate": 71061,
+        "weeklyRate": 19739,
+        "dailyRate": 4386,
+        "hourlyRate": 731
+      },
+      {
+        "yearlyRate": 679584,
+        "monthlyRate": 64293,
+        "weeklyRate": 17859,
+        "dailyRate": 3969,
+        "hourlyRate": 662
+      },
+      {
+        "yearlyRate": 536514,
+        "monthlyRate": 50758,
+        "weeklyRate": 14099,
+        "dailyRate": 3133,
+        "hourlyRate": 522
+      },
+      {
+        "yearlyRate": 357676,
+        "monthlyRate": 33838,
+        "weeklyRate": 9400,
+        "dailyRate": 2089,
+        "hourlyRate": 348
+      }
+    ]
+  },
+  "82-6079-08-9": {
+    "acquisitionDate": "2008-12-06",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 910111,
+        "monthlyRate": 86082,
+        "weeklyRate": 23912,
+        "dailyRate": 5314,
+        "hourlyRate": 886
+      },
+      {
+        "yearlyRate": 823433,
+        "monthlyRate": 77883,
+        "weeklyRate": 21634,
+        "dailyRate": 4808,
+        "hourlyRate": 801
+      },
+      {
+        "yearlyRate": 650079,
+        "monthlyRate": 61487,
+        "weeklyRate": 17080,
+        "dailyRate": 3795,
+        "hourlyRate": 633
+      },
+      {
+        "yearlyRate": 433386,
+        "monthlyRate": 40991,
+        "weeklyRate": 11386,
+        "dailyRate": 2530,
+        "hourlyRate": 422
+      }
+    ]
+  },
+  "82-6080-08-2": {
+    "acquisitionDate": "2008-12-06",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 910111,
+        "monthlyRate": 86082,
+        "weeklyRate": 23912,
+        "dailyRate": 5314,
+        "hourlyRate": 886
+      },
+      {
+        "yearlyRate": 823433,
+        "monthlyRate": 77883,
+        "weeklyRate": 21634,
+        "dailyRate": 4808,
+        "hourlyRate": 801
+      },
+      {
+        "yearlyRate": 650079,
+        "monthlyRate": 61487,
+        "weeklyRate": 17080,
+        "dailyRate": 3795,
+        "hourlyRate": 633
+      },
+      {
+        "yearlyRate": 433386,
+        "monthlyRate": 40991,
+        "weeklyRate": 11386,
+        "dailyRate": 2530,
+        "hourlyRate": 422
+      }
+    ]
+  },
+  "82-6081-08-2": {
+    "acquisitionDate": "2008-12-06",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 910111,
+        "monthlyRate": 86082,
+        "weeklyRate": 23912,
+        "dailyRate": 5314,
+        "hourlyRate": 886
+      },
+      {
+        "yearlyRate": 823433,
+        "monthlyRate": 77883,
+        "weeklyRate": 21634,
+        "dailyRate": 4808,
+        "hourlyRate": 801
+      },
+      {
+        "yearlyRate": 650079,
+        "monthlyRate": 61487,
+        "weeklyRate": 17080,
+        "dailyRate": 3795,
+        "hourlyRate": 633
+      },
+      {
+        "yearlyRate": 433386,
+        "monthlyRate": 40991,
+        "weeklyRate": 11386,
+        "dailyRate": 2530,
+        "hourlyRate": 422
+      }
+    ]
+  },
+  "82-6090-08-4": {
+    "acquisitionDate": "2008-12-06",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 910111,
+        "monthlyRate": 86082,
+        "weeklyRate": 23912,
+        "dailyRate": 5314,
+        "hourlyRate": 886
+      },
+      {
+        "yearlyRate": 823433,
+        "monthlyRate": 77883,
+        "weeklyRate": 21634,
+        "dailyRate": 4808,
+        "hourlyRate": 801
+      },
+      {
+        "yearlyRate": 650079,
+        "monthlyRate": 61487,
+        "weeklyRate": 17080,
+        "dailyRate": 3795,
+        "hourlyRate": 633
+      },
+      {
+        "yearlyRate": 433386,
+        "monthlyRate": 40991,
+        "weeklyRate": 11386,
+        "dailyRate": 2530,
+        "hourlyRate": 422
+      }
+    ]
+  },
+  "82-6095-10-1": {
+    "acquisitionDate": "2010-02-16",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 1393925,
+        "monthlyRate": 131791,
+        "weeklyRate": 36609,
+        "dailyRate": 8135,
+        "hourlyRate": 1356
+      },
+      {
+        "yearlyRate": 1261170,
+        "monthlyRate": 119239,
+        "weeklyRate": 33122,
+        "dailyRate": 7360,
+        "hourlyRate": 1227
+      },
+      {
+        "yearlyRate": 995661,
+        "monthlyRate": 94136,
+        "weeklyRate": 26149,
+        "dailyRate": 5811,
+        "hourlyRate": 969
+      },
+      {
+        "yearlyRate": 663774,
+        "monthlyRate": 62757,
+        "weeklyRate": 17433,
+        "dailyRate": 3874,
+        "hourlyRate": 646
+      }
+    ]
+  },
+  "82-6096-10-2": {
+    "acquisitionDate": "2010-02-16",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 1393925,
+        "monthlyRate": 131791,
+        "weeklyRate": 36609,
+        "dailyRate": 8135,
+        "hourlyRate": 1356
+      },
+      {
+        "yearlyRate": 1261170,
+        "monthlyRate": 119239,
+        "weeklyRate": 33122,
+        "dailyRate": 7360,
+        "hourlyRate": 1227
+      },
+      {
+        "yearlyRate": 995661,
+        "monthlyRate": 94136,
+        "weeklyRate": 26149,
+        "dailyRate": 5811,
+        "hourlyRate": 969
+      },
+      {
+        "yearlyRate": 663774,
+        "monthlyRate": 62757,
+        "weeklyRate": 17433,
+        "dailyRate": 3874,
+        "hourlyRate": 646
+      }
+    ]
+  },
+  "82-6115-14-9": {
+    "acquisitionDate": "2014-03-24",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 912458,
+        "monthlyRate": 86303,
+        "weeklyRate": 23973,
+        "dailyRate": 5327,
+        "hourlyRate": 888
+      },
+      {
+        "yearlyRate": 825557,
+        "monthlyRate": 78084,
+        "weeklyRate": 21690,
+        "dailyRate": 4820,
+        "hourlyRate": 803
+      },
+      {
+        "yearlyRate": 651756,
+        "monthlyRate": 61645,
+        "weeklyRate": 17124,
+        "dailyRate": 3805,
+        "hourlyRate": 634
+      },
+      {
+        "yearlyRate": 434504,
+        "monthlyRate": 41097,
+        "weeklyRate": 11416,
+        "dailyRate": 2537,
+        "hourlyRate": 423
+      }
+    ]
+  },
+  "82-6153-16-3": {
+    "acquisitionDate": "2016-10-25",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 877498,
+        "monthlyRate": 83001,
+        "weeklyRate": 23056,
+        "dailyRate": 5123,
+        "hourlyRate": 854
+      },
+      {
+        "yearlyRate": 793927,
+        "monthlyRate": 75096,
+        "weeklyRate": 20860,
+        "dailyRate": 4636,
+        "hourlyRate": 773
+      },
+      {
+        "yearlyRate": 626784,
+        "monthlyRate": 59286,
+        "weeklyRate": 16468,
+        "dailyRate": 3660,
+        "hourlyRate": 610
+      },
+      {
+        "yearlyRate": 417856,
+        "monthlyRate": 39524,
+        "weeklyRate": 10979,
+        "dailyRate": 2440,
+        "hourlyRate": 407
+      }
+    ]
+  },
+  "82-6169-18-0": {
+    "acquisitionDate": "2018-05-23",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 639448,
+        "monthlyRate": 60533,
+        "weeklyRate": 16815,
+        "dailyRate": 3737,
+        "hourlyRate": 623
+      },
+      {
+        "yearlyRate": 578548,
+        "monthlyRate": 54768,
+        "weeklyRate": 15213,
+        "dailyRate": 3381,
+        "hourlyRate": 564
+      },
+      {
+        "yearlyRate": 456748,
+        "monthlyRate": 43238,
+        "weeklyRate": 12010,
+        "dailyRate": 2669,
+        "hourlyRate": 445
+      },
+      {
+        "yearlyRate": 304499,
+        "monthlyRate": 28825,
+        "weeklyRate": 8007,
+        "dailyRate": 1779,
+        "hourlyRate": 297
+      }
+    ]
+  },
+  "82-6204-19-2": {
+    "acquisitionDate": "2019-03-19",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 600844,
+        "monthlyRate": 56863,
+        "weeklyRate": 15795,
+        "dailyRate": 3510,
+        "hourlyRate": 585
+      },
+      {
+        "yearlyRate": 543620,
+        "monthlyRate": 51448,
+        "weeklyRate": 14291,
+        "dailyRate": 3176,
+        "hourlyRate": 529
+      },
+      {
+        "yearlyRate": 429174,
+        "monthlyRate": 40167,
+        "weeklyRate": 11282,
+        "dailyRate": 2507,
+        "hourlyRate": 418
+      },
+      {
+        "yearlyRate": 286116,
+        "monthlyRate": 27078,
+        "weeklyRate": 7522,
+        "dailyRate": 1671,
+        "hourlyRate": 279
+      }
+    ]
+  },
+  "82-6209-19-7": {
+    "acquisitionDate": "2019-03-26",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 1056280,
+        "monthlyRate": 99891,
+        "weeklyRate": 27748,
+        "dailyRate": 6166,
+        "hourlyRate": 1028
+      },
+      {
+        "yearlyRate": 955682,
+        "monthlyRate": 90378,
+        "weeklyRate": 25105,
+        "dailyRate": 5579,
+        "hourlyRate": 930
+      },
+      {
+        "yearlyRate": 754485,
+        "monthlyRate": 71351,
+        "weeklyRate": 19820,
+        "dailyRate": 4404,
+        "hourlyRate": 734
+      },
+      {
+        "yearlyRate": 502990,
+        "monthlyRate": 47567,
+        "weeklyRate": 13213,
+        "dailyRate": 2936,
+        "hourlyRate": 489
+      }
+    ]
+  },
+  "82-6230-20-2": {
+    "acquisitionDate": "2020-07-21",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 1248859,
+        "monthlyRate": 118077,
+        "weeklyRate": 32799,
+        "dailyRate": 7289,
+        "hourlyRate": 1215
+      },
+      {
+        "yearlyRate": 1129920,
+        "monthlyRate": 106832,
+        "weeklyRate": 29675,
+        "dailyRate": 6595,
+        "hourlyRate": 1099
+      },
+      {
+        "yearlyRate": 892042,
+        "monthlyRate": 84341,
+        "weeklyRate": 23428,
+        "dailyRate": 5206,
+        "hourlyRate": 868
+      },
+      {
+        "yearlyRate": 594695,
+        "monthlyRate": 56227,
+        "weeklyRate": 15619,
+        "dailyRate": 3471,
+        "hourlyRate": 579
+      }
+    ]
+  },
+  "82-6233-21-0": {
+    "acquisitionDate": "2021-12-29",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 1124551,
+        "monthlyRate": 106393,
+        "weeklyRate": 29554,
+        "dailyRate": 6567,
+        "hourlyRate": 1095
+      },
+      {
+        "yearlyRate": 1017451,
+        "monthlyRate": 96260,
+        "weeklyRate": 26739,
+        "dailyRate": 5942,
+        "hourlyRate": 990
+      },
+      {
+        "yearlyRate": 803251,
+        "monthlyRate": 75995,
+        "weeklyRate": 21110,
+        "dailyRate": 4691,
+        "hourlyRate": 782
+      },
+      {
+        "yearlyRate": 535501,
+        "monthlyRate": 50663,
+        "weeklyRate": 14073,
+        "dailyRate": 3127,
+        "hourlyRate": 521
+      }
+    ]
+  },
+  "82-6239-22-0": {
+    "acquisitionDate": "2022-03-16",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 1124551,
+        "monthlyRate": 106393,
+        "weeklyRate": 29554,
+        "dailyRate": 6567,
+        "hourlyRate": 1095
+      },
+      {
+        "yearlyRate": 1017451,
+        "monthlyRate": 96260,
+        "weeklyRate": 26739,
+        "dailyRate": 5942,
+        "hourlyRate": 990
+      },
+      {
+        "yearlyRate": 803251,
+        "monthlyRate": 75995,
+        "weeklyRate": 21110,
+        "dailyRate": 4691,
+        "hourlyRate": 782
+      },
+      {
+        "yearlyRate": 535501,
+        "monthlyRate": 50663,
+        "weeklyRate": 14073,
+        "dailyRate": 3127,
+        "hourlyRate": 521
+      }
+    ]
+  },
+  "82-6296-23-2": {
+    "acquisitionDate": "2023-12-22",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 1261997,
+        "monthlyRate": 119327,
+        "weeklyRate": 33146,
+        "dailyRate": 7366,
+        "hourlyRate": 1228
+      },
+      {
+        "yearlyRate": 1141807,
+        "monthlyRate": 107963,
+        "weeklyRate": 29990,
+        "dailyRate": 6664,
+        "hourlyRate": 1111
+      },
+      {
+        "yearlyRate": 901426,
+        "monthlyRate": 85234,
+        "weeklyRate": 23676,
+        "dailyRate": 5261,
+        "hourlyRate": 877
+      },
+      {
+        "yearlyRate": 600951,
+        "monthlyRate": 56822,
+        "weeklyRate": 15784,
+        "dailyRate": 3508,
+        "hourlyRate": 585
+      }
+    ]
+  },
+  "82-6316-25-0": {
+    "acquisitionDate": "2025-07-07",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 1264233,
+        "monthlyRate": 119538,
+        "weeklyRate": 33205,
+        "dailyRate": 7379,
+        "hourlyRate": 1230
+      },
+      {
+        "yearlyRate": 1143830,
+        "monthlyRate": 108154,
+        "weeklyRate": 30043,
+        "dailyRate": 6676,
+        "hourlyRate": 1113
+      },
+      {
+        "yearlyRate": 903023,
+        "monthlyRate": 85385,
+        "weeklyRate": 23718,
+        "dailyRate": 5271,
+        "hourlyRate": 879
+      },
+      {
+        "yearlyRate": 602016,
+        "monthlyRate": 56923,
+        "weeklyRate": 15812,
+        "dailyRate": 3514,
+        "hourlyRate": 586
+      }
+    ]
+  },
+  "82-6340-26-5": {
+    "acquisitionDate": "2026-06-18",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 1228673,
+        "monthlyRate": 117013,
+        "weeklyRate": 32504,
+        "dailyRate": 7223,
+        "hourlyRate": 1204
+      },
+      {
+        "yearlyRate": 1111656,
+        "monthlyRate": 105869,
+        "weeklyRate": 29408,
+        "dailyRate": 6535,
+        "hourlyRate": 1089
+      },
+      {
+        "yearlyRate": 877623,
+        "monthlyRate": 83581,
+        "weeklyRate": 23217,
+        "dailyRate": 5159,
+        "hourlyRate": 860
+      },
+      {
+        "yearlyRate": 585082,
+        "monthlyRate": 55721,
+        "weeklyRate": 15478,
+        "dailyRate": 3440,
+        "hourlyRate": 573
+      }
+    ]
+  },
+  "87-0034-25-9": {
+    "acquisitionDate": "2025-03-10",
+    "standardLifeYears": 10,
+    "bands": [
+      {
+        "yearlyRate": 163767,
+        "monthlyRate": 15450,
+        "weeklyRate": 4292,
+        "dailyRate": 954,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 148170,
+        "monthlyRate": 13978,
+        "weeklyRate": 3883,
+        "dailyRate": 863,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 116976,
+        "monthlyRate": 11035,
+        "weeklyRate": 3065,
+        "dailyRate": 681,
+        "hourlyRate": null
+      },
+      {
+        "yearlyRate": 77984,
+        "monthlyRate": 7357,
+        "weeklyRate": 2044,
+        "dailyRate": 454,
+        "hourlyRate": null
+      }
+    ]
+  }
+}

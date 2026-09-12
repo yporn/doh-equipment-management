@@ -1,0 +1,1 @@
+ALTER TABLE `machineries` ADD `renter_department` text;

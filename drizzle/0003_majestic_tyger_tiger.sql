@@ -1,0 +1,2 @@
+CREATE INDEX `idx_service_records_machinery_date` ON `service_records` (`machinery_code`,`service_date`);--> statement-breakpoint
+CREATE INDEX `idx_service_records_date` ON `service_records` (`service_date`);

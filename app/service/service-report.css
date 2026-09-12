@@ -1,0 +1,24 @@
+.service-summary-report-backdrop{position:fixed;inset:0;z-index:1000;background:#10233599;overflow:auto;padding:24px}.service-summary-report{width:min(1200px,100%);margin:auto;background:#fff;border-radius:12px;padding:28px;color:#111;font-size:13px}.service-summary-report-controls{display:flex;justify-content:flex-end;gap:10px;margin-bottom:22px}.service-summary-report-heading{position:relative;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;min-height:118px;padding:78px 0 12px;border-bottom:2px solid #183c68}.service-summary-report-heading>img{position:absolute;left:4px;top:4px;width:66px;height:66px;object-fit:contain}.service-summary-report-heading strong{font-size:23px;color:#183c68}.service-summary-report-heading small{text-align:right}.service-summary-report h1{text-align:center;font-size:23px}.service-summary-report-criteria{border:1px solid #aaa;padding:10px;white-space:pre-wrap;overflow-wrap:anywhere}.service-summary-report-table{width:100%;min-width:0!important;table-layout:fixed;border-collapse:collapse}.service-summary-report-table th,.service-summary-report-table td{border:1px solid #777;padding:7px 5px!important;white-space:normal!important;overflow-wrap:anywhere;font-size:11px!important;vertical-align:top;color:#111!important;background:#fff!important}.service-summary-report-table th:first-child,.service-summary-report-table td:first-child{width:4%}.service-summary-report-table td:nth-child(4) strong{font-size:14px}.service-summary-report footer{margin-top:25px;text-align:center;color:#666;font-size:10px}
+.service-print-frame{position:fixed;right:0;bottom:0;width:1px;height:1px;border:0;opacity:0;pointer-events:none}
+@media print{@page{size:A4 landscape;margin:12mm}body>.service-summary-report-backdrop~*,body>:not(.service-summary-report-backdrop){display:none!important}.service-summary-report-backdrop{position:static;inset:auto;padding:0;background:#fff;overflow:visible}.service-summary-report{width:100%;max-width:none;margin:0;padding:0;border-radius:0;overflow:visible}.service-summary-report-controls{display:none!important}.service-summary-report-table thead{display:table-header-group}.service-summary-report-table tr{break-inside:avoid}.service-summary-report-heading{break-after:avoid}}
+/* Exact A4 landscape layout used after pressing Print / Save PDF. */
+.service-summary-report-table th:nth-child(2),.service-summary-report-table td:nth-child(2){width:19%}.service-summary-report-table th:nth-child(3),.service-summary-report-table td:nth-child(3){width:19%}.service-summary-report-table th:nth-child(4),.service-summary-report-table td:nth-child(4){width:19%}.service-summary-report-table th:nth-child(5),.service-summary-report-table td:nth-child(5){width:19%}.service-summary-report-table th:nth-child(6),.service-summary-report-table td:nth-child(6){width:20%}
+@media print{
+  @page{size:A4 landscape;margin:7mm}
+  html,body{margin:0!important;padding:0!important;background:#fff!important}
+  body>:not(.service-summary-report-backdrop){display:none!important}
+  .service-summary-report-backdrop{position:static!important;inset:auto!important;width:100%!important;padding:0!important;background:#fff!important;overflow:visible!important}
+  .service-summary-report{width:100%!important;max-width:none!important;margin:0!important;padding:0!important;border-radius:0!important;box-shadow:none!important;overflow:visible!important;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+  .service-summary-report-controls{display:none!important}
+  .service-summary-report-heading{min-height:112px;padding:74px 0 10px;break-after:avoid}
+  .service-summary-report-heading>img{left:4px;top:0;width:72px;height:72px}
+  .service-summary-report-heading strong{font-size:22px}
+  .service-summary-report h1{margin:8px 0 6px;font-size:22px;line-height:1.2}
+  .service-summary-report-criteria{margin:0 0 5px;padding:8px 10px}
+  .service-summary-report-criteria+p{margin:0 0 4px}
+  .service-summary-report-table{width:100%!important;page-break-inside:auto}
+  .service-summary-report-table thead{display:table-header-group}
+  .service-summary-report-table tr{break-inside:avoid;page-break-inside:avoid}
+  .service-summary-report-table th,.service-summary-report-table td{padding:7px 6px!important;font-size:10px!important}
+  .service-summary-report footer{margin-top:22px;break-inside:avoid}
+}
