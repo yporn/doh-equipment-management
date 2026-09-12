@@ -39,3 +39,8 @@ yarn-error.log*
 /.wrangler/
 /outputs/
 /work/
+
+# This machine's global gitignore (~/.gitignore_global) has a stray
+# bare "page.tsx" rule from an unrelated project that would otherwise
+# silently exclude every page.tsx in this app from version control.
+!/**/page.tsx
