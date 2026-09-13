@@ -3,7 +3,7 @@
 import { watchBangkokMonth } from "../lib/rental-activity.mjs";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import registry from "../data/machineries.json";
-import { currentMachine } from "../lib/age-rates.mjs";
+import { currentMachine, bangkokToday } from "../lib/age-rates.mjs";
 import AppSidebar from "./components/app-sidebar";
 import { ConfirmSubmitButton } from "./components/confirm-action";
 import Select from "./components/select";
@@ -95,6 +95,12 @@ export function EquipmentApp({
   const [isSaving, setIsSaving] = useState(false);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(20);
+  const [attention, setAttention] = useState<{
+    repairsOpen: number;
+    disposalsPending: number;
+    rentalsOverdue: number;
+    rentalsActive: number;
+  } | null>(null);
   useEffect(() => {
     const reload = () => fetch("/api/machineries")
       .then(async (response) => {
@@ -109,6 +115,31 @@ export function EquipmentApp({
     void reload();
     return watchBangkokMonth(() => { void reload(); });
   }, []);
+  useEffect(() => {
+    if (registryOnly) return;
+    let active = true;
+    Promise.all([
+      fetch("/api/repairs").then((response) => (response.ok ? response.json() : [])),
+      fetch("/api/disposals").then((response) => (response.ok ? response.json() : [])),
+      fetch("/api/rentals").then((response) => (response.ok ? response.json() : [])),
+    ])
+      .then(([repairs, disposals, rentals]: [
+        { status: string }[],
+        { status: string }[],
+        { status: string; expectedReturnDate: string }[],
+      ]) => {
+        if (!active) return;
+        const today = bangkokToday();
+        setAttention({
+          repairsOpen: repairs.filter((item) => item.status !== "COMPLETED").length,
+          disposalsPending: disposals.filter((item) => item.status !== "DISPOSED").length,
+          rentalsActive: rentals.filter((item) => item.status === "ACTIVE").length,
+          rentalsOverdue: rentals.filter((item) => item.status === "ACTIVE" && item.expectedReturnDate < today).length,
+        });
+      })
+      .catch(() => { /* leave attention panel hidden if any of these fail */ });
+    return () => { active = false; };
+  }, [registryOnly]);
   const departments = useMemo(
     () =>
       Array.from(
@@ -410,7 +441,7 @@ export function EquipmentApp({
                 </a>
               )}
             </div>
-            <div className="toolbar">
+            <div className="toolbar" hidden={!registryOnly}>
               <label className="search">
                 <span>⌕</span>
                 <input
@@ -570,25 +601,39 @@ export function EquipmentApp({
             <section className="panel compact">
               <div className="panel-heading">
                 <div>
-                  <h2>คุณภาพข้อมูลทะเบียน</h2>
-                  <p>ข้อมูลจากไฟล์ เวิร์กบุ๊ก1.xlsx</p>
+                  <h2>งานที่ต้องติดตาม</h2>
+                  <p>สรุปสดจากระบบซ่อมบำรุง จำหน่าย และระบบเช่า</p>
                 </div>
               </div>
               <div className="task">
-                <span className="task-icon warning">!</span>
+                <span className={`task-icon ${(attention?.repairsOpen ?? 0) > 0 ? "warning" : "ok"}`}>
+                  {(attention?.repairsOpen ?? 0) > 0 ? "!" : "✓"}
+                </span>
                 <div>
-                  <strong>นำเข้ารุ่นเครื่องยนต์และหมายเลขทะเบียนแล้ว</strong>
-                  <p>เลขตัวถัง / Serial ยังคงเว้นว่างเมื่อไฟล์ไม่ได้ระบุ</p>
+                  <strong>งานซ่อมที่ยังไม่เสร็จ {attention ? attention.repairsOpen.toLocaleString("th-TH") : "…"} รายการ</strong>
+                  <p>รอตรวจสอบ รออะไหล่ หรือกำลังซ่อมอยู่</p>
                 </div>
+                <a href="/repairs">ดูรายการ →</a>
               </div>
               <div className="task">
-                <span className="task-icon danger">×</span>
+                <span className={`task-icon ${(attention?.disposalsPending ?? 0) > 0 ? "warning" : "ok"}`}>
+                  {(attention?.disposalsPending ?? 0) > 0 ? "!" : "✓"}
+                </span>
                 <div>
-                  <strong>สถานะเช่าและ Service ยังต้องยืนยัน</strong>
-                  <p>
-                    ภาพถ่ายเป็นเอกสารบางช่วงเวลา จึงยังไม่ใช้เปลี่ยนสถานะทั้งหมด
-                  </p>
+                  <strong>รอ/อนุมัติจำหน่าย {attention ? attention.disposalsPending.toLocaleString("th-TH") : "…"} รายการ</strong>
+                  <p>ยังไม่บันทึกจำหน่ายแล้วในระบบ</p>
                 </div>
+                <a href="/disposals">ดูรายการ →</a>
+              </div>
+              <div className="task">
+                <span className={`task-icon ${(attention?.rentalsOverdue ?? 0) > 0 ? "danger" : "ok"}`}>
+                  {(attention?.rentalsOverdue ?? 0) > 0 ? "×" : "✓"}
+                </span>
+                <div>
+                  <strong>เลยกำหนดคืน {attention ? attention.rentalsOverdue.toLocaleString("th-TH") : "…"} รายการ</strong>
+                  <p>จากการเช่าที่ยังใช้งานอยู่ {attention ? attention.rentalsActive.toLocaleString("th-TH") : "…"} รายการ</p>
+                </div>
+                <a href="/rentals">ดูรายการ →</a>
               </div>
             </section>
             <section className="panel compact">
