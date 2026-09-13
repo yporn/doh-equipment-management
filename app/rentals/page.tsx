@@ -330,10 +330,7 @@ export default function RentalsPage() {
               </label>
               <label>
                 หมายเลขเครื่องจักร
-                <input aria-label="กรองตามหมายเลขเครื่องจักร" list="rental-history-machineries" value={machineryFilter} onChange={(event) => setMachineryFilter(event.target.value)} placeholder="พิมพ์หมายเลขเครื่องจักร" autoComplete="off" />
-                <datalist id="rental-history-machineries">
-                  {rentalMachines.map((code) => <option value={code} key={code} />)}
-                </datalist>
+                <Select ariaLabel="กรองตามหมายเลขเครื่องจักร" isSearchable isClearable placeholder="พิมพ์หมายเลขเครื่องจักร" value={machineryFilter} onChange={setMachineryFilter} options={rentalMachines.map((code) => ({ value: code, label: code }))} />
               </label>
               <label>
                 ประเภทการเช่า

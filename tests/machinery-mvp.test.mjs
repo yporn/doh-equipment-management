@@ -21,7 +21,8 @@ test("rental history filters combine fiscal year, month, machinery and search", 
   }
   const page = await readFile(new URL("app/rentals/page.tsx", root), "utf8");
   for (const label of ["กรองตามปีงบประมาณ", "กรองตามเดือน", "กรองตามหมายเลขเครื่องจักร", "ล้างตัวกรอง", "ไม่พบประวัติการเช่าตามตัวกรอง"]) assert.ok(page.includes(label));
-  assert.match(page, /list="rental-history-machineries"/);
+  // Machinery filter is the shared searchable Select component, not a native input+datalist.
+  assert.match(page, /rentalMachines\.map\(\(code\) => \(\{ value: code, label: code \}\)\)/);
 });
 
 test("rental type filters combine with existing filters and replace the status column", async () => {
@@ -245,7 +246,8 @@ test("provides a persistent Service workflow without changing machinery status",
   assert.match(page, /กรองตามปีงบประมาณ/);
   assert.match(page, /กรองตามเดือน/);
   assert.match(page, /กรองตามหมายเลขเครื่องจักร/);
-  assert.match(page, /list="service-history-machineries"/);
+  // Machinery filter is the shared searchable Select component, not a native input+datalist.
+  assert.match(page, /serviceMachines\.map\(\(code\) => \(\{ value: code, label: code \}\)\)/);
   assert.match(page, /พิมพ์หมายเลขเครื่องจักร/);
   assert.match(page, /fiscalYearOf/);
   assert.match(page, /ประวัติตามตัวกรอง/);

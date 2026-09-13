@@ -393,19 +393,15 @@ export default function ServicePage() {
               </label>
               <label>
                 หมายเลขเครื่องจักร
-                <input
-                  aria-label="กรองตามหมายเลขเครื่องจักร"
-                  list="service-history-machineries"
-                  value={machineryFilter}
-                  onChange={(event) => setMachineryFilter(event.target.value)}
+                <Select
+                  ariaLabel="กรองตามหมายเลขเครื่องจักร"
+                  isSearchable
+                  isClearable
                   placeholder="พิมพ์หมายเลขเครื่องจักร"
-                  autoComplete="off"
+                  value={machineryFilter}
+                  onChange={setMachineryFilter}
+                  options={serviceMachines.map((code) => ({ value: code, label: code }))}
                 />
-                <datalist id="service-history-machineries">
-                  {serviceMachines.map((code) => (
-                    <option value={code} key={code} />
-                  ))}
-                </datalist>
               </label>
               <button
                 type="button"
