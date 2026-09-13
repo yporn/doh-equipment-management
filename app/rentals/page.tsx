@@ -7,7 +7,7 @@ import Select from "../components/select";
 import { isCurrentRental, watchBangkokMonth } from "../../lib/rental-activity.mjs";
 import RentalReport from "./rental-report";
 import { ConfirmActionButton, ConfirmSubmitButton } from "../components/confirm-action";
-import { fiscalYearOf, matchesRentalHistory } from "../../lib/rental-history.mjs";
+import { fiscalYearOf, matchesRentalHistory, monthlyEquivalentAmount, overlapsCalendarMonth } from "../../lib/rental-history.mjs";
 import { rentalRate, bangkokToday } from "../../lib/age-rates.mjs";
 
 type Machine = {
@@ -149,6 +149,12 @@ export default function RentalsPage() {
   ].filter(Boolean).join(" • ");
   const activeCount = new Set(rentals.filter(record => isCurrentRental(record)).map(record => record.machineryCode)).size;
   const availableCount = new Set(machines.filter(machine => !rentals.some(record => record.machineryCode === machine.code && isCurrentRental(record))).map(machine => machine.code)).size;
+  const today = bangkokToday();
+  const currentMonthNumber = String(Number(today.slice(5, 7)));
+  const currentFiscalYear = String(fiscalYearOf(today));
+  const monthlyIncomeEstimate = rentals
+    .filter((record) => overlapsCalendarMonth(record, currentMonthNumber, currentFiscalYear))
+    .reduce((sum, record) => sum + monthlyEquivalentAmount(record), 0);
 
   function suggestedRate(code = machineCode, type = rateType) {
     const machine = machines.find((item) => item.code === code);
@@ -301,6 +307,11 @@ export default function RentalsPage() {
               <span>ประวัติทั้งหมด</span>
               <strong>{rentals.length.toLocaleString("th-TH")}</strong>
               <small>รายการ</small>
+            </article>
+            <article className="stat-card">
+              <span>ประมาณการรายได้ค่าเช่าเดือนนี้</span>
+              <strong>{monthlyIncomeEstimate.toLocaleString("th-TH", { maximumFractionDigits: 0 })}</strong>
+              <small>บาท</small>
             </article>
           </section>
           <section className="panel">

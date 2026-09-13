@@ -17,8 +17,9 @@ test("rental report filters combine fiscal year, month and exact renter departme
 });
 
 test("a yearly rental spanning fiscal years contributes an even monthly share to every month it covers", () => {
-  const yearly = { startDate: "2025-10-01", expectedReturnDate: "2026-09-30", totalAmount: 120000 };
-  assert.equal(monthsSpanned(yearly.startDate, yearly.expectedReturnDate), 12);
+  const yearly = { startDate: "2025-10-01", expectedReturnDate: "2026-09-30", totalAmount: 120000, rateType: "YEARLY", duration: 1 };
+  // A 1-year contract always divides by 12, regardless of which day of the month it starts/ends on.
+  assert.equal(monthsSpanned(yearly.rateType, yearly.duration), 12);
   assert.equal(monthlyEquivalentAmount(yearly), 10000);
   // March 2026 falls inside the contract even though it started in FY2569's October.
   assert.equal(overlapsCalendarMonth(yearly, "3", "2569"), true);
@@ -29,10 +30,17 @@ test("a yearly rental spanning fiscal years contributes an even monthly share to
   // matchesRentalHistory now widens month/fiscal-year filters to any month the rental actually covers.
   assert.equal(matchesRentalHistory(yearly, { query: "", fiscalYear: "2569", month: "3", machinery: "" }), true);
   assert.equal(matchesRentalHistory(yearly, { query: "", fiscalYear: "2570", month: "3", machinery: "" }), false);
-  // A short daily rental is unaffected: it neither spans nor gets averaged across other months.
-  const daily = { startDate: "2026-03-05", expectedReturnDate: "2026-03-07", totalAmount: 900 };
-  assert.equal(monthsSpanned(daily.startDate, daily.expectedReturnDate), 1);
+  // A 3-month contract divides by its own 3 months, not by calendar-label technicalities.
+  const monthly = { startDate: "2026-01-15", expectedReturnDate: "2026-04-14", totalAmount: 9000, rateType: "MONTHLY", duration: 3 };
+  assert.equal(monthsSpanned(monthly.rateType, monthly.duration), 3);
+  assert.equal(monthlyEquivalentAmount(monthly), 3000);
+  // A rental shorter than a month keeps its full value for the one month it falls in, not an inflated hypothetical monthly rate.
+  const daily = { startDate: "2026-03-05", expectedReturnDate: "2026-03-07", totalAmount: 900, rateType: "DAILY", duration: 3 };
+  assert.equal(monthsSpanned(daily.rateType, daily.duration), 0.1);
   assert.equal(monthlyEquivalentAmount(daily), 900);
+  // Same for a 1-week rental: it should not get blown up into an extrapolated "per month" rate.
+  const weekly = { startDate: "2026-09-12", expectedReturnDate: "2026-09-18", totalAmount: 29554, rateType: "WEEKLY", duration: 1 };
+  assert.equal(monthlyEquivalentAmount(weekly), 29554);
 });
 
 test("renter organization sync is separate from physical location, lender and owner", () => {
