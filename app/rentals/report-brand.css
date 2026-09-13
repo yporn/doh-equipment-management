@@ -1,5 +1,13 @@
 .rental-report-heading {
+  position: relative;
   min-height: 118px;
   padding-top: 78px;
-  background: url('/doh-logo.png') left 4px top 4px / 66px 66px no-repeat;
+}
+.rental-report-logo {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 66px;
+  height: 66px;
+  object-fit: contain;
 }
