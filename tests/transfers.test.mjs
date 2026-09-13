@@ -110,9 +110,14 @@ test("transfer report combines fiscal year, month, origin, destination and searc
   for (const mismatch of [{ query: "ไม่พบ" }, { fiscalYear: "2568" }, { month: "9" }, { fromDepartment: "ไม่พบ" }, { toDepartment: "ไม่พบ" }]) assert.equal(matchesTransferHistory(record, { ...filters, ...mismatch }), false);
   const page = await readFile(new URL("../app/transfers/page.tsx", import.meta.url), "utf8");
   for (const label of ["กรองตามปีงบประมาณ", "กรองตามเดือน", "กรองตามหน่วยงานต้นทาง", "กรองตามหน่วยงานปลายทาง", "ล้างตัวกรอง"]) assert.ok(page.includes(label));
-  assert.doesNotMatch(page, /setShowReport/);
-  assert.doesNotMatch(page, /พิมพ์รายงาน/);
-  assert.doesNotMatch(page, /report-shell\.css/);
+  assert.match(page, /setShowReport/);
+  assert.match(page, /พิมพ์รายงาน/);
+  assert.match(page, /records=\{filtered\}/);
+  assert.match(page, /criteria=\{reportCriteria\}/);
+  const report = await readFile(new URL("../app/transfers/transfer-report.tsx", import.meta.url), "utf8");
+  assert.match(report, /doh-logo\.png/);
+  assert.match(report, /window\.print\(\)/);
+  assert.match(report, /รายงานการขนย้ายเครื่องจักร/);
 });
 
 test("generated migration can run again after runtime initialization without losing trips", async () => {

@@ -5,6 +5,7 @@ import type { FormEvent } from "react";
 import AppSidebar from "../components/app-sidebar";
 import { ConfirmActionButton, ConfirmSubmitButton } from "../components/confirm-action";
 import Select from "../components/select";
+import TransferReport from "./transfer-report";
 import { departmentChoices, matchesTransferHistory, transporterChoices, transporterTypes } from "../../lib/transfers.mjs";
 import { fiscalYearOf } from "../../lib/rental-history.mjs";
 import "./transfers.css";
@@ -30,6 +31,7 @@ export default function TransfersPage() {
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const [showForm, setShowForm] = useState(false);
+  const [showReport, setShowReport] = useState(false);
   const [editing, setEditing] = useState<Trip | null>(null);
   const [transferDate, setTransferDate] = useState(today);
   const [transporters, setTransporters] = useState([""]);
@@ -60,6 +62,13 @@ export default function TransfersPage() {
   const filtered = useMemo(() => records.filter(record => matchesTransferHistory(record, { query, fiscalYear, month, fromDepartment, toDepartment })), [records, query, fiscalYear, month, fromDepartment, toDepartment]);
   const hasFilters = Boolean(query || fiscalYear || month || fromDepartment || toDepartment);
   function resetFilters() { setQuery(""); setFiscalYear(""); setMonth(""); setFromDepartment(""); setToDepartment(""); }
+  const reportCriteria = [
+    fiscalYear ? `ปีงบประมาณ ${fiscalYear}` : "ทุกปีงบประมาณ",
+    month ? thaiMonths[Number(month) - 1] : "ทุกเดือน",
+    fromDepartment ? `หน่วยงานต้นทาง: ${fromDepartment}` : "ทุกหน่วยงานต้นทาง",
+    toDepartment ? `หน่วยงานปลายทาง: ${toDepartment}` : "ทุกหน่วยงานปลายทาง",
+    query ? `คำค้น: ${query}` : "",
+  ].filter(Boolean).join(" • ");
 
   function openForm(record: Trip | null = null) {
     setEditing(record); setTransferDate(record?.transferDate ?? today()); setTransporters(record ? [...record.transporters] : [""]); setItems(record ? structuredClone(record.items) : [emptyItem()]); setError(""); setNotice(""); setShowForm(true);
@@ -109,9 +118,11 @@ export default function TransfersPage() {
         <p className="detail-note">หน่วยงานในบัญชีเครื่องจักรจะเปลี่ยนเป็นปลายทางของประวัติขนย้ายล่าสุดตามวันที่ หากเป็นวันเดียวกันใช้รายการที่บันทึกทีหลัง โดยไม่เปลี่ยนสถานะหรือหน่วยงานเจ้าของ</p>
         <div className="modal-actions"><button type="button" className="secondary" onClick={() => { setShowForm(false); setEditing(null); setError(""); }}>ยกเลิก</button><ConfirmSubmitButton title={editing ? "ยืนยันแก้ไขขนย้าย" : "ยืนยันบันทึกขนย้าย"} message={`บันทึกขนย้ายเครื่องจักร ${items.length} รายการ โดยรถขนย้าย ${transporters.length} คัน?`} confirmLabel="ยืนยันบันทึก" disabled={saving || (!carriers.length && !editing)}>{saving ? "กำลังบันทึก…" : editing ? "บันทึกการแก้ไข" : "บันทึกข้อมูล"}</ConfirmSubmitButton></div>
       </fieldset></form></section>}
-      <section className="panel"><div className="panel-heading"><div><h2>รายการขนย้ายเครื่องจักร</h2><p>แสดงต้นทาง–ปลายทางแยกแต่ละเครื่องจักร</p></div></div><div className="service-history-filters transfer-filters"><label>ค้นหา<input value={query} onChange={event => setQuery(event.target.value)} placeholder="หมายเลขเครื่องจักร / สถานที่ / วันที่" /></label><label>ปีงบประมาณ<Select ariaLabel="กรองตามปีงบประมาณ" value={fiscalYear} onChange={setFiscalYear} options={[{ value: "", label: "ทุกปีงบประมาณ" }, ...fiscalYears.map(year => ({ value: String(year), label: `ปีงบประมาณ ${year}` }))]} /></label><label>เดือน<Select ariaLabel="กรองตามเดือน" value={month} onChange={setMonth} options={[{ value: "", label: "ทุกเดือน" }, ...thaiMonths.map((name, index) => ({ value: String(index + 1), label: name }))]} /></label><label>หน่วยงานต้นทาง<Select ariaLabel="กรองตามหน่วยงานต้นทาง" isSearchable value={fromDepartment} onChange={setFromDepartment} options={[{ value: "", label: "ทุกหน่วยงานต้นทาง" }, ...fromDepartments.map(name => ({ value: name, label: name }))]} /></label><label>หน่วยงานปลายทาง<Select ariaLabel="กรองตามหน่วยงานปลายทาง" isSearchable value={toDepartment} onChange={setToDepartment} options={[{ value: "", label: "ทุกหน่วยงานปลายทาง" }, ...toDepartments.map(name => ({ value: name, label: name }))]} /></label><button type="button" className="transfer-reset" onClick={resetFilters}>ล้างตัวกรอง</button></div>
+      <section className="panel"><div className="panel-heading"><div><h2>รายการขนย้ายเครื่องจักร</h2><p>แสดงต้นทาง–ปลายทางแยกแต่ละเครื่องจักร</p></div></div><div className="service-history-filters transfer-filters"><label>ค้นหา<input value={query} onChange={event => setQuery(event.target.value)} placeholder="หมายเลขเครื่องจักร / สถานที่ / วันที่" /></label><label>ปีงบประมาณ<Select ariaLabel="กรองตามปีงบประมาณ" value={fiscalYear} onChange={setFiscalYear} options={[{ value: "", label: "ทุกปีงบประมาณ" }, ...fiscalYears.map(year => ({ value: String(year), label: `ปีงบประมาณ ${year}` }))]} /></label><label>เดือน<Select ariaLabel="กรองตามเดือน" value={month} onChange={setMonth} options={[{ value: "", label: "ทุกเดือน" }, ...thaiMonths.map((name, index) => ({ value: String(index + 1), label: name }))]} /></label><label>หน่วยงานต้นทาง<Select ariaLabel="กรองตามหน่วยงานต้นทาง" isSearchable value={fromDepartment} onChange={setFromDepartment} options={[{ value: "", label: "ทุกหน่วยงานต้นทาง" }, ...fromDepartments.map(name => ({ value: name, label: name }))]} /></label><label>หน่วยงานปลายทาง<Select ariaLabel="กรองตามหน่วยงานปลายทาง" isSearchable value={toDepartment} onChange={setToDepartment} options={[{ value: "", label: "ทุกหน่วยงานปลายทาง" }, ...toDepartments.map(name => ({ value: name, label: name }))]} /></label><button type="button" className="transfer-reset" onClick={resetFilters}>ล้างตัวกรอง</button><button type="button" className="transfer-reset report-button" disabled={loading || saving} onClick={() => setShowReport(true)}>พิมพ์รายงาน</button></div>
         <p className="rental-filter-summary" role="status">{loading ? "กำลังโหลดข้อมูล…" : `พบ ${filtered.length} จาก ${records.length} รายการขนย้าย`}</p><div className="table-wrap"><table className="transfer-table"><thead><tr><th>วันที่ขนย้าย</th><th>ขนย้ายโดย</th><th>เครื่องจักรที่ขนย้าย</th><th>เส้นทาง</th><th>จัดการ</th></tr></thead><tbody>{filtered.flatMap(record => record.items.map((item, index) => <tr key={`${record.id}-${index}`} className={index === 0 ? "transfer-trip-start" : undefined}>{index === 0 && <><td rowSpan={record.items.length}>{dateLabel(record.transferDate)}</td><td rowSpan={record.items.length}>{record.transporters.map(code => <div className="machine-code" key={code}>{code}</div>)}</td></>}<td><strong className="machine-code">{item.machineryCode}</strong></td><td><div className="transfer-route"><span>{item.from.name}{item.from.kind === "OTHER" && <span className="muted"> (อื่นๆ)</span>}</span><span className="transfer-route-arrow" aria-hidden="true">→</span><span>{item.to.name}{item.to.kind === "OTHER" && <span className="muted"> (อื่นๆ)</span>}</span></div></td>{index === 0 && <td rowSpan={record.items.length}><div className="service-row-actions"><button type="button" className="secondary compact-action" disabled={saving || loading || showForm} onClick={() => openForm(record)}>แก้ไข</button><ConfirmActionButton className="danger-button compact-action" title="ยืนยันลบรายการขนย้าย" message={`ลบรายการขนย้ายวันที่ ${dateLabel(record.transferDate)} โดย ${record.transporters.join(", ")} พร้อมเครื่องจักร ${record.items.length} รายการทั้งหมดในเที่ยวนี้? ไม่สามารถกู้คืนจากหน้าจอได้ หน่วยงานจะปรับตามประวัติล่าสุดที่เหลืออยู่ หากไม่มีประวัติจะคืนหน่วยงานก่อนเริ่มเชื่อมข้อมูล โดยไม่เปลี่ยนสถานะเครื่องจักรหรือประวัติระบบอื่น`} confirmLabel="ยืนยันลบข้อมูล" disabled={saving || loading || showForm} onConfirm={() => deleteRecord(record)}>ลบข้อมูล</ConfirmActionButton></div></td>}</tr>))}{!loading && !filtered.length && <tr><td colSpan={5} className="empty-state">{hasFilters ? "ไม่พบรายการขนย้ายตามตัวกรอง" : "ยังไม่มีประวัติขนย้าย กดบันทึกขนย้ายเพื่อเริ่มต้น"}</td></tr>}</tbody></table></div>
       </section>
     </div>
-  </section></main>;
+  </section>
+  {showReport && <TransferReport records={filtered} criteria={reportCriteria} onClose={() => setShowReport(false)} />}
+  </main>;
 }
