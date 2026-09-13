@@ -171,11 +171,15 @@ test("disposal UI, API authorization and repair integration are wired", async ()
   assert.match(page, /ยืนยันจำหน่ายแล้ว/);
 });
 
-test("disposal list no longer offers the removed summary report", async () => {
+test("disposal list offers a filtered-list print report", async () => {
   const page = await readFile(new URL("app/disposals/page.tsx", root), "utf8");
-  assert.doesNotMatch(page, /setShowReport/);
-  assert.doesNotMatch(page, /พิมพ์รายงาน/);
-  assert.doesNotMatch(page, /report-shell\.css/);
+  assert.match(page, /setShowReport/);
+  assert.match(page, /พิมพ์รายงาน/);
+  assert.match(page, /records=\{filtered\}/);
+  const report = await readFile(new URL("app/disposals/disposal-report.tsx", root), "utf8");
+  assert.match(report, /doh-logo\.png/);
+  assert.match(report, /window\.print\(\)/);
+  assert.match(report, /รายงานการจำหน่ายเครื่องจักร/);
 });
 
 test("deleting any disposal status restores the register without deleting equipment or history", async () => {

@@ -256,12 +256,14 @@ test("provides a persistent Service workflow without changing machinery status",
   assert.match(page, /www\.doh\.go\.th\/layouts\/theme1\/images\/logo\.png/);
   assert.match(page, /ใบสรุปรายการ SERVICE เครื่องจักร/);
   assert.match(page, /ศูนย์สร้างทางขอนแก่น/);
-  assert.doesNotMatch(page, /พิมพ์รายงาน/);
-  assert.doesNotMatch(page, /รายงานสรุปประวัติ SERVICE เครื่องจักร/);
-  assert.doesNotMatch(page, /setShowReport/);
-  assert.doesNotMatch(page, /service-summary-report-criteria/);
-  assert.doesNotMatch(page, /<th>เลขที่เอกสาร<\/th>/);
-  assert.doesNotMatch(page, /createPortal/);
+  // A filtered-list print report was added alongside the existing per-record print.
+  assert.match(page, /พิมพ์รายงาน/);
+  assert.match(page, /setShowReport/);
+  const serviceReport = await readFile(new URL("app/service/service-report.tsx", root), "utf8");
+  assert.match(serviceReport, /รายงานประวัติ Service เครื่องจักร/);
+  assert.match(serviceReport, /createPortal/);
+  assert.match(serviceReport, /<th>เลขที่เอกสาร<\/th>/);
+  assert.match(serviceReport, /doh-logo\.png/);
   assert.doesNotMatch(page, /รายการย่อย/);
   assert.match(page, /ผู้ตรวจสอบ/);
   assert.doesNotMatch(page, /ผู้รับรอง/);
@@ -392,14 +394,16 @@ test("provides repair tracking without overwriting rental status", async () => {
   assert.match(database, /ensureRepairSchema/);
   assert.match(sidebar, /\/repairs/);
   assert.doesNotMatch(rentalApi, /repairStatus === "ACTIVE"/);
-  assert.doesNotMatch(page, /รายงานงานซ่อมบำรุงเครื่องจักร/);
-  assert.doesNotMatch(page, /setShowReport/);
+  // A filtered-list print report was added alongside the existing per-record print.
+  assert.match(page, /setShowReport/);
+  assert.match(page, />พิมพ์รายงาน<\/button>/);
+  const repairReport = await readFile(new URL("app/repairs/repair-report.tsx", root), "utf8");
+  assert.match(repairReport, /รายงานงานซ่อมบำรุงเครื่องจักร/);
+  assert.match(repairReport, /doh-logo\.png/);
   for (const label of ["กรองตามปีงบประมาณ", "กรองตามเดือน", "กรองตามประเภทงานซ่อม", "ล้างตัวกรอง"]) assert.ok(page.includes(label));
   assert.ok(page.indexOf('placeholder="ค้นหาหมายเลขเครื่องจักรหรือระบบงานซ่อม"') < page.indexOf('ariaLabel="กรองตามปีงบประมาณ"'));
   assert.match(page, /fiscalYearOf\(record\.repairDate\)/);
   assert.match(page, /record\.repairType === repairTypeFilter/);
-  assert.doesNotMatch(page, />พิมพ์รายงาน<\/button>/);
-  assert.doesNotMatch(page, /report-shell\.css/);
 });
 
 test("provides multi-account authentication and role-based administration", async () => {

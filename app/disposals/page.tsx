@@ -6,6 +6,7 @@ import type { FormEvent } from "react";
 import AppSidebar from "../components/app-sidebar";
 import { ConfirmActionButton, ConfirmSubmitButton } from "../components/confirm-action";
 import Select from "../components/select";
+import DisposalReport from "./disposal-report";
 import { disposalLabels, matchesDisposal } from "../../lib/disposals.mjs";
 import { fiscalYearOf } from "../../lib/rental-history.mjs";
 
@@ -32,6 +33,7 @@ export default function DisposalsPage() {
   const [statusFilter, setStatusFilter] = useState("");
   const [fiscalYear, setFiscalYear] = useState("");
   const [showForm, setShowForm] = useState(false);
+  const [showReport, setShowReport] = useState(false);
   const [editing, setEditing] = useState<Disposal | null>(null);
   const [selected, setSelected] = useState<Disposal | null>(null);
   const [status, setStatus] = useState<Status>("AWAITING_DISPOSAL");
@@ -53,6 +55,11 @@ export default function DisposalsPage() {
   }, []);
 
   const filtered = useMemo(() => records.filter(record => matchesDisposal(record, { query, status: statusFilter, fiscalYear })), [records, query, statusFilter, fiscalYear]);
+  const reportCriteria = [
+    fiscalYear ? `ปีงบประมาณ ${fiscalYear}` : "ทุกปีงบประมาณ",
+    statusFilter ? `สถานะ: ${disposalLabels[statusFilter as keyof typeof disposalLabels]}` : "ทุกสถานะ",
+    query ? `คำค้น: ${query}` : "",
+  ].filter(Boolean).join(" • ");
   const years = useMemo(() => [...new Set(records.map(record => fiscalYearOf(record.proposedDate)))].sort((a, b) => b - a), [records]);
   const choices = machines.filter(machine => machine.status !== "RENTED" && !["W", "M"].includes(machine.condition) && !records.some(record => record.machineryCode === machine.code));
   const selectedMachine = machines.find(machine => machine.code === machineCode);
@@ -110,7 +117,8 @@ export default function DisposalsPage() {
     finally { setSaving(false); }
   }
 
-  return <main className="app-shell"><AppSidebar active="disposals" />
+  return <>
+  <main className="app-shell"><AppSidebar active="disposals" />
     <section className="main-area disposal-page">
       <header className="topbar"><div><p className="eyebrow">รอจำหน่าย → อนุมัติจำหน่าย → จำหน่ายแล้ว</p><h1>ระบบจำหน่ายเครื่องจักร</h1></div><button className="primary" disabled={loading || saving} onClick={() => openForm()}>＋ บันทึกเสนอจำหน่าย</button></header>
       <div className="content service-content">
@@ -123,6 +131,7 @@ export default function DisposalsPage() {
             <label>ปีงบประมาณ<Select ariaLabel="กรองตามปีงบประมาณ" value={fiscalYear} onChange={setFiscalYear} options={[{ value: "", label: "ทุกปีงบประมาณ" }, ...years.map(year => ({ value: String(year), label: String(year) }))]} /></label>
             <label>สถานะ<Select ariaLabel="กรองตามสถานะ" value={statusFilter} onChange={setStatusFilter} options={[{ value: "", label: "ทุกสถานะ" }, ...Object.entries(disposalLabels).map(([value, label]) => ({ value, label }))]} /></label>
             <button type="button" onClick={() => { setQuery(""); setFiscalYear(""); setStatusFilter(""); }}>ล้างตัวกรอง</button>
+            <button type="button" className="report-button" onClick={() => setShowReport(true)}>พิมพ์รายงาน</button>
           </div>
           {error && !showForm && <div className="page-error" role="alert">{error} <button type="button" className="secondary" disabled={loading} onClick={() => { setError(""); setLoading(true); void loadData(); }}>ลองใหม่</button></div>}
           <p className="rental-filter-summary" role="status">{loading ? "กำลังโหลดข้อมูล…" : `พบ ${filtered.length} จาก ${records.length} รายการ`}</p>
@@ -153,5 +162,7 @@ export default function DisposalsPage() {
     {selected && <div className="modal-backdrop"><section className="modal detail-modal disposal-detail" role="dialog" aria-modal="true" aria-labelledby="disposal-detail-title"><h2 id="disposal-detail-title">รายละเอียดจำหน่าย</h2><span className={`status status-condition-${selected.status}`}>{disposalLabels[selected.status]}</span><dl>
       {[["เครื่องจักร", `${selected.machineryCode} — ${selected.machineryName ?? ""}`], ["หน่วยงาน / โครงการ", selected.currentDepartment], ["วันที่เสนอจำหน่าย", dateLabel(selected.proposedDate)], ["เหตุผล", selected.reason], ["ผู้รับผิดชอบ", selected.responsiblePerson], ["วันที่อนุมัติ", dateLabel(selected.approvalDate)], ["หมายเหตุ", selected.note], ["บันทึกจำหน่ายแล้วเมื่อ", selected.status === "DISPOSED" ? new Intl.DateTimeFormat("th-TH", { dateStyle: "medium", timeStyle: "short", timeZone: "Asia/Bangkok" }).format(new Date(selected.updatedAt)) : "—"], ["รหัสประเภท", selected.machinery?.typeCode], ["ยี่ห้อ / รุ่น", [selected.machinery?.brand, selected.machinery?.model].filter(Boolean).join(" / ")], ["รุ่นเครื่องยนต์", selected.machinery?.engineModel], ["ทะเบียน", selected.machinery?.registrationNumber], ["เลขตัวถัง / หมายเลขประจำเครื่อง", selected.machinery?.serialNumber], ["หน่วยงานเจ้าของ", selected.machinery?.owningDepartment], ["ราคาซื้อ", selected.machinery?.purchasePrice?.toLocaleString("th-TH")], ["หมายเหตุเครื่องจักร", selected.machinery?.note]].map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value || "—"}</dd></div>)}
       </dl><div className="modal-actions"><button type="button" className="secondary" onClick={() => setSelected(null)}>ปิด</button></div></section></div>}
-  </main>;
+  </main>
+  {showReport && <DisposalReport records={filtered} criteria={reportCriteria} onClose={() => setShowReport(false)} />}
+  </>;
 }

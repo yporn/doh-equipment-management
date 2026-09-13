@@ -7,6 +7,7 @@ import { currentMachine } from "../lib/age-rates.mjs";
 import AppSidebar from "./components/app-sidebar";
 import { ConfirmSubmitButton } from "./components/confirm-action";
 import Select from "./components/select";
+import MachineryReport from "./machinery-report";
 
 type MachineryStatus =
   | "AVAILABLE"
@@ -88,6 +89,7 @@ export function EquipmentApp({
   const [selected, setSelected] = useState<Machine | null>(null);
   const [editing, setEditing] = useState<Machine | null>(null);
   const [showCreate, setShowCreate] = useState(false);
+  const [showReport, setShowReport] = useState(false);
   const [formError, setFormError] = useState("");
   const [dataError, setDataError] = useState("");
   const [isSaving, setIsSaving] = useState(false);
@@ -334,8 +336,15 @@ export function EquipmentApp({
     setSort("code");
     setPage(1);
   }
+  const machineryReportCriteria = [
+    typeCode !== "ALL" ? `รหัสประเภท: ${typeCode}` : "ทุกรหัสประเภท",
+    department !== "ALL" ? `หน่วยงาน: ${department}` : "ทุกหน่วยงาน",
+    status !== "ALL" ? `สถานะ: ${conditionLabels[status]}` : "สถานะทั้งหมด",
+    query ? `คำค้น: ${query}` : "",
+  ].filter(Boolean).join(" • ");
 
   return (
+    <>
     <main className={`app-shell ${registryOnly ? "registry-view" : ""}`}>
       <AppSidebar active={registryOnly ? "machineries" : "dashboard"} />
       <section className="workspace">
@@ -387,9 +396,14 @@ export function EquipmentApp({
                 </p>
               </div>
               {registryOnly ? (
-                <button className="secondary" onClick={resetFilters}>
-                  ล้างตัวกรอง
-                </button>
+                <div className="service-row-actions">
+                  <button className="secondary" onClick={resetFilters}>
+                    ล้างตัวกรอง
+                  </button>
+                  <button className="secondary" onClick={() => setShowReport(true)}>
+                    พิมพ์รายงาน
+                  </button>
+                </div>
               ) : (
                 <a className="secondary button-link" href="/machineries">
                   ดูทั้งหมด {machines.length} รายการ →
@@ -1063,6 +1077,10 @@ export function EquipmentApp({
         </div>
       )}
     </main>
+    {showReport && (
+      <MachineryReport records={filteredMachines} criteria={machineryReportCriteria} onClose={() => setShowReport(false)} />
+    )}
+    </>
   );
 }
 

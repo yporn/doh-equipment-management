@@ -6,6 +6,7 @@ import type { FormEvent } from "react";
 import AppSidebar from "../components/app-sidebar";
 import { ConfirmActionButton, ConfirmSubmitButton } from "../components/confirm-action";
 import Select from "../components/select";
+import ServiceReport from "./service-report";
 
 type Machine = {
   code: string;
@@ -129,6 +130,7 @@ export default function ServicePage() {
   const [monthFilter, setMonthFilter] = useState("");
   const [machineryFilter, setMachineryFilter] = useState("");
   const [showCreate, setShowCreate] = useState(false);
+  const [showReport, setShowReport] = useState(false);
   const [editing, setEditing] = useState<ServiceRecord | null>(null);
   const [selected, setSelected] = useState<ServiceRecord | null>(null);
   const [items, setItems] = useState<ServiceItem[]>([]);
@@ -193,6 +195,12 @@ export default function ServicePage() {
       ),
     [records],
   );
+  const reportCriteria = [
+    fiscalYearFilter ? `ปีงบประมาณ ${fiscalYearFilter}` : "ทุกปีงบประมาณ",
+    monthFilter ? thaiMonths[Number(monthFilter) - 1] : "ทุกเดือน",
+    machineryFilter ? `เครื่องจักร: ${machineryFilter}` : "ทุกเครื่องจักร",
+    query ? `คำค้น: ${query}` : "",
+  ].filter(Boolean).join(" • ");
   function toggleServiceType(serviceType: string, checked: boolean) {
     setItems((current) =>
       checked
@@ -319,6 +327,7 @@ export default function ServicePage() {
   }
 
   return (
+    <>
     <main className="app-shell">
       <AppSidebar active="service" />
       <section className="main-area">
@@ -413,6 +422,13 @@ export default function ServicePage() {
                 }}
               >
                 ล้างตัวกรอง
+              </button>
+              <button
+                type="button"
+                className="report-button"
+                onClick={() => setShowReport(true)}
+              >
+                พิมพ์รายงาน
               </button>
             </div>
             {error && !showCreate && (
@@ -906,5 +922,9 @@ export default function ServicePage() {
         </div>
       )}
     </main>
+    {showReport && (
+      <ServiceReport records={filtered} criteria={reportCriteria} onClose={() => setShowReport(false)} />
+    )}
+    </>
   );
 }
