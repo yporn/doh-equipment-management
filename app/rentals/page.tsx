@@ -152,8 +152,12 @@ export default function RentalsPage() {
   const today = bangkokToday();
   const currentMonthNumber = String(Number(today.slice(5, 7)));
   const currentFiscalYear = String(fiscalYearOf(today));
+  // Follow the selected month filter when set, otherwise default to the current real month.
+  const summaryMonth = monthFilter || currentMonthNumber;
+  const summaryFiscalYear = monthFilter ? fiscalYearFilter : currentFiscalYear;
+  const summaryMonthLabel = monthFilter ? thaiMonths[Number(monthFilter) - 1] : "เดือนนี้";
   const monthlyIncomeEstimate = rentals
-    .filter((record) => overlapsCalendarMonth(record, currentMonthNumber, currentFiscalYear))
+    .filter((record) => overlapsCalendarMonth(record, summaryMonth, summaryFiscalYear))
     .reduce((sum, record) => sum + monthlyEquivalentAmount(record), 0);
 
   function suggestedRate(code = machineCode, type = rateType) {
@@ -309,7 +313,7 @@ export default function RentalsPage() {
               <small>รายการ</small>
             </article>
             <article className="stat-card">
-              <span>ประมาณการรายได้ค่าเช่าเดือนนี้</span>
+              <span>ประมาณการรายได้ค่าเช่า{monthFilter ? ` ${summaryMonthLabel}` : "เดือนนี้"}</span>
               <strong>{monthlyIncomeEstimate.toLocaleString("th-TH", { maximumFractionDigits: 0 })}</strong>
               <small>บาท</small>
             </article>
