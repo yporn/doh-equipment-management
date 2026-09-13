@@ -16,6 +16,8 @@ type MachineryStatus =
   | "UNDER_REPAIR"
   | "INACTIVE";
 type MachineryCondition = "W" | "M" | "AVAILABLE" | "DAMAGED" | "MAINTENANCE" | "AWAITING_DISPOSAL" | "DISPOSAL_APPROVED";
+type RecentTransfer = { id: string; transferDate: string; transporters: string[]; items: { machineryCode: string; from: { name: string }; to: { name: string } }[] };
+type RecentService = { id: string; machineryCode: string; machineryName: string | null; serviceDate: string; items: { description: string }[] };
 type Machine = {
   id?: string;
   code: string;
@@ -101,6 +103,8 @@ export function EquipmentApp({
     rentalsOverdue: number;
     rentalsActive: number;
   } | null>(null);
+  const [recentTransfers, setRecentTransfers] = useState<RecentTransfer[] | null>(null);
+  const [recentServices, setRecentServices] = useState<RecentService[] | null>(null);
   useEffect(() => {
     const reload = () => fetch("/api/machineries")
       .then(async (response) => {
@@ -122,11 +126,15 @@ export function EquipmentApp({
       fetch("/api/repairs").then((response) => (response.ok ? response.json() : [])),
       fetch("/api/disposals").then((response) => (response.ok ? response.json() : [])),
       fetch("/api/rentals").then((response) => (response.ok ? response.json() : [])),
+      fetch("/api/transfers").then((response) => (response.ok ? response.json() : [])),
+      fetch("/api/services").then((response) => (response.ok ? response.json() : [])),
     ])
-      .then(([repairs, disposals, rentals]: [
+      .then(([repairs, disposals, rentals, transfers, services]: [
         { status: string }[],
         { status: string }[],
         { status: string; expectedReturnDate: string }[],
+        RecentTransfer[],
+        RecentService[],
       ]) => {
         if (!active) return;
         const today = bangkokToday();
@@ -136,8 +144,10 @@ export function EquipmentApp({
           rentalsActive: rentals.filter((item) => item.status === "ACTIVE").length,
           rentalsOverdue: rentals.filter((item) => item.status === "ACTIVE" && item.expectedReturnDate < today).length,
         });
+        setRecentTransfers(transfers.slice(0, 5));
+        setRecentServices(services.slice(0, 4));
       })
-      .catch(() => { /* leave attention panel hidden if any of these fail */ });
+      .catch(() => { /* leave the dashboard panels empty if any of these fail */ });
     return () => { active = false; };
   }, [registryOnly]);
   const departments = useMemo(
@@ -413,7 +423,7 @@ export function EquipmentApp({
               ))}
             </section>
           )}
-          <section className="panel" id="machinery">
+          <section className="panel" id="machinery" hidden={!registryOnly}>
             <div className="panel-heading">
               <div>
                 <h2>
@@ -597,6 +607,52 @@ export function EquipmentApp({
               </div>
             )}
           </section>
+          {!registryOnly && (
+            <section className="panel">
+              <div className="panel-heading">
+                <div>
+                  <h2>ขนย้ายล่าสุด</h2>
+                  <p>{recentTransfers ? `${recentTransfers.length.toLocaleString("th-TH")} เที่ยวล่าสุด` : "กำลังโหลด…"}</p>
+                </div>
+                <a className="secondary button-link" href="/transfers">
+                  ไปหน้าขนย้ายเครื่องจักร →
+                </a>
+              </div>
+              <div className="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>วันที่ขนย้าย</th>
+                      <th>ขนย้ายโดย</th>
+                      <th>เครื่องจักร</th>
+                      <th>เส้นทาง</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {(recentTransfers ?? []).flatMap((trip) =>
+                      trip.items.map((item, index) => (
+                        <tr key={`${trip.id}-${index}`}>
+                          {index === 0 && (
+                            <>
+                              <td rowSpan={trip.items.length}>{acquisitionLabel(trip.transferDate)}</td>
+                              <td rowSpan={trip.items.length}>{trip.transporters.join(", ")}</td>
+                            </>
+                          )}
+                          <td><strong className="machine-code">{item.machineryCode}</strong></td>
+                          <td>{item.from.name} → {item.to.name}</td>
+                        </tr>
+                      )),
+                    )}
+                  </tbody>
+                </table>
+                {recentTransfers?.length === 0 && (
+                  <div className="empty-state">
+                    <strong>ยังไม่มีประวัติขนย้าย</strong>
+                  </div>
+                )}
+              </div>
+            </section>
+          )}
           <div className="lower-grid">
             <section className="panel compact">
               <div className="panel-heading">
@@ -635,6 +691,32 @@ export function EquipmentApp({
                 </div>
                 <a href="/rentals">ดูรายการ →</a>
               </div>
+            </section>
+            <section className="panel compact">
+              <div className="panel-heading">
+                <div>
+                  <h2>Service ล่าสุด</h2>
+                  <p>สรุปงานบำรุงตามรอบล่าสุด</p>
+                </div>
+                <a className="secondary button-link" href="/service">
+                  ดูทั้งหมด →
+                </a>
+              </div>
+              {(recentServices ?? []).map((record) => (
+                <div className="service-latest-item" key={record.id}>
+                  <div>
+                    <strong>{record.machineryCode} — {record.machineryName ?? "—"}</strong>
+                    <span>
+                      {acquisitionLabel(record.serviceDate)} · {record.items.map((item) => item.description).join(", ") || "—"}
+                    </span>
+                  </div>
+                </div>
+              ))}
+              {recentServices?.length === 0 && (
+                <div className="empty-state">
+                  <strong>ยังไม่มีประวัติ Service</strong>
+                </div>
+              )}
             </section>
             <section className="panel compact">
               <div className="panel-heading">
