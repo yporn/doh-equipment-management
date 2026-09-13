@@ -21,6 +21,7 @@ export default function Select({
   placeholder,
   ariaLabel,
   isClearable = false,
+  isSearchable = false,
   className,
 }: {
   value: string;
@@ -29,6 +30,7 @@ export default function Select({
   placeholder?: string;
   ariaLabel?: string;
   isClearable?: boolean;
+  isSearchable?: boolean;
   className?: string;
 }) {
   const flat: SelectOption[] = options.flatMap((entry) => ("options" in entry ? entry.options : [entry]));
@@ -43,7 +45,7 @@ export default function Select({
       options={options}
       placeholder={placeholder ?? "เลือก"}
       isClearable={isClearable}
-      isSearchable
+      isSearchable={isSearchable}
       unstyled
       styles={noStyles}
       noOptionsMessage={() => "ไม่พบตัวเลือก"}

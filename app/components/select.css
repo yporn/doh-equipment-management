@@ -6,6 +6,7 @@
 .app-select .app-select__placeholder{color:#82909d;font-size:inherit;margin:0}
 .app-select .app-select__single-value{color:var(--ink);margin:0}
 .app-select .app-select__input-container{margin:0;padding:0;color:var(--ink)}
+.app-select input:focus-visible{box-shadow:none!important;outline:none!important;border-radius:0!important}
 .app-select .app-select__indicators-container{padding-right:6px}
 .app-select .app-select__indicator{color:#82909d;padding:6px}
 .app-select .app-select__indicator:hover{color:#536371}

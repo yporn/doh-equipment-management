@@ -422,6 +422,7 @@ export function EquipmentApp({
                 <Select
                   ariaLabel="กรองตามหน่วยงาน"
                   className="filter-select"
+                  isSearchable
                   value={department}
                   onChange={setDepartment}
                   options={[

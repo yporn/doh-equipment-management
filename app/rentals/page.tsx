@@ -339,7 +339,7 @@ export default function RentalsPage() {
                 ประเภทการเช่า
                 <Select ariaLabel="กรองตามประเภทการเช่า" value={rentalModeFilter} onChange={setRentalModeFilter} options={[{ value: "", label: "ทุกประเภทการเช่า" }, { value: "W", label: "W-เช่าใช้งาน" }, { value: "M", label: "M-ขอใช้งาน" }]} />
               </label>
-              <label>หน่วยงาน/โครงการที่เช่า<Select ariaLabel="กรองตามหน่วยงานที่เช่า" value={departmentFilter} onChange={setDepartmentFilter} options={[{ value: "", label: "ทุกหน่วยงานที่เช่า" }, ...reportDepartments.map(name => ({ value: name, label: name }))]} /></label>
+              <label>หน่วยงาน/โครงการที่เช่า<Select ariaLabel="กรองตามหน่วยงานที่เช่า" isSearchable value={departmentFilter} onChange={setDepartmentFilter} options={[{ value: "", label: "ทุกหน่วยงานที่เช่า" }, ...reportDepartments.map(name => ({ value: name, label: name }))]} /></label>
               <button type="button" onClick={resetFilters}>ล้างตัวกรอง</button>
               <button type="button" className="report-button" disabled={loading || isSaving || Boolean(error)} onClick={() => setShowReport(true)}>พิมพ์รายงาน</button>
             </div>
