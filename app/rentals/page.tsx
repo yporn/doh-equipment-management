@@ -272,7 +272,7 @@ export default function RentalsPage() {
         ))}
       </datalist>
       <AppSidebar active="rentals" />
-      {showReport && <RentalReport records={filtered} criteria={reportCriteria} onClose={() => setShowReport(false)} />}
+      {showReport && <RentalReport records={filtered} criteria={reportCriteria} month={monthFilter} onClose={() => setShowReport(false)} />}
       <section className="main-area">
         <header className="topbar">
           <div>

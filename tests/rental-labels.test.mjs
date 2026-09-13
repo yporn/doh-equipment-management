@@ -7,9 +7,9 @@ test("rental report omits actual return column and keeps rental end date", async
   assert.doesNotMatch(report, /รับคืน|คืนจริง|returnedDate/);
   assert.match(report, /<th>วันสิ้นสุด<\/th>/);
   assert.match(report, /dateLabel\(record.expectedReturnDate\)/);
-  assert.equal((report.match(/<th>/g) || []).length, 9);
-  assert.equal((report.match(/<col style/g) || []).length, 9);
-  assert.match(report, /colSpan=\{9\}/);
+  assert.equal((report.match(/<th>/g) || []).length, 10);
+  assert.equal((report.match(/<col style/g) || []).length, 10);
+  assert.match(report, /colSpan=\{isMonthlyView \? 10 : 9\}/);
 });
 
 test("create, edit, search and listing use recorder labels without losing saved names and omits return actions", async () => {
