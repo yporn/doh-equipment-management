@@ -6,6 +6,7 @@ import registry from "../data/machineries.json";
 import { currentMachine } from "../lib/age-rates.mjs";
 import AppSidebar from "./components/app-sidebar";
 import { ConfirmSubmitButton } from "./components/confirm-action";
+import Select from "./components/select";
 
 type MachineryStatus =
   | "AVAILABLE"
@@ -405,60 +406,54 @@ export function EquipmentApp({
                   onChange={(event) => setQuery(event.target.value)}
                 />
               </label>
-              <label>
-                <span className="sr-only">กรองตามรหัสประเภท</span>
-                <select
-                  className="filter"
+              <div className="toolbar-select">
+                <Select
+                  ariaLabel="กรองตามรหัสประเภท"
+                  className="filter-select"
                   value={typeCode}
-                  onChange={(event) => setTypeCode(event.target.value)}
-                >
-                  <option value="ALL">รหัสประเภททั้งหมด</option>
-                  {typeCodes.map((item) => (
-                    <option value={item} key={item}>{item}</option>
-                  ))}
-                </select>
-              </label>
-              <label>
-                <span className="sr-only">กรองตามหน่วยงาน</span>
-                <select
-                  className="filter"
+                  onChange={setTypeCode}
+                  options={[
+                    { value: "ALL", label: "รหัสประเภททั้งหมด" },
+                    ...typeCodes.map((item) => ({ value: item, label: item })),
+                  ]}
+                />
+              </div>
+              <div className="toolbar-select">
+                <Select
+                  ariaLabel="กรองตามหน่วยงาน"
+                  className="filter-select"
                   value={department}
-                  onChange={(event) => setDepartment(event.target.value)}
-                >
-                  <option value="ALL">ทุกหน่วยงาน</option>
-                  {departments.map((item) => (
-                    <option key={item}>{item}</option>
-                  ))}
-                </select>
-              </label>
-              <label>
-                <span className="sr-only">กรองตามสถานะ</span>
-                <select
-                  className="filter"
+                  onChange={setDepartment}
+                  options={[
+                    { value: "ALL", label: "ทุกหน่วยงาน" },
+                    ...departments.map((item) => ({ value: item, label: item })),
+                  ]}
+                />
+              </div>
+              <div className="toolbar-select">
+                <Select
+                  ariaLabel="กรองตามสถานะ"
+                  className="filter-select"
                   value={status}
-                  onChange={(event) =>
-                    setStatus(event.target.value as "ALL" | MachineryCondition)
-                  }
-                >
-                  <option value="ALL">สถานะทั้งหมด</option>
-                  {Object.entries(conditionLabels).map(([value, label]) => (
-                    <option value={value} key={value}>
-                      {label}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <label>
-                <span className="sr-only">เรียงข้อมูล</span>
-                <select
-                  className="filter"
+                  onChange={(value) => setStatus(value as "ALL" | MachineryCondition)}
+                  options={[
+                    { value: "ALL", label: "สถานะทั้งหมด" },
+                    ...Object.entries(conditionLabels).map(([value, label]) => ({ value, label })),
+                  ]}
+                />
+              </div>
+              <div className="toolbar-select">
+                <Select
+                  ariaLabel="เรียงข้อมูล"
+                  className="filter-select"
                   value={sort}
-                  onChange={(event) => setSort(event.target.value)}
-                >
-                  <option value="code">เรียงตามรหัส</option>
-                  <option value="name">เรียงตามชื่อ</option>
-                </select>
-              </label>
+                  onChange={setSort}
+                  options={[
+                    { value: "code", label: "เรียงตามรหัส" },
+                    { value: "name", label: "เรียงตามชื่อ" },
+                  ]}
+                />
+              </div>
             </div>
             <div className="table-wrap">
               <table>

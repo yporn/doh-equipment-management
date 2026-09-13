@@ -38,8 +38,12 @@ test("rental type filters combine with existing filters and replace the status c
   assert.match(page, /<th>ประเภทการเช่า<\/th>/);
   assert.doesNotMatch(page, /<th>สถานะ<\/th>/);
   assert.match(page, /setRentalModeFilter\(""\)/);
-  assert.equal((page.match(/<option value="W">W-เช่าใช้งาน<\/option>/g) || []).length, 3);
-  assert.equal((page.match(/<option value="M">M-ขอใช้งาน<\/option>/g) || []).length, 3);
+  // The create/edit modals still use native <option> elements; the filter bar uses
+  // the shared Select component, so its choices are a { value, label } options array.
+  assert.equal((page.match(/<option value="W">W-เช่าใช้งาน<\/option>/g) || []).length, 2);
+  assert.equal((page.match(/<option value="M">M-ขอใช้งาน<\/option>/g) || []).length, 2);
+  assert.match(page, /\{ value: "W", label: "W-เช่าใช้งาน" \}/);
+  assert.match(page, /\{ value: "M", label: "M-ขอใช้งาน" \}/);
   assert.doesNotMatch(page, /W-การขอเช่า|M-การขอใช้/);
 });
 
@@ -389,7 +393,7 @@ test("provides repair tracking without overwriting rental status", async () => {
   assert.doesNotMatch(page, /รายงานงานซ่อมบำรุงเครื่องจักร/);
   assert.doesNotMatch(page, /setShowReport/);
   for (const label of ["กรองตามปีงบประมาณ", "กรองตามเดือน", "กรองตามประเภทงานซ่อม", "ล้างตัวกรอง"]) assert.ok(page.includes(label));
-  assert.ok(page.indexOf('placeholder="ค้นหาหมายเลขเครื่องจักรหรือระบบงานซ่อม"') < page.indexOf('aria-label="กรองตามปีงบประมาณ"'));
+  assert.ok(page.indexOf('placeholder="ค้นหาหมายเลขเครื่องจักรหรือระบบงานซ่อม"') < page.indexOf('ariaLabel="กรองตามปีงบประมาณ"'));
   assert.match(page, /fiscalYearOf\(record\.repairDate\)/);
   assert.match(page, /record\.repairType === repairTypeFilter/);
   assert.doesNotMatch(page, />พิมพ์รายงาน<\/button>/);

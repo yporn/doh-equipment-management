@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { FormEvent } from "react";
 import AppSidebar from "../components/app-sidebar";
+import Select from "../components/select";
 import { isCurrentRental, watchBangkokMonth } from "../../lib/rental-activity.mjs";
 import RentalReport from "./rental-report";
 import { ConfirmActionButton, ConfirmSubmitButton } from "../components/confirm-action";
@@ -321,17 +322,11 @@ export default function RentalsPage() {
             <div className="service-history-filters rental-history-filters">
               <label>
                 ปีงบประมาณ
-                <select aria-label="กรองตามปีงบประมาณ" value={fiscalYearFilter} onChange={(event) => setFiscalYearFilter(event.target.value)}>
-                  <option value="">ทุกปีงบประมาณ</option>
-                  {fiscalYears.map((year) => <option value={year} key={year}>ปีงบประมาณ {year}</option>)}
-                </select>
+                <Select ariaLabel="กรองตามปีงบประมาณ" value={fiscalYearFilter} onChange={setFiscalYearFilter} options={[{ value: "", label: "ทุกปีงบประมาณ" }, ...fiscalYears.map((year) => ({ value: String(year), label: `ปีงบประมาณ ${year}` }))]} />
               </label>
               <label>
                 เดือน
-                <select aria-label="กรองตามเดือน" value={monthFilter} onChange={(event) => setMonthFilter(event.target.value)}>
-                  <option value="">ทุกเดือน</option>
-                  {thaiMonths.map((month, index) => <option value={index + 1} key={month}>{month}</option>)}
-                </select>
+                <Select ariaLabel="กรองตามเดือน" value={monthFilter} onChange={setMonthFilter} options={[{ value: "", label: "ทุกเดือน" }, ...thaiMonths.map((month, index) => ({ value: String(index + 1), label: month }))]} />
               </label>
               <label>
                 หมายเลขเครื่องจักร
@@ -342,13 +337,9 @@ export default function RentalsPage() {
               </label>
               <label>
                 ประเภทการเช่า
-                <select aria-label="กรองตามประเภทการเช่า" value={rentalModeFilter} onChange={(event) => setRentalModeFilter(event.target.value)}>
-                  <option value="">ทุกประเภทการเช่า</option>
-                  <option value="W">W-เช่าใช้งาน</option>
-                  <option value="M">M-ขอใช้งาน</option>
-                </select>
+                <Select ariaLabel="กรองตามประเภทการเช่า" value={rentalModeFilter} onChange={setRentalModeFilter} options={[{ value: "", label: "ทุกประเภทการเช่า" }, { value: "W", label: "W-เช่าใช้งาน" }, { value: "M", label: "M-ขอใช้งาน" }]} />
               </label>
-              <label>หน่วยงาน/โครงการที่เช่า<select aria-label="กรองตามหน่วยงานที่เช่า" value={departmentFilter} onChange={event => setDepartmentFilter(event.target.value)}><option value="">ทุกหน่วยงานที่เช่า</option>{reportDepartments.map(name => <option key={name} value={name}>{name}</option>)}</select></label>
+              <label>หน่วยงาน/โครงการที่เช่า<Select ariaLabel="กรองตามหน่วยงานที่เช่า" value={departmentFilter} onChange={setDepartmentFilter} options={[{ value: "", label: "ทุกหน่วยงานที่เช่า" }, ...reportDepartments.map(name => ({ value: name, label: name }))]} /></label>
               <button type="button" onClick={resetFilters}>ล้างตัวกรอง</button>
               <button type="button" className="report-button" disabled={loading || isSaving || Boolean(error)} onClick={() => setShowReport(true)}>พิมพ์รายงาน</button>
             </div>

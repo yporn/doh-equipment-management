@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { FormEvent } from "react";
 import AppSidebar from "../components/app-sidebar";
 import { ConfirmActionButton, ConfirmSubmitButton } from "../components/confirm-action";
+import Select from "../components/select";
 
 type Machine = {
   code: string;
@@ -368,33 +369,27 @@ export default function ServicePage() {
             <div className="service-history-filters">
               <label>
                 ปีงบประมาณ
-                <select
-                  aria-label="กรองตามปีงบประมาณ"
+                <Select
+                  ariaLabel="กรองตามปีงบประมาณ"
                   value={fiscalYearFilter}
-                  onChange={(event) => setFiscalYearFilter(event.target.value)}
-                >
-                  <option value="">ทุกปีงบประมาณ</option>
-                  {fiscalYears.map((year) => (
-                    <option value={year} key={year}>
-                      ปีงบประมาณ {year}
-                    </option>
-                  ))}
-                </select>
+                  onChange={setFiscalYearFilter}
+                  options={[
+                    { value: "", label: "ทุกปีงบประมาณ" },
+                    ...fiscalYears.map((year) => ({ value: String(year), label: `ปีงบประมาณ ${year}` })),
+                  ]}
+                />
               </label>
               <label>
                 เดือน
-                <select
-                  aria-label="กรองตามเดือน"
+                <Select
+                  ariaLabel="กรองตามเดือน"
                   value={monthFilter}
-                  onChange={(event) => setMonthFilter(event.target.value)}
-                >
-                  <option value="">ทุกเดือน</option>
-                  {thaiMonths.map((month, index) => (
-                    <option value={index + 1} key={month}>
-                      {month}
-                    </option>
-                  ))}
-                </select>
+                  onChange={setMonthFilter}
+                  options={[
+                    { value: "", label: "ทุกเดือน" },
+                    ...thaiMonths.map((month, index) => ({ value: String(index + 1), label: month })),
+                  ]}
+                />
               </label>
               <label>
                 หมายเลขเครื่องจักร

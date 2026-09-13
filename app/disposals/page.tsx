@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { FormEvent } from "react";
 import AppSidebar from "../components/app-sidebar";
 import { ConfirmActionButton, ConfirmSubmitButton } from "../components/confirm-action";
+import Select from "../components/select";
 import { disposalLabels, matchesDisposal } from "../../lib/disposals.mjs";
 import { fiscalYearOf } from "../../lib/rental-history.mjs";
 
@@ -119,8 +120,8 @@ export default function DisposalsPage() {
         <section className="panel"><div className="panel-heading"><div><h2>รายการจำหน่ายเครื่องจักร</h2><p>ปีงบประมาณอ้างอิงวันที่เสนอจำหน่าย (ตุลาคม–กันยายน) · เก็บประวัติเครื่องจักรไว้</p></div></div>
           <div className="service-history-filters disposal-filters">
             <label>ค้นหา<input aria-label="ค้นหารายการจำหน่าย" value={query} onChange={event => setQuery(event.target.value)} placeholder="หมายเลขเครื่องจักร / ชื่อ / ผู้รับผิดชอบ" /></label>
-            <label>ปีงบประมาณ<select value={fiscalYear} onChange={event => setFiscalYear(event.target.value)}><option value="">ทุกปีงบประมาณ</option>{years.map(year => <option key={year} value={year}>{year}</option>)}</select></label>
-            <label>สถานะ<select value={statusFilter} onChange={event => setStatusFilter(event.target.value)}><option value="">ทุกสถานะ</option>{Object.entries(disposalLabels).map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
+            <label>ปีงบประมาณ<Select ariaLabel="กรองตามปีงบประมาณ" value={fiscalYear} onChange={setFiscalYear} options={[{ value: "", label: "ทุกปีงบประมาณ" }, ...years.map(year => ({ value: String(year), label: String(year) }))]} /></label>
+            <label>สถานะ<Select ariaLabel="กรองตามสถานะ" value={statusFilter} onChange={setStatusFilter} options={[{ value: "", label: "ทุกสถานะ" }, ...Object.entries(disposalLabels).map(([value, label]) => ({ value, label }))]} /></label>
             <button type="button" onClick={() => { setQuery(""); setFiscalYear(""); setStatusFilter(""); }}>ล้างตัวกรอง</button>
           </div>
           {error && !showForm && <div className="page-error" role="alert">{error} <button type="button" className="secondary" disabled={loading} onClick={() => { setError(""); setLoading(true); void loadData(); }}>ลองใหม่</button></div>}
@@ -140,7 +141,7 @@ export default function DisposalsPage() {
         <label>วันที่เสนอจำหน่าย<input name="proposedDate" type="date" required value={proposedDate} onChange={event => setProposedDate(event.target.value)} /></label>
         <label className="wide">เหตุผลที่เสนอจำหน่าย<textarea name="reason" required maxLength={4000} defaultValue={editing?.reason ?? ""} /></label>
         <label>ผู้รับผิดชอบ<input name="responsiblePerson" required maxLength={4000} defaultValue={editing?.responsiblePerson ?? ""} /></label>
-        <label>สถานะ<select value={status} onChange={event => setStatus(event.target.value as Status)}>{Object.entries(disposalLabels).filter(([value]) => value !== "DISPOSED").map(([value, label]) => <option key={value} value={value} disabled={value === "AWAITING_DISPOSAL" && selectedMachine?.condition === "DISPOSAL_APPROVED"}>{label}</option>)}</select></label>
+        <label>สถานะ<Select ariaLabel="สถานะ" value={status} onChange={value => setStatus(value as Status)} options={Object.entries(disposalLabels).filter(([value]) => value !== "DISPOSED").map(([value, label]) => ({ value, label, isDisabled: value === "AWAITING_DISPOSAL" && selectedMachine?.condition === "DISPOSAL_APPROVED" }))} /></label>
         {status === "DISPOSAL_APPROVED" && <>
           <label>วันที่อนุมัติ<input name="approvalDate" type="date" min={proposedDate} required defaultValue={editing?.approvalDate ?? today()} /></label>
         </>}
