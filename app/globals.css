@@ -24,8 +24,8 @@
 
 :root { --navy:#12355b; --blue:#1769aa; --line:#dde5ec; --ink:#17212b; --muted:#687684; --bg:#f5f7f9; --focus-ring:0 0 0 3px #1769aa40; }
 * { box-sizing:border-box; }
-html { scroll-behavior:smooth; }
-body { margin:0; background:var(--bg); color:var(--ink); font-family:var(--font-prompt),"Noto Sans Thai",Arial,sans-serif; line-height:1.65; }
+html { scroll-behavior:smooth; overflow-x:hidden; }
+body { margin:0; overflow-x:hidden; background:var(--bg); color:var(--ink); font-family:var(--font-prompt),"Noto Sans Thai",Arial,sans-serif; line-height:1.65; }
 button,input,select,textarea { font:inherit; } button,a { -webkit-tap-highlight-color:transparent; }
 a,button,input,select,textarea,[tabindex] { transition:background-color .15s ease,border-color .15s ease,box-shadow .15s ease,color .15s ease,opacity .15s ease,transform .1s ease; }
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,[tabindex]:focus-visible { outline:none; box-shadow:var(--focus-ring); border-radius:6px; }
