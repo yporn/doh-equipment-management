@@ -51,6 +51,14 @@ const rateLabels = {
   YEARLY: "ปี",
 };
 const thaiMonths = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
+// A Thai fiscal year (e.g. 2570) runs Oct 2569 - Sep 2570, so Oct-Dec of that fiscal year fall in the PREVIOUS Buddhist calendar year. Naming the year avoids that ambiguity.
+function monthFilterLabel(month: string, fiscalYear: string) {
+  if (!month) return "ทุกเดือน";
+  const monthName = thaiMonths[Number(month) - 1];
+  if (!fiscalYear) return monthName;
+  const buddhistYear = Number(month) >= 10 ? Number(fiscalYear) - 1 : Number(fiscalYear);
+  return `${monthName} ${buddhistYear}`;
+}
 function calculateEndDate(
   startDate: string,
   duration: number,
@@ -149,7 +157,7 @@ export default function RentalsPage() {
   const reportDepartments = [...new Set(rentals.map(record => record.renterName.trim()))].sort((a, b) => a.localeCompare(b, "th"));
   const reportCriteria = [
     fiscalYearFilter ? `ปีงบประมาณ ${fiscalYearFilter}` : "ทุกปีงบประมาณ",
-    monthFilter ? thaiMonths[Number(monthFilter) - 1] : "ทุกเดือน",
+    monthFilterLabel(monthFilter, fiscalYearFilter),
     departmentFilter ? `หน่วยงานผู้เช่า: ${departmentFilter}` : "ทุกหน่วยงานผู้เช่า",
     machineryFilter ? `เครื่องจักร: ${machineryFilter}` : "",
     rentalModeFilter === "W" ? "W-เช่าใช้งาน" : rentalModeFilter === "M" ? "M-ขอใช้งาน" : "",
@@ -163,7 +171,7 @@ export default function RentalsPage() {
   // Follow the selected month filter when set, otherwise default to the current real month.
   const summaryMonth = monthFilter || currentMonthNumber;
   const summaryFiscalYear = monthFilter ? fiscalYearFilter : currentFiscalYear;
-  const summaryMonthLabel = monthFilter ? thaiMonths[Number(monthFilter) - 1] : "เดือนนี้";
+  const summaryMonthLabel = monthFilter ? monthFilterLabel(monthFilter, fiscalYearFilter) : "เดือนนี้";
   const monthlyIncomeEstimate = rentals
     .filter((record) => overlapsCalendarMonth(record, summaryMonth, summaryFiscalYear))
     .reduce((sum, record) => sum + monthlyEquivalentAmount(record), 0);
