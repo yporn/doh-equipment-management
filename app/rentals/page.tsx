@@ -123,7 +123,15 @@ export default function RentalsPage() {
     }));
   }, [query, rentals, fiscalYearFilter, monthFilter, machineryFilter, rentalModeFilter, departmentFilter]);
   const fiscalYears = useMemo(
-    () => [...new Set(rentals.map((record) => fiscalYearOf(record.startDate)))].sort((a, b) => b - a),
+    () => {
+      const years = new Set<number>();
+      for (const record of rentals) {
+        const startYear = fiscalYearOf(record.startDate);
+        const endYear = record.expectedReturnDate ? fiscalYearOf(record.expectedReturnDate) : startYear;
+        for (let year = startYear; year <= endYear; year++) years.add(year);
+      }
+      return [...years].sort((a, b) => b - a);
+    },
     [rentals],
   );
   const rentalMachines = useMemo(
