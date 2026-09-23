@@ -238,6 +238,40 @@ export async function ensureRentalSchema() {
   });
 }
 
+export async function ensureCentralAllocationSchema() {
+  await initializeSchema(env.DB, "central-rental-allocation", async () => {
+    if (!env.DB) throw new Error("Cloudflare D1 binding `DB` is unavailable.");
+    await env.DB.batch([
+      env.DB.prepare(`CREATE TABLE IF NOT EXISTS central_rental_allocations (
+        id TEXT PRIMARY KEY NOT NULL,
+        fiscal_year INTEGER NOT NULL,
+        month TEXT NOT NULL,
+        project TEXT NOT NULL,
+        created_at TEXT NOT NULL,
+        updated_at TEXT NOT NULL
+      )`),
+      env.DB.prepare("CREATE UNIQUE INDEX IF NOT EXISTS central_rental_allocations_unique ON central_rental_allocations (fiscal_year, month)"),
+    ]);
+  });
+}
+
+export async function ensureRentalPlanSchema() {
+  await initializeSchema(env.DB, "rental-plan", async () => {
+    if (!env.DB) throw new Error("Cloudflare D1 binding `DB` is unavailable.");
+    await env.DB.batch([
+      env.DB.prepare(`CREATE TABLE IF NOT EXISTS rental_plans (
+        id TEXT PRIMARY KEY NOT NULL,
+        department TEXT NOT NULL,
+        fiscal_year INTEGER NOT NULL,
+        plan_amount REAL DEFAULT 0 NOT NULL,
+        created_at TEXT NOT NULL,
+        updated_at TEXT NOT NULL
+      )`),
+      env.DB.prepare("CREATE UNIQUE INDEX IF NOT EXISTS rental_plans_department_year_unique ON rental_plans (department, fiscal_year)"),
+    ]);
+  });
+}
+
 export function getFiscalYear(serviceDate: string) {
   const [year, month] = serviceDate.split("-").map(Number);
   return year + (month >= 10 ? 544 : 543);

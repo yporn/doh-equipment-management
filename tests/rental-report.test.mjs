@@ -3,7 +3,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { DatabaseSync } from "node:sqlite";
 import { readFile } from "node:fs/promises";
-import { matchesRentalHistory, monthsSpanned, monthlyEquivalentAmount, overlapsCalendarMonth, overlapsFiscalYear } from "../lib/rental-history.mjs";
+import { isYearlyClosingMonth, matchesRentalHistory, monthsSpanned, monthlyEquivalentAmount, overlapsCalendarMonth, overlapsFiscalYear } from "../lib/rental-history.mjs";
 import { rentalDepartmentTriggerSql, rentalDepartmentBackfillSql } from "../db/rental-department-sql.mjs";
 import { transferSchemaSql, transferTriggerSql } from "../db/transfer-sql.mjs";
 
@@ -17,10 +17,17 @@ test("rental report filters combine fiscal year, month and exact renter departme
 });
 
 test("a yearly rental spanning fiscal years contributes an even monthly share to every month it covers", () => {
-  const yearly = { startDate: "2025-10-01", expectedReturnDate: "2026-09-30", totalAmount: 120000, rateType: "YEARLY", duration: 1 };
-  // A 1-year contract always divides by 12, regardless of which day of the month it starts/ends on.
+  const yearly = { startDate: "2025-10-01", expectedReturnDate: "2026-09-30", totalAmount: 120005, rateType: "YEARLY", duration: 1 };
+  // A 1-year contract always divides by 12 calendar months, regardless of which day it starts/ends on...
   assert.equal(monthsSpanned(yearly.rateType, yearly.duration), 12);
+  // ...but the monthly *equivalent amount* follows finance's own booking convention: floor-divide the
+  // annual rate by 12 for the 11 regular months, and let the contract's actual closing month absorb
+  // whatever those 11 regular months didn't cover, so the total reconciles exactly with no rounding drift.
   assert.equal(monthlyEquivalentAmount(yearly), 10000);
+  assert.equal(monthlyEquivalentAmount(yearly, "3", "2569"), 10000);
+  assert.equal(isYearlyClosingMonth(yearly, "9", "2569"), true);
+  assert.equal(isYearlyClosingMonth(yearly, "3", "2569"), false);
+  assert.equal(monthlyEquivalentAmount(yearly, "9", "2569"), 120005 - 10000 * 11);
   // March 2026 falls inside the contract even though it started in FY2569's October.
   assert.equal(overlapsCalendarMonth(yearly, "3", "2569"), true);
   // A March a fiscal year later is outside the contract's span.
@@ -47,17 +54,17 @@ test("renter organization sync is separate from physical location, lender and ow
   const db = new DatabaseSync(":memory:");
   db.exec(`CREATE TABLE machineries (code TEXT PRIMARY KEY, renter_department TEXT, current_department TEXT, department TEXT, leasing_department TEXT, owning_department TEXT, updated_at TEXT);
     INSERT INTO machineries VALUES ('M1',NULL,'SITE','SITE','LENDER','OWNER','now');
-    CREATE TABLE rentals (id TEXT PRIMARY KEY, machinery_code TEXT, renter_name TEXT, status TEXT, start_date TEXT, created_at TEXT);`);
+    CREATE TABLE rentals (id TEXT PRIMARY KEY, machinery_code TEXT, renter_name TEXT, status TEXT, start_date TEXT, expected_return_date TEXT, created_at TEXT);`);
   for (const statement of rentalDepartmentTriggerSql) db.exec(freezeRentalMonth(statement));
   const state = () => ({ ...db.prepare("SELECT renter_department, current_department, leasing_department, owning_department FROM machineries").get() });
-  db.exec("INSERT INTO rentals VALUES ('r1','M1','RENTER A','ACTIVE','2026-09-01','now')");
+  db.exec("INSERT INTO rentals VALUES ('r1','M1','RENTER A','ACTIVE','2026-09-01','2026-09-30','now')");
   assert.deepEqual(state(), { renter_department: "RENTER A", current_department: "SITE", leasing_department: "LENDER", owning_department: "OWNER" });
   db.exec("UPDATE rentals SET renter_name='RENTER B' WHERE id='r1'"); assert.equal(state().renter_department, "RENTER B");
   for (const statement of [...transferSchemaSql, ...transferTriggerSql]) db.exec(freezeRentalMonth(statement));
   db.prepare("INSERT INTO transfer_records VALUES (?,?,?,?,?,?)").run("t1", "2026-09-02", '["TRUCK"]', JSON.stringify([{ machineryCode: "M1", from: { name: "SITE" }, to: { name: "NEW SITE" } }]), "staff", "now");
   assert.equal(state().renter_department, "RENTER B"); assert.equal(state().current_department, "NEW SITE");
   db.exec("UPDATE rentals SET status='RETURNED' WHERE id='r1'"); assert.equal(state().renter_department, null); assert.equal(state().current_department, "NEW SITE");
-  db.exec("INSERT INTO rentals VALUES ('r2','M1','RENTER C','ACTIVE','2026-09-03','now')");
+  db.exec("INSERT INTO rentals VALUES ('r2','M1','RENTER C','ACTIVE','2026-09-03','2026-09-30','now')");
   db.exec("UPDATE rentals SET renter_name='HISTORIC' WHERE id='r1'"); assert.equal(state().renter_department, "RENTER C");
   db.exec("DELETE FROM rentals WHERE id='r1'"); assert.equal(state().renter_department, "RENTER C");
   db.exec("DELETE FROM rentals WHERE id='r2'"); assert.equal(state().renter_department, null); assert.equal(state().current_department, "NEW SITE");
@@ -66,7 +73,7 @@ test("renter organization sync is separate from physical location, lender and ow
 
 test("backfill populates existing active renters without changing physical location", () => {
   const db = new DatabaseSync(":memory:");
-  db.exec("CREATE TABLE machineries (code TEXT PRIMARY KEY, renter_department TEXT, current_department TEXT); CREATE TABLE rentals (machinery_code TEXT, renter_name TEXT, status TEXT, start_date TEXT, created_at TEXT); INSERT INTO machineries VALUES ('M1',NULL,'LOCATION'); INSERT INTO rentals VALUES ('M1','RENTER','ACTIVE','2026-09-01','now')");
+  db.exec("CREATE TABLE machineries (code TEXT PRIMARY KEY, renter_department TEXT, current_department TEXT); CREATE TABLE rentals (machinery_code TEXT, renter_name TEXT, status TEXT, start_date TEXT, expected_return_date TEXT, created_at TEXT); INSERT INTO machineries VALUES ('M1',NULL,'LOCATION'); INSERT INTO rentals VALUES ('M1','RENTER','ACTIVE','2026-09-01','2026-09-30','now')");
   db.exec(freezeRentalMonth(rentalDepartmentBackfillSql)); db.exec(freezeRentalMonth(rentalDepartmentBackfillSql));
   assert.deepEqual({ ...db.prepare("SELECT * FROM machineries").get() }, { code: "M1", renter_department: "RENTER", current_department: "LOCATION" });
   db.close();

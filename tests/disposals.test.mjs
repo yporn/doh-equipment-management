@@ -76,7 +76,7 @@ test("disposal rejects leased machines, missing codes, downgrades and subsequent
     machine(db, "LEASED", "W", "RENTED");
     assert.throws(() => insert(db, "LEASED"), /DISPOSAL_RENTED/);
     machine(db, "ACTIVE");
-    const rent = db.prepare("INSERT INTO rentals (id,machinery_code,renter_name,start_date,expected_return_date,rate_type,rate_amount,approver,status,created_at,updated_at) VALUES (?,?,'ศูนย์','2026-09-01','2026-09-10','DAILY',0,'เจ้าหน้าที่','ACTIVE','now','now')");
+    const rent = db.prepare("INSERT INTO rentals (id,machinery_code,renter_name,start_date,expected_return_date,rate_type,rate_amount,approver,status,created_at,updated_at) VALUES (?,?,'ศูนย์','2026-09-01','2026-09-30','DAILY',0,'เจ้าหน้าที่','ACTIVE','now','now')");
     rent.run("r1", "ACTIVE");
     assert.throws(() => insert(db, "ACTIVE"), /DISPOSAL_RENTED/);
     assert.throws(() => insert(db, "MISSING"), /DISPOSAL_MACHINE_MISSING/);

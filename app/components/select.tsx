@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useState } from "react";
 import ReactSelect, { type GroupBase, type StylesConfig } from "react-select";
 import "./select.css";
 
@@ -7,6 +8,10 @@ export type SelectGroup = { label: string; options: SelectOption[] };
 
 const noStyles: StylesConfig<SelectOption, false, GroupBase<SelectOption>> = {
   control: (base) => ({ ...base, minHeight: 0 }),
+};
+const portalStyles: StylesConfig<SelectOption, false, GroupBase<SelectOption>> = {
+  ...noStyles,
+  menuPortal: (base) => ({ ...base, zIndex: 9999 }),
 };
 
 /**
@@ -23,6 +28,7 @@ export default function Select({
   isClearable = false,
   isSearchable = false,
   className,
+  menuPortal = false,
 }: {
   value: string;
   onChange: (value: string) => void;
@@ -32,9 +38,13 @@ export default function Select({
   isClearable?: boolean;
   isSearchable?: boolean;
   className?: string;
+  /** Render the open menu into document.body instead of inline — use inside scrollable/overflow-clipped containers (e.g. a table header) so the list isn't cut off. */
+  menuPortal?: boolean;
 }) {
   const flat: SelectOption[] = options.flatMap((entry) => ("options" in entry ? entry.options : [entry]));
   const selected = flat.find((option) => option.value === value) ?? null;
+  const [portalTarget, setPortalTarget] = useState<HTMLElement | null>(null);
+  useEffect(() => { if (menuPortal) setPortalTarget(document.body); }, [menuPortal]);
   return (
     <ReactSelect<SelectOption, false, GroupBase<SelectOption>>
       aria-label={ariaLabel}
@@ -47,7 +57,9 @@ export default function Select({
       isClearable={isClearable}
       isSearchable={isSearchable}
       unstyled
-      styles={noStyles}
+      styles={menuPortal ? portalStyles : noStyles}
+      menuPortalTarget={portalTarget}
+      menuPosition={menuPortal ? "fixed" : undefined}
       noOptionsMessage={() => "ไม่พบตัวเลือก"}
     />
   );

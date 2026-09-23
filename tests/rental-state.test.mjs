@@ -16,7 +16,7 @@ test("all register states accept rental and latest saved active record controls 
     if (!db.prepare("PRAGMA table_info(rentals)").all().some(c => c.name === "rental_mode")) db.exec("ALTER TABLE rentals ADD rental_mode TEXT NOT NULL DEFAULT 'W'");
     for (let i = 0; i < 2; i++) for (const sql of [...disposalSchemaSql, ...disposalTriggerSql, ...rentalDepartmentTriggerSql, ...rentalStateTriggerSql]) db.exec(freezeRentalMonth(sql));
     const machine = db.prepare("INSERT INTO machineries (id,code,name,brand,serial_number,department,current_department,condition,status,created_at,updated_at) VALUES (?,?,'test','test','','physical','physical',?,?,'now','now')");
-    const rent = db.prepare("INSERT INTO rentals (id,machinery_code,renter_name,start_date,expected_return_date,rate_type,rate_amount,approver,status,rental_mode,created_at,updated_at) VALUES (?,?,?,'2026-09-01','2026-09-02','DAILY',0,'test','ACTIVE',?,'now','now')");
+    const rent = db.prepare("INSERT INTO rentals (id,machinery_code,renter_name,start_date,expected_return_date,rate_type,rate_amount,approver,status,rental_mode,created_at,updated_at) VALUES (?,?,?,'2026-09-01','2026-09-30','DAILY',0,'test','ACTIVE',?,'now','now')");
     for (const [index, condition] of ["AVAILABLE","W","M","DAMAGED","AWAITING_DISPOSAL","DISPOSAL_APPROVED"].entries()) {
       const code = String(index);
       machine.run(code, code, condition, "INACTIVE");

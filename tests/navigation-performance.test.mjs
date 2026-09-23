@@ -39,13 +39,13 @@ test("concurrent cold requests do not share a request-owned pending promise", as
 
 async function databaseModule() {
   const db = new DatabaseSync(":memory:");
-  const clock = {month:"2026-09"};
-  db.function("test_month",() => clock.month);
+  const clock = {today:"2026-09-15"};
+  db.function("test_today",() => clock.today);
   const statements = [];
   let trips = 0;
   const execute = (statement,params,method) => {
     statements.push(statement);
-    return db.prepare(statement.replaceAll("strftime('%Y-%m','now','+7 hours')","test_month()"))[method](...params);
+    return db.prepare(statement.replaceAll("strftime('%Y-%m-%d','now','+7 hours')","test_today()"))[method](...params);
   };
   const binding = {
     prepare(statement) {
@@ -115,12 +115,12 @@ test("initialized database still applies new writes and rolls over month without
     f.db.exec("INSERT INTO machineries (id,code,name,brand,serial_number,department,current_department,condition,status,created_at,updated_at) VALUES ('a','A','test','test','','SITE','SITE','AVAILABLE','AVAILABLE','now','now')");
     f.db.exec("INSERT INTO rentals (id,machinery_code,renter_name,start_date,expected_return_date,rate_type,rate_amount,approver,status,created_at,updated_at) VALUES ('r','A','PROJECT','2026-09-01','2026-09-30','MONTHLY',100,'staff','ACTIVE','now','now')");
     assert.equal(f.db.prepare("SELECT status FROM machineries").get().status,"RENTED");
-    f.clock.month = "2026-10"; f.reset();
+    f.clock.today = "2026-10-15"; f.reset();
     await f.api.ensureTransferSchema();
     assert.deepEqual({...f.db.prepare("SELECT status,renter_department,current_department FROM machineries").get()},{status:"AVAILABLE",renter_department:null,current_department:"SITE"});
     assert.equal(f.statements.some(sql => /^(CREATE|DROP|ALTER|PRAGMA)/.test(sql)),false);
     assert.equal(f.db.prepare("SELECT count(*) n FROM rentals").get().n,1);
-    f.db.exec("UPDATE rentals SET start_date='2026-10-01' WHERE id='r'");
+    f.db.exec("UPDATE rentals SET start_date='2026-10-01', expected_return_date='2026-10-31' WHERE id='r'");
     assert.equal(f.db.prepare("SELECT renter_department FROM machineries").get().renter_department,"PROJECT");
     f.db.exec("DELETE FROM rentals WHERE id='r'");
     assert.equal(f.db.prepare("SELECT status FROM machineries").get().status,"AVAILABLE");

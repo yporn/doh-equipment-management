@@ -4,6 +4,9 @@ import { watchBangkokMonth } from "../lib/rental-activity.mjs";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import registry from "../data/machineries.json";
 import { currentMachine, bangkokToday } from "../lib/age-rates.mjs";
+import { fiscalYearOf } from "../lib/rental-history.mjs";
+import { FISCAL_MONTHS, FISCAL_MONTH_LABELS, summarizeRentalPlans } from "../lib/rental-plan.mjs";
+import { categorizeRentalCost, createCentralAllocationResolver } from "../lib/central-rental.mjs";
 import AppSidebar from "./components/app-sidebar";
 import { ConfirmSubmitButton } from "./components/confirm-action";
 import Select from "./components/select";
@@ -18,6 +21,20 @@ type MachineryStatus =
 type MachineryCondition = "W" | "M" | "AVAILABLE" | "DAMAGED" | "MAINTENANCE" | "AWAITING_DISPOSAL" | "DISPOSAL_APPROVED";
 type RecentTransfer = { id: string; transferDate: string; transporters: string[]; items: { machineryCode: string; from: { name: string }; to: { name: string } }[] };
 type RecentService = { id: string; machineryCode: string; machineryName: string | null; serviceDate: string; items: { description: string }[] };
+type RepairSummary = { id: string; machineryCode: string; machineryName: string | null; repairDate: string; symptom: string; status: "WAITING" | "WAITING_PARTS" | "IN_PROGRESS" | "COMPLETED" };
+type DashboardRental = { renterName: string; startDate: string; expectedReturnDate: string; rateType: "DAILY" | "WEEKLY" | "MONTHLY" | "YEARLY"; duration: number; totalAmount: number };
+type CentralAllocation = { fiscalYear: number; month: string; project: string };
+type RentalPlan = { department: string; fiscalYear: number; planAmount: number };
+type CostCategory = "central" | "yearly" | "monthly";
+const costCategoryMeta: Record<CostCategory, { label: string; className: string }> = {
+  central: { label: "ส่วนกลาง", className: "cost-cat-central" },
+  yearly: { label: "สัญญาเช่ารายปี", className: "cost-cat-yearly" },
+  monthly: { label: "สัญญาเช่ารายเดือน", className: "cost-cat-monthly" },
+};
+function scopedMonthlyTotal(monthly: number[], mode: "fy" | "month", monthIndex: number, reachedCount: number) {
+  return mode === "fy" ? monthly.slice(0, reachedCount).reduce((sum, value) => sum + value, 0) : monthly[monthIndex];
+}
+const repairStatusLabels: Record<RepairSummary["status"], string> = { WAITING: "รอตรวจสอบ", WAITING_PARTS: "รออะไหล่", IN_PROGRESS: "กำลังซ่อม", COMPLETED: "ซ่อมเสร็จแล้ว" };
 type Machine = {
   id?: string;
   code: string;
@@ -66,6 +83,29 @@ const conditionLabels: Record<MachineryCondition, string> = {
   DISPOSAL_APPROVED: "อนุมัติจำหน่าย",
 };
 const editableConditionLabels = Object.entries(conditionLabels).filter(([value]) => value !== "MAINTENANCE");
+type RegistryColumnKey = "owning" | "leasing" | "current" | "renter" | "status";
+const registryColumnLabels: Record<RegistryColumnKey, string> = {
+  owning: "ต้นสังกัด",
+  leasing: "ศูนย์ผู้ให้เช่า",
+  current: "หน่วยงาน/โครงการที่เครื่องจักรอยู่",
+  renter: "หน่วยงาน/โครงการที่เช่า",
+  status: "สถานะ",
+};
+const registryColumnOptions = Object.entries(registryColumnLabels).map(([value, label]) => ({ value, label }));
+function registryColumnCell(key: RegistryColumnKey, machine: Machine) {
+  switch (key) {
+    case "owning": return machine.owningDepartment || "—";
+    case "leasing": return machine.leasingDepartment || "—";
+    case "current": return machine.currentDepartment;
+    case "renter": return machine.renterDepartment || "—";
+    case "status": return (
+      <div className="status-stack">
+        {(machine.repairStatus !== "ACTIVE" || machine.condition === "W" || machine.condition === "M") && <span className={`status status-condition-${machine.condition === "MAINTENANCE" ? "AVAILABLE" : machine.condition}`}>{conditionLabels[machine.condition === "MAINTENANCE" ? "AVAILABLE" : machine.condition]}</span>}
+        {machine.repairStatus === "ACTIVE" && <span className="status status-repair">ซ่อมบำรุง</span>}
+      </div>
+    );
+  }
+}
 const statusOfCondition = (condition: MachineryCondition): MachineryStatus =>
   condition === "W" || condition === "M" ? "RENTED" : condition === "MAINTENANCE" ? "UNDER_REPAIR" : condition === "AWAITING_DISPOSAL" || condition === "DISPOSAL_APPROVED" ? "INACTIVE" : "AVAILABLE";
 const initialMachines: Machine[] = registry.map((item) => ({
@@ -88,6 +128,7 @@ export function EquipmentApp({
   const [typeCode, setTypeCode] = useState("ALL");
   const [department, setDepartment] = useState("ALL");
   const [sort, setSort] = useState("code");
+  const [registryColumns, setRegistryColumns] = useState<[RegistryColumnKey, RegistryColumnKey, RegistryColumnKey]>(["current", "renter", "status"]);
   const [selected, setSelected] = useState<Machine | null>(null);
   const [editing, setEditing] = useState<Machine | null>(null);
   const [showCreate, setShowCreate] = useState(false);
@@ -97,12 +138,16 @@ export function EquipmentApp({
   const [isSaving, setIsSaving] = useState(false);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(20);
-  const [attention, setAttention] = useState<{
-    repairsOpen: number;
-    disposalsPending: number;
-    rentalsOverdue: number;
-    rentalsActive: number;
-  } | null>(null);
+  const [repairsInProgress, setRepairsInProgress] = useState<RepairSummary[] | null>(null);
+  const [disposalCounts, setDisposalCounts] = useState<{ pending: number; approved: number } | null>(null);
+  const [dashboardRentals, setDashboardRentals] = useState<DashboardRental[] | null>(null);
+  const [centralAllocations, setCentralAllocations] = useState<CentralAllocation[]>([]);
+  const [rentalPlans, setRentalPlans] = useState<RentalPlan[]>([]);
+  const today = bangkokToday();
+  const currentFiscalYear = fiscalYearOf(today);
+  const currentFiscalMonthIndex = FISCAL_MONTHS.indexOf(String(Number(today.slice(5, 7))));
+  const [costMode, setCostMode] = useState<"fy" | "month">("fy");
+  const [costMonthIndex, setCostMonthIndex] = useState(currentFiscalMonthIndex);
   const [recentTransfers, setRecentTransfers] = useState<RecentTransfer[] | null>(null);
   const [recentServices, setRecentServices] = useState<RecentService[] | null>(null);
   useEffect(() => {
@@ -128,24 +173,29 @@ export function EquipmentApp({
       fetch("/api/rentals").then((response) => (response.ok ? response.json() : [])),
       fetch("/api/transfers").then((response) => (response.ok ? response.json() : [])),
       fetch("/api/services").then((response) => (response.ok ? response.json() : [])),
+      fetch("/api/central-rental-allocations").then((response) => (response.ok ? response.json() : [])),
+      fetch("/api/rental-plans").then((response) => (response.ok ? response.json() : [])),
     ])
-      .then(([repairs, disposals, rentals, transfers, services]: [
+      .then(([repairs, disposals, rentals, transfers, services, allocations, plans]: [
+        RepairSummary[],
         { status: string }[],
-        { status: string }[],
-        { status: string; expectedReturnDate: string }[],
+        DashboardRental[],
         RecentTransfer[],
         RecentService[],
+        CentralAllocation[],
+        RentalPlan[],
       ]) => {
         if (!active) return;
-        const today = bangkokToday();
-        setAttention({
-          repairsOpen: repairs.filter((item) => item.status !== "COMPLETED").length,
-          disposalsPending: disposals.filter((item) => item.status !== "DISPOSED").length,
-          rentalsActive: rentals.filter((item) => item.status === "ACTIVE").length,
-          rentalsOverdue: rentals.filter((item) => item.status === "ACTIVE" && item.expectedReturnDate < today).length,
+        setRepairsInProgress(repairs.filter((item) => item.status !== "COMPLETED").sort((a, b) => b.repairDate.localeCompare(a.repairDate)));
+        setDisposalCounts({
+          pending: disposals.filter((item) => item.status === "AWAITING_DISPOSAL").length,
+          approved: disposals.filter((item) => item.status === "DISPOSAL_APPROVED").length,
         });
-        setRecentTransfers(transfers.slice(0, 5));
-        setRecentServices(services.slice(0, 4));
+        setDashboardRentals(rentals);
+        setCentralAllocations(allocations);
+        setRentalPlans(plans);
+        setRecentTransfers(transfers.slice(0, 3));
+        setRecentServices(services.slice(0, 3));
       })
       .catch(() => { /* leave the dashboard panels empty if any of these fail */ });
     return () => { active = false; };
@@ -193,19 +243,60 @@ export function EquipmentApp({
       },
     ];
   }, [machines]);
-  const categorySummary = useMemo(
-    () =>
-      Object.entries(
-        machines.reduce<Record<string, number>>((result, item) => {
-          const label = item.typeCode?.split("-")[0] ?? "ไม่ระบุ";
-          result[label] = (result[label] ?? 0) + 1;
-          return result;
-        }, {}),
-      )
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 3),
-    [machines],
+  const centralResolver = useMemo(() => createCentralAllocationResolver(centralAllocations), [centralAllocations]);
+  const rentalCostByDepartment = useMemo(
+    () => summarizeRentalPlans(dashboardRentals ?? [], rentalPlans, currentFiscalYear, centralResolver),
+    [dashboardRentals, rentalPlans, currentFiscalYear, centralResolver],
   );
+  const rentalCostRows = useMemo(() => {
+    const rows = rentalCostByDepartment
+      .map((entry) => ({
+        department: entry.department,
+        plan: entry.plan,
+        amount: costMode === "fy"
+          ? entry.monthly.slice(0, currentFiscalMonthIndex + 1).reduce((sum, value) => sum + value, 0)
+          : entry.monthly[costMonthIndex],
+      }))
+      .filter((row) => row.amount > 0)
+      .map((row) => ({ ...row, planPercent: row.plan > 0 ? (row.amount / row.plan) * 100 : Infinity }))
+      .sort((a, b) => b.amount - a.amount);
+    const total = rows.reduce((sum, row) => sum + row.amount, 0);
+    return { rows, total };
+  }, [rentalCostByDepartment, costMode, costMonthIndex, currentFiscalMonthIndex]);
+  const rentalsByCostCategory = useMemo(() => {
+    const groups: Record<CostCategory, DashboardRental[]> = { central: [], yearly: [], monthly: [] };
+    for (const record of dashboardRentals ?? []) groups[categorizeRentalCost(record)].push(record);
+    return groups;
+  }, [dashboardRentals]);
+  const costCategorySummaries = useMemo(() => ({
+    central: summarizeRentalPlans(rentalsByCostCategory.central, [], currentFiscalYear, centralResolver),
+    yearly: summarizeRentalPlans(rentalsByCostCategory.yearly, [], currentFiscalYear, centralResolver),
+    monthly: summarizeRentalPlans(rentalsByCostCategory.monthly, [], currentFiscalYear, centralResolver),
+  }), [rentalsByCostCategory, currentFiscalYear, centralResolver]);
+  const costCategoryTotals = useMemo(() => {
+    const totals: Record<CostCategory, number> = { central: 0, yearly: 0, monthly: 0 };
+    (Object.keys(costCategorySummaries) as CostCategory[]).forEach((category) => {
+      totals[category] = costCategorySummaries[category].reduce((sum, entry) => sum + scopedMonthlyTotal(entry.monthly, costMode, costMonthIndex, currentFiscalMonthIndex + 1), 0);
+    });
+    return totals;
+  }, [costCategorySummaries, costMode, costMonthIndex, currentFiscalMonthIndex]);
+  const departmentCategoryAmounts = useMemo(() => {
+    const map = new Map<string, Record<CostCategory, number>>();
+    for (const department of rentalCostByDepartment.map((entry) => entry.department)) {
+      const amounts: Record<CostCategory, number> = { central: 0, yearly: 0, monthly: 0 };
+      (Object.keys(costCategorySummaries) as CostCategory[]).forEach((category) => {
+        const entry = costCategorySummaries[category].find((row) => row.department === department);
+        amounts[category] = entry ? scopedMonthlyTotal(entry.monthly, costMode, costMonthIndex, currentFiscalMonthIndex + 1) : 0;
+      });
+      map.set(department, amounts);
+    }
+    return map;
+  }, [rentalCostByDepartment, costCategorySummaries, costMode, costMonthIndex, currentFiscalMonthIndex]);
+  function fiscalMonthLabel(index: number) {
+    const monthNumber = Number(FISCAL_MONTHS[index]);
+    const buddhistYear = monthNumber >= 10 ? currentFiscalYear - 1 : currentFiscalYear;
+    return `${FISCAL_MONTH_LABELS[index]} ${buddhistYear}`;
+  }
   const filteredMachines = useMemo(() => {
     const keyword = query.trim().toLocaleLowerCase("th");
     return machines
@@ -518,9 +609,22 @@ export function EquipmentApp({
                     <th>หมายเลขเครื่องจักร</th>
                     <th>รหัสประเภท</th>
                     <th>รายละเอียด</th>
-                    <th>หน่วยงาน/โครงการที่เครื่องจักรอยู่</th>
-                    <th>หน่วยงาน/โครงการที่เช่า</th>
-                    <th>สถานะ</th>
+                    {registryColumns.map((column, index) => (
+                      <th key={index} className="registry-column-head">
+                        <Select
+                          ariaLabel={`เลือกคอลัมน์ที่ ${index + 1}`}
+                          className="registry-column-select"
+                          value={column}
+                          onChange={(value) => setRegistryColumns((columns) => {
+                            const next = [...columns] as typeof columns;
+                            next[index] = value as RegistryColumnKey;
+                            return next;
+                          })}
+                          options={registryColumnOptions}
+                          menuPortal
+                        />
+                      </th>
+                    ))}
                     <th />
                   </tr>
                 </thead>
@@ -537,14 +641,9 @@ export function EquipmentApp({
                           {machine.brand} {machine.model}
                         </span>
                       </td>
-                      <td>{machine.currentDepartment}</td>
-                      <td>{machine.renterDepartment || "—"}</td>
-                      <td>
-                        <div className="status-stack">
-                          {(machine.repairStatus !== "ACTIVE" || machine.condition === "W" || machine.condition === "M") && <span className={`status status-condition-${machine.condition === "MAINTENANCE" ? "AVAILABLE" : machine.condition}`}>{conditionLabels[machine.condition === "MAINTENANCE" ? "AVAILABLE" : machine.condition]}</span>}
-                          {machine.repairStatus === "ACTIVE" && <span className="status status-repair">ซ่อมบำรุง</span>}
-                        </div>
-                      </td>
+                      {registryColumns.map((column, index) => (
+                        <td key={index}>{registryColumnCell(column, machine)}</td>
+                      ))}
                       <td>
                         <button
                           className="row-action"
@@ -611,8 +710,194 @@ export function EquipmentApp({
             <section className="panel">
               <div className="panel-heading">
                 <div>
+                  <h2>ค่าเช่ารวมตามโครงการ</h2>
+                  <p>
+                    {costMode === "fy"
+                      ? `ตุลาคม ${currentFiscalYear - 1} – ปัจจุบัน (${acquisitionLabel(today)}) · ปีงบประมาณ ${currentFiscalYear}`
+                      : `${fiscalMonthLabel(costMonthIndex)} · ปีงบประมาณ ${currentFiscalYear}`}
+                  </p>
+                </div>
+                <a className="secondary button-link" href="/rentals">
+                  ดูสรุปเทียบแผนงบประมาณ →
+                </a>
+              </div>
+              <div className="rental-toggle">
+                <div className="segmented" role="group" aria-label="ช่วงเวลาที่แสดง">
+                  <button type="button" className={costMode === "fy" ? "seg-btn active" : "seg-btn"} onClick={() => setCostMode("fy")}>ปีงบประมาณ (ต.ค.–ปัจจุบัน)</button>
+                  <button type="button" className={costMode === "month" ? "seg-btn active" : "seg-btn"} onClick={() => setCostMode("month")}>รายเดือน</button>
+                </div>
+                {costMode === "month" && (
+                  <select className="month-select" aria-label="เลือกเดือน" value={costMonthIndex} onChange={(event) => setCostMonthIndex(Number(event.target.value))}>
+                    {FISCAL_MONTHS.slice(0, currentFiscalMonthIndex + 1).map((_, index) => (
+                      <option key={index} value={index}>{fiscalMonthLabel(index)}</option>
+                    ))}
+                  </select>
+                )}
+              </div>
+              {dashboardRentals === null ? (
+                <p className="detail-note">กำลังโหลด…</p>
+              ) : rentalCostRows.rows.length === 0 ? (
+                <div className="empty-state">
+                  <strong>ยังไม่มีค่าเช่าในช่วงที่เลือก</strong>
+                </div>
+              ) : (
+                <>
+                  <div className="rental-total">
+                    <strong>{rentalCostRows.total.toLocaleString("th-TH", { maximumFractionDigits: 0 })}</strong>
+                    <span>บาท จาก {rentalCostRows.rows.length.toLocaleString("th-TH")} โครงการที่เช่าเครื่องจักร</span>
+                  </div>
+                  <div className="rental-cost-breakdown">
+                    {(Object.keys(costCategoryMeta) as CostCategory[]).map((category) => (
+                      <div
+                        key={category}
+                        className={`rental-cost-segment ${costCategoryMeta[category].className}`}
+                        style={{ width: `${rentalCostRows.total ? (costCategoryTotals[category] / rentalCostRows.total) * 100 : 0}%` }}
+                      />
+                    ))}
+                  </div>
+                  <div className="rental-cost-legend">
+                    {(Object.keys(costCategoryMeta) as CostCategory[]).map((category) => (
+                      <div className="rental-cost-legend-item" key={category}>
+                        <span className={`rental-cost-dot ${costCategoryMeta[category].className}`} />
+                        <div>
+                          <strong>{costCategoryMeta[category].label}</strong>
+                          <span>
+                            {costCategoryTotals[category].toLocaleString("th-TH", { maximumFractionDigits: 0 })} บาท ·{" "}
+                            {(rentalCostRows.total ? (costCategoryTotals[category] / rentalCostRows.total) * 100 : 0).toFixed(0)}%
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="rental-rows">
+                    {rentalCostRows.rows.map((row) => {
+                      const categoryAmounts = departmentCategoryAmounts.get(row.department) ?? { central: 0, yearly: 0, monthly: 0 };
+                      const hasPlan = row.plan > 0;
+                      const filledPercent = hasPlan ? Math.min(row.planPercent, 100) : 100;
+                      return (
+                        <div className="rental-row-block" key={row.department}>
+                          <div className="rental-row">
+                            <div className="rental-row-name" title={row.department}>{row.department}</div>
+                            <div className="rental-track">
+                              <div className="rental-fill-group" style={{ width: `${filledPercent}%` }}>
+                                {(Object.keys(costCategoryMeta) as CostCategory[]).map((category) => {
+                                  const amount = categoryAmounts[category];
+                                  if (amount <= 0) return null;
+                                  return (
+                                    <span
+                                      key={category}
+                                      className={`rental-fill-segment ${costCategoryMeta[category].className}`}
+                                      style={{ width: `${(amount / row.amount) * 100}%` }}
+                                      title={`${costCategoryMeta[category].label}: ${amount.toLocaleString("th-TH", { maximumFractionDigits: 0 })} บาท`}
+                                    />
+                                  );
+                                })}
+                              </div>
+                            </div>
+                            <div className="rental-amount">{row.amount.toLocaleString("th-TH", { maximumFractionDigits: 0 })} บาท</div>
+                            <div className="rental-pct" title={hasPlan ? undefined : "ยังไม่ได้ตั้งแผนค่าเช่า"}>{hasPlan ? `${row.planPercent.toFixed(0)}%` : "—"}</div>
+                          </div>
+                          <div className="rental-row-breakdown">
+                            {(Object.keys(costCategoryMeta) as CostCategory[]).map((category) => {
+                              const amount = categoryAmounts[category];
+                              if (amount <= 0) return null;
+                              return (
+                                <span className="rental-row-breakdown-item" key={category}>
+                                  <span className={`rental-cost-dot ${costCategoryMeta[category].className}`} />
+                                  {costCategoryMeta[category].label} {amount.toLocaleString("th-TH", { maximumFractionDigits: 0 })} บาท
+                                </span>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </>
+              )}
+            </section>
+          )}
+          <div className="lower-grid">
+            <section className="panel compact">
+              <div className="panel-heading">
+                <div>
+                  <h2>งานซ่อมบำรุงที่กำลังดำเนินการ</h2>
+                  <p>{repairsInProgress ? `${repairsInProgress.length.toLocaleString("th-TH")} รายการที่ยังไม่เสร็จสิ้น` : "กำลังโหลด…"}</p>
+                </div>
+                <a className="secondary button-link" href="/repairs">
+                  ดูทั้งหมด →
+                </a>
+              </div>
+              {(repairsInProgress ?? []).map((record) => (
+                <div className="repair-item" key={record.id}>
+                  <div>
+                    <span className="machine-code">{record.machineryCode}</span>
+                    <strong>{record.machineryName ?? "—"}</strong>
+                    <span className="muted">{record.symptom || "—"} · แจ้ง {acquisitionLabel(record.repairDate)}</span>
+                  </div>
+                  <span className={`repair-pill ${record.status}`}>{repairStatusLabels[record.status]}</span>
+                </div>
+              ))}
+              {repairsInProgress?.length === 0 && (
+                <div className="empty-state">
+                  <strong>ไม่มีงานซ่อมบำรุงค้างอยู่</strong>
+                </div>
+              )}
+            </section>
+            <section className="panel compact">
+              <div className="panel-heading">
+                <div>
+                  <h2>Service ล่าสุด</h2>
+                  <p>3 รายการล่าสุด</p>
+                </div>
+                <a className="secondary button-link" href="/service">
+                  ดูทั้งหมด →
+                </a>
+              </div>
+              {(recentServices ?? []).map((record) => (
+                <div className="service-latest-item" key={record.id}>
+                  <div>
+                    <strong>{record.machineryCode} — {record.machineryName ?? "—"}</strong>
+                    <span>
+                      {acquisitionLabel(record.serviceDate)} · {record.items.map((item) => item.description).join(", ") || "—"}
+                    </span>
+                  </div>
+                </div>
+              ))}
+              {recentServices?.length === 0 && (
+                <div className="empty-state">
+                  <strong>ยังไม่มีประวัติ Service</strong>
+                </div>
+              )}
+            </section>
+            <section className="panel compact">
+              <div className="panel-heading">
+                <div>
+                  <h2>จำหน่ายเครื่องจักร</h2>
+                  <p>สถานะปัจจุบันในระบบ</p>
+                </div>
+                <a className="secondary button-link" href="/disposals">
+                  ดูทั้งหมด →
+                </a>
+              </div>
+              <div className="disposal-grid">
+                <div className="disposal-tile pending">
+                  <p>รอจำหน่าย</p>
+                  <strong>{disposalCounts ? disposalCounts.pending.toLocaleString("th-TH") : "…"}</strong>
+                </div>
+                <div className="disposal-tile approved">
+                  <p>อนุมัติจำหน่าย</p>
+                  <strong>{disposalCounts ? disposalCounts.approved.toLocaleString("th-TH") : "…"}</strong>
+                </div>
+              </div>
+            </section>
+          </div>
+          {!registryOnly && (
+            <section className="panel">
+              <div className="panel-heading">
+                <div>
                   <h2>ขนย้ายล่าสุด</h2>
-                  <p>{recentTransfers ? `${recentTransfers.length.toLocaleString("th-TH")} เที่ยวล่าสุด` : "กำลังโหลด…"}</p>
+                  <p>3 เที่ยวล่าสุด</p>
                 </div>
                 <a className="secondary button-link" href="/transfers">
                   ไปหน้าขนย้ายเครื่องจักร →
@@ -653,95 +938,6 @@ export function EquipmentApp({
               </div>
             </section>
           )}
-          <div className="lower-grid">
-            <section className="panel compact">
-              <div className="panel-heading">
-                <div>
-                  <h2>งานที่ต้องติดตาม</h2>
-                  <p>สรุปสดจากระบบซ่อมบำรุง จำหน่าย และระบบเช่า</p>
-                </div>
-              </div>
-              <div className="task">
-                <span className={`task-icon ${(attention?.repairsOpen ?? 0) > 0 ? "warning" : "ok"}`}>
-                  {(attention?.repairsOpen ?? 0) > 0 ? "!" : "✓"}
-                </span>
-                <div>
-                  <strong>งานซ่อมที่ยังไม่เสร็จ {attention ? attention.repairsOpen.toLocaleString("th-TH") : "…"} รายการ</strong>
-                  <p>รอตรวจสอบ รออะไหล่ หรือกำลังซ่อมอยู่</p>
-                </div>
-                <a href="/repairs">ดูรายการ →</a>
-              </div>
-              <div className="task">
-                <span className={`task-icon ${(attention?.disposalsPending ?? 0) > 0 ? "warning" : "ok"}`}>
-                  {(attention?.disposalsPending ?? 0) > 0 ? "!" : "✓"}
-                </span>
-                <div>
-                  <strong>รอ/อนุมัติจำหน่าย {attention ? attention.disposalsPending.toLocaleString("th-TH") : "…"} รายการ</strong>
-                  <p>ยังไม่บันทึกจำหน่ายแล้วในระบบ</p>
-                </div>
-                <a href="/disposals">ดูรายการ →</a>
-              </div>
-              <div className="task">
-                <span className={`task-icon ${(attention?.rentalsOverdue ?? 0) > 0 ? "danger" : "ok"}`}>
-                  {(attention?.rentalsOverdue ?? 0) > 0 ? "×" : "✓"}
-                </span>
-                <div>
-                  <strong>เลยกำหนดคืน {attention ? attention.rentalsOverdue.toLocaleString("th-TH") : "…"} รายการ</strong>
-                  <p>จากการเช่าที่ยังใช้งานอยู่ {attention ? attention.rentalsActive.toLocaleString("th-TH") : "…"} รายการ</p>
-                </div>
-                <a href="/rentals">ดูรายการ →</a>
-              </div>
-            </section>
-            <section className="panel compact">
-              <div className="panel-heading">
-                <div>
-                  <h2>Service ล่าสุด</h2>
-                  <p>สรุปงานบำรุงตามรอบล่าสุด</p>
-                </div>
-                <a className="secondary button-link" href="/service">
-                  ดูทั้งหมด →
-                </a>
-              </div>
-              {(recentServices ?? []).map((record) => (
-                <div className="service-latest-item" key={record.id}>
-                  <div>
-                    <strong>{record.machineryCode} — {record.machineryName ?? "—"}</strong>
-                    <span>
-                      {acquisitionLabel(record.serviceDate)} · {record.items.map((item) => item.description).join(", ") || "—"}
-                    </span>
-                  </div>
-                </div>
-              ))}
-              {recentServices?.length === 0 && (
-                <div className="empty-state">
-                  <strong>ยังไม่มีประวัติ Service</strong>
-                </div>
-              )}
-            </section>
-            <section className="panel compact">
-              <div className="panel-heading">
-                <div>
-                  <h2>กลุ่มประเภทที่มีจำนวนมาก</h2>
-                  <p>สรุปจากรหัสประเภทในทะเบียน</p>
-                </div>
-              </div>
-              {categorySummary.map(([name, count]) => (
-                <div className="project" key={name}>
-                  <div>
-                    <strong>รหัสกลุ่ม {name}</strong>
-                    <span>{count} เครื่อง</span>
-                  </div>
-                  <div className="progress">
-                    <span
-                      style={{
-                        width: `${Math.round((count / machines.length) * 100)}%`,
-                      }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </section>
-          </div>
         </div>
       </section>
       {selected && (

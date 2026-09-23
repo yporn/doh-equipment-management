@@ -1,6 +1,6 @@
 import { currentRentalSql } from "./rental-activity-sql.mjs";
 
-// Newest saved rental in the current Thai calendar month controls the renter.
+// Newest saved rental whose own date range currently covers today controls the renter.
 const latest = (code, field) => `(SELECT ${field} FROM rentals WHERE machinery_code = ${code} AND ${currentRentalSql} ORDER BY created_at DESC, rowid DESC LIMIT 1)`;
 const disposal = code => `COALESCE((SELECT CASE WHEN status = 'DISPOSED' THEN 'DISPOSAL_APPROVED' ELSE status END FROM disposal_records WHERE machinery_code = ${code}), CASE WHEN condition IN ('AWAITING_DISPOSAL','DISPOSAL_APPROVED') THEN condition END)`;
 const repair = code => `EXISTS (SELECT 1 FROM repair_records WHERE machinery_code = ${code} AND status != 'COMPLETED')`;
@@ -19,7 +19,7 @@ const sync = code => `UPDATE machineries SET
     OR renter_department IS NOT ${latest(code, "renter_name")});`;
 const syncRepair = code => `UPDATE machineries SET repair_status = CASE WHEN ${repair(code)} THEN 'ACTIVE' ELSE 'NONE' END WHERE code = ${code}; ${sync(code)}`;
 
-// Refresh when a page/API is loaded, even if nobody has written a record this month.
+// Refresh when a page/API is loaded, even if a rental's own end date has quietly passed.
 export const rentalStateRefreshSql = sync("machineries.code");
 export const rentalStateTriggerSql = [
   ...["insert", "update", "delete"].map(event => `DROP TRIGGER IF EXISTS rental_state_${event}`),

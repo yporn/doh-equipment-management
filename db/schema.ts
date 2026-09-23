@@ -136,6 +136,26 @@ export const rentals = sqliteTable("rentals", {
   index("idx_rentals_machinery_code").on(table.machineryCode),
 ]);
 
+export const centralRentalAllocations = sqliteTable("central_rental_allocations", {
+  id: text("id").primaryKey(),
+  fiscalYear: integer("fiscal_year").notNull(),
+  month: text("month").notNull(),
+  project: text("project").notNull(),
+  createdAt: text("created_at").notNull(),
+  updatedAt: text("updated_at").notNull(),
+}, (table) => [
+  uniqueIndex("central_rental_allocations_unique").on(table.fiscalYear, table.month),
+]);
+
+export const rentalPlans = sqliteTable("rental_plans", {
+  id: text("id").primaryKey(),
+  department: text("department").notNull(),
+  fiscalYear: integer("fiscal_year").notNull(),
+  planAmount: real("plan_amount").notNull().default(0),
+  createdAt: text("created_at").notNull(),
+  updatedAt: text("updated_at").notNull(),
+}, (table) => [uniqueIndex("rental_plans_department_year_unique").on(table.department, table.fiscalYear)]);
+
 export const repairRecords = sqliteTable("repair_records", {
   id: text("id").primaryKey(),
   machineryCode: text("machinery_code").notNull(),

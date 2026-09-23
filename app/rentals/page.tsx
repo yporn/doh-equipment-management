@@ -1,13 +1,16 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import type { FormEvent } from "react";
 import AppSidebar from "../components/app-sidebar";
 import Select from "../components/select";
+import { useAuth } from "../auth-context";
 import { isCurrentRental, watchBangkokMonth } from "../../lib/rental-activity.mjs";
 import RentalReport from "./rental-report";
 import { ConfirmActionButton, ConfirmSubmitButton } from "../components/confirm-action";
-import { fiscalYearOf, matchesRentalHistory, monthlyEquivalentAmount, overlapsCalendarMonth } from "../../lib/rental-history.mjs";
+import { fiscalYearOf, matchesRentalHistory, monthlyEquivalentAmount, overlapsCalendarMonth, overlapsFiscalYear } from "../../lib/rental-history.mjs";
+import { FISCAL_MONTHS, FISCAL_MONTH_LABELS, planStatus, summarizeRentalPlans } from "../../lib/rental-plan.mjs";
+import { CENTRAL_RENTER_NAME, createCentralAllocationResolver } from "../../lib/central-rental.mjs";
 import { rentalRate, bangkokToday } from "../../lib/age-rates.mjs";
 
 type Machine = {
@@ -39,6 +42,9 @@ type Rental = {
   status: "ACTIVE" | "RETURNED";
   note: string | null;
 };
+type RentalPlan = { id: string; department: string; fiscalYear: number; planAmount: number };
+type PlanSummaryEntry = { department: string; plan: number; actual: number; monthly: number[]; remaining: number; percent: number };
+type CentralAllocation = { id: string; fiscalYear: number; month: string; project: string };
 
 const thaiDate = (value: string) =>
   new Intl.DateTimeFormat("th-TH", { dateStyle: "medium" }).format(
@@ -75,10 +81,271 @@ function calculateEndDate(
   date.setUTCDate(date.getUTCDate() - 1);
   return date.toISOString().slice(0, 10);
 }
+function centralMonthlyTotal(members: Rental[], month: string, fiscalYear: string) {
+  return members.reduce((sum, member) => sum + (overlapsCalendarMonth(member, month, fiscalYear) ? monthlyEquivalentAmount(member, month, fiscalYear) : 0), 0);
+}
+
+function PlanSparkline({ monthly }: { monthly: number[] }) {
+  const max = Math.max(...monthly, 1);
+  const gap = 3;
+  const barWidth = 220 / monthly.length - gap;
+  return (
+    <svg className="plan-spark" viewBox="0 0 220 28" width="220" height="28" role="img" aria-label="ค่าเช่าแต่ละเดือน">
+      {monthly.map((value, index) => {
+        const height = value > 0 ? Math.max((value / max) * 22, 2) : 0;
+        return (
+          <rect key={index} x={index * (barWidth + gap)} y={28 - height} width={barWidth} height={height} rx="1.5" className={value > 0 ? "plan-spark-bar" : "plan-spark-bar-empty"}>
+            <title>{FISCAL_MONTH_LABELS[index]}: {value.toLocaleString("th-TH", { maximumFractionDigits: 0 })} บาท</title>
+          </rect>
+        );
+      })}
+    </svg>
+  );
+}
+
+function PlanRow({ entry, canEdit, expanded, onToggle, onSave }: { entry: PlanSummaryEntry; canEdit: boolean; expanded: boolean; onToggle: () => void; onSave: (department: string, planAmount: number) => Promise<void> }) {
+  const [value, setValue] = useState(entry.plan ? String(entry.plan) : "");
+  const [saving, setSaving] = useState(false);
+  const [rowError, setRowError] = useState("");
+  useEffect(() => {
+    // Plans load asynchronously after this row already mounted at plan: 0 — resync the field
+    // once the real saved amount arrives (or changes from elsewhere), without clobbering
+    // whatever the user is actively typing (this only fires when the saved plan itself changes).
+    setValue(entry.plan ? String(entry.plan) : "");
+  }, [entry.plan]);
+  const dirty = Number(value || 0) !== entry.plan;
+  const status = planStatus(entry.percent);
+  const hasPlan = entry.plan > 0;
+  async function save() {
+    const amount = Number(value);
+    if (!Number.isFinite(amount) || amount < 0) { setRowError("ตัวเลขไม่ถูกต้อง"); return; }
+    setSaving(true);
+    setRowError("");
+    try {
+      await onSave(entry.department, amount);
+    } catch {
+      setRowError("บันทึกไม่สำเร็จ กรุณาลองใหม่");
+    } finally {
+      setSaving(false);
+    }
+  }
+  return (
+    <tr className={expanded ? "plan-row-expanded" : undefined}>
+      <td>
+        <button type="button" className="plan-expand-toggle" onClick={onToggle} aria-expanded={expanded}>
+          <span className="plan-expand-icon" aria-hidden="true">{expanded ? "▾" : "▸"}</span>
+          <strong>{entry.department}</strong>
+        </button>
+      </td>
+      <td className="number">
+        {canEdit ? (
+          <div className="plan-edit">
+            <input type="number" min="0" step="10000" value={value} onChange={(event) => setValue(event.target.value)} aria-label={`แผนค่าเช่าของ ${entry.department}`} />
+            {dirty && <button type="button" className="plan-save" disabled={saving} onClick={save}>{saving ? "กำลังบันทึก…" : "บันทึก"}</button>}
+          </div>
+        ) : entry.plan.toLocaleString("th-TH")}
+        {rowError && <span className="plan-row-error">{rowError}</span>}
+      </td>
+      <td><PlanSparkline monthly={entry.monthly} /></td>
+      <td className="number">{entry.actual.toLocaleString("th-TH", { maximumFractionDigits: 0 })}</td>
+      <td className={`number${entry.remaining < 0 ? " plan-negative" : ""}`}>{entry.remaining < 0 ? "-" : ""}{Math.abs(entry.remaining).toLocaleString("th-TH", { maximumFractionDigits: 0 })}</td>
+      <td>
+        {hasPlan ? (
+          <div className="plan-pct">
+            <div className="plan-pct-track"><div className={`plan-pct-fill plan-pct-fill-${status}`} style={{ width: `${Math.min(entry.percent, 100)}%` }} /></div>
+            <span>{entry.percent.toFixed(0)}%</span>
+          </div>
+        ) : entry.actual > 0 ? <span className="plan-no-plan">ยังไม่ได้ตั้งแผน</span> : "—"}
+      </td>
+    </tr>
+  );
+}
+
+function PlanDrillDown({ department, rentals, resolveDepartment, fiscalYear, mode, monthIndex, onModeChange, onMonthChange }: {
+  department: string;
+  rentals: Rental[];
+  resolveDepartment: (record: Rental, monthIndex: number, fiscalYear: string) => string;
+  fiscalYear: string;
+  mode: "year" | "month";
+  monthIndex: number;
+  onModeChange: (mode: "year" | "month") => void;
+  onMonthChange: (index: number) => void;
+}) {
+  const rows = useMemo(() => {
+    return rentals
+      .map((record) => {
+        const monthly = FISCAL_MONTHS.map((month, index) =>
+          resolveDepartment(record, index, fiscalYear).trim() === department && overlapsCalendarMonth(record, month, fiscalYear)
+            ? monthlyEquivalentAmount(record, month, fiscalYear)
+            : 0);
+        const amount = mode === "year" ? monthly.reduce((sum, value) => sum + value, 0) : monthly[monthIndex];
+        return { record, amount };
+      })
+      .filter((row) => row.amount > 0)
+      .sort((a, b) => b.amount - a.amount);
+  }, [rentals, resolveDepartment, fiscalYear, department, mode, monthIndex]);
+  const total = rows.reduce((sum, row) => sum + row.amount, 0);
+  return (
+    <tr className="plan-drilldown-row">
+      <td colSpan={6}>
+        <div className="plan-drilldown">
+          <div className="rental-toggle">
+            <div className="segmented" role="group" aria-label={`ช่วงเวลาที่แสดงรายการเครื่องจักรของ ${department}`}>
+              <button type="button" className={mode === "year" ? "seg-btn active" : "seg-btn"} onClick={() => onModeChange("year")}>ทั้งปีงบประมาณ</button>
+              <button type="button" className={mode === "month" ? "seg-btn active" : "seg-btn"} onClick={() => onModeChange("month")}>รายเดือน</button>
+            </div>
+            {mode === "month" && (
+              <select className="month-select" aria-label="เลือกเดือน" value={monthIndex} onChange={(event) => onMonthChange(Number(event.target.value))}>
+                {FISCAL_MONTHS.map((_, index) => (
+                  <option key={index} value={index}>{FISCAL_MONTH_LABELS[index]}</option>
+                ))}
+              </select>
+            )}
+          </div>
+          {rows.length === 0 ? (
+            <p className="detail-note">ไม่มีรายการเครื่องจักรของ &quot;{department}&quot; ในช่วงเวลานี้</p>
+          ) : (
+            <table className="plan-drilldown-table">
+              <thead>
+                <tr>
+                  <th>รหัสเครื่องจักร</th>
+                  <th>รายละเอียด</th>
+                  <th>ผู้เช่า</th>
+                  <th>ระยะเวลาสัญญา</th>
+                  <th className="number">ค่าเช่า (บาท)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {rows.map(({ record, amount }) => (
+                  <tr key={record.id}>
+                    <td className="machine-code">{record.machineryCode}</td>
+                    <td>{record.machineryName ?? "—"}</td>
+                    <td>
+                      {record.renterName}
+                      {record.renterName.trim() === CENTRAL_RENTER_NAME && department !== CENTRAL_RENTER_NAME && (
+                        <span className="plan-drilldown-badge">จัดสรรจากส่วนกลาง</span>
+                      )}
+                    </td>
+                    <td className="plan-drilldown-duration">{thaiDate(record.startDate)} – {thaiDate(record.expectedReturnDate)}</td>
+                    <td className="number">{amount.toLocaleString("th-TH", { maximumFractionDigits: 0 })}</td>
+                  </tr>
+                ))}
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colSpan={4} className="number">รวม</td>
+                  <td className="number">{total.toLocaleString("th-TH", { maximumFractionDigits: 0 })}</td>
+                </tr>
+              </tfoot>
+            </table>
+          )}
+        </div>
+      </td>
+    </tr>
+  );
+}
+
+function AllocationRow({ label, amount, current, projectOptions, onSave }: { label: string; amount: number; current: string; projectOptions: string[]; onSave: (project: string) => Promise<void> }) {
+  const [value, setValue] = useState(current);
+  const [saving, setSaving] = useState(false);
+  useEffect(() => { setValue(current); }, [current]);
+  async function handleChange(next: string) {
+    setValue(next);
+    setSaving(true);
+    try { await onSave(next); } finally { setSaving(false); }
+  }
+  return (
+    <tr>
+      <td>{label}</td>
+      <td>
+        <Select ariaLabel={`โครงการของเดือน ${label}`} value={value} onChange={handleChange} options={projectOptions.map((name) => ({ value: name, label: name }))} menuPortal />
+        {saving && <span className="muted"> กำลังบันทึก…</span>}
+      </td>
+      <td className="number">{amount.toLocaleString("th-TH", { maximumFractionDigits: 0 })} บาท</td>
+    </tr>
+  );
+}
+
+function CentralAllocationModal({ centralRentals, allocations, projectOptions, planFiscalYear, currentFiscalYear, currentFiscalMonthIndex, onClose, onSave }: {
+  centralRentals: Rental[];
+  allocations: CentralAllocation[];
+  projectOptions: string[];
+  planFiscalYear: string;
+  currentFiscalYear: string;
+  currentFiscalMonthIndex: number;
+  onClose: () => void;
+  onSave: (fiscalYear: number, month: string, project: string) => Promise<void>;
+}) {
+  const reachedCount = Number(planFiscalYear) < Number(currentFiscalYear) ? FISCAL_MONTHS.length
+    : Number(planFiscalYear) > Number(currentFiscalYear) ? 0
+      : currentFiscalMonthIndex + 1;
+  return (
+    <div className="modal-backdrop" role="presentation" onMouseDown={onClose}>
+      {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
+      <section className="modal rental-modal" role="dialog" aria-modal="true" aria-labelledby="allocate-central-title" onMouseDown={(event) => event.stopPropagation()}>
+        <button className="modal-close" aria-label="ปิด" onClick={onClose}>×</button>
+        <p className="eyebrow">จัดสรรค่าเช่ารายเดือน</p>
+        <h2 id="allocate-central-title">ค่าเช่าส่วนกลาง</h2>
+        <p className="detail-note">{centralRentals.length.toLocaleString("th-TH")} เครื่องจักร ที่เช่าโดย &quot;{CENTRAL_RENTER_NAME}&quot; · ปีงบประมาณ {planFiscalYear}</p>
+        <div className="table-wrap">
+          <table>
+            <thead><tr><th>รหัส</th><th>รายละเอียด</th><th>ระยะเวลา</th><th className="number">ค่าเช่ารวม</th></tr></thead>
+            <tbody>
+              {centralRentals.map((record) => (
+                <tr key={record.id}>
+                  <td><strong className="machine-code">{record.machineryCode}</strong></td>
+                  <td>{record.machineryName ?? "—"}</td>
+                  <td>{thaiDate(record.startDate)} – {thaiDate(record.expectedReturnDate)}</td>
+                  <td className="number">{record.totalAmount.toLocaleString("th-TH")}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="detail-note">จัดสรรตามเดือน — เลือกโครงการจะมีผลกับค่าเช่าส่วนกลางทั้งหมดในเดือนนั้น</p>
+        <div className="table-wrap">
+          <table>
+            <thead><tr><th>เดือน</th><th>โครงการที่รับภาระค่าเช่า</th><th className="number">รวมค่าเช่าส่วนกลาง/เดือน</th></tr></thead>
+            <tbody>
+              {FISCAL_MONTHS.map((month, index) => {
+                if (index >= reachedCount) {
+                  return (
+                    <tr key={month}>
+                      <td>{FISCAL_MONTH_LABELS[index]}</td>
+                      <td className="muted">ยังไม่ถึงเดือนนี้ — จัดสรรได้เมื่อใกล้ถึง</td>
+                      <td className="number muted">—</td>
+                    </tr>
+                  );
+                }
+                const amount = centralMonthlyTotal(centralRentals, month, planFiscalYear);
+                const current = allocations.find((allocation) => allocation.month === month)?.project ?? CENTRAL_RENTER_NAME;
+                return (
+                  <AllocationRow
+                    key={month}
+                    label={FISCAL_MONTH_LABELS[index]}
+                    amount={amount}
+                    current={current}
+                    projectOptions={projectOptions}
+                    onSave={(project) => onSave(Number(planFiscalYear), month, project)}
+                  />
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  );
+}
 
 export default function RentalsPage() {
+  const { user } = useAuth();
   const [machines, setMachines] = useState<Machine[]>([]);
   const [rentals, setRentals] = useState<Rental[]>([]);
+  const [rentalPlans, setRentalPlans] = useState<RentalPlan[]>([]);
+  const [centralAllocations, setCentralAllocations] = useState<CentralAllocation[]>([]);
+  const [showCentralAllocation, setShowCentralAllocation] = useState(false);
+  const [centralCostMode, setCentralCostMode] = useState<"year" | "month">("year");
   const [query, setQuery] = useState("");
   const [departmentFilter, setDepartmentFilter] = useState("");
   const [showReport, setShowReport] = useState(false);
@@ -103,13 +370,17 @@ export default function RentalsPage() {
     setLoading(true);
     setError("");
     try {
-      const [machineResponse, rentalResponse] = await Promise.all([
+      const [machineResponse, rentalResponse, planResponse, allocationResponse] = await Promise.all([
         fetch("/api/machineries"),
         fetch("/api/rentals"),
+        fetch("/api/rental-plans"),
+        fetch("/api/central-rental-allocations"),
       ]);
-      if (!machineResponse.ok || !rentalResponse.ok) throw new Error();
+      if (!machineResponse.ok || !rentalResponse.ok || !planResponse.ok || !allocationResponse.ok) throw new Error();
       setMachines(await machineResponse.json());
       setRentals(await rentalResponse.json());
+      setRentalPlans(await planResponse.json());
+      setCentralAllocations(await allocationResponse.json());
     } catch {
       setError("ไม่สามารถโหลดข้อมูลระบบเช่าได้ กรุณาลองใหม่อีกครั้ง");
     } finally { setLoading(false); }
@@ -174,7 +445,62 @@ export default function RentalsPage() {
   const summaryMonthLabel = monthFilter ? monthFilterLabel(monthFilter, fiscalYearFilter) : "เดือนนี้";
   const monthlyIncomeEstimate = rentals
     .filter((record) => overlapsCalendarMonth(record, summaryMonth, summaryFiscalYear))
-    .reduce((sum, record) => sum + monthlyEquivalentAmount(record), 0);
+    .reduce((sum, record) => sum + monthlyEquivalentAmount(record, summaryMonth, summaryFiscalYear), 0);
+
+  // The plan-vs-actual panel follows the fiscal year filter when set, otherwise the current one.
+  const planFiscalYear = fiscalYearFilter || currentFiscalYear;
+  const centralResolver = useMemo(() => createCentralAllocationResolver(centralAllocations), [centralAllocations]);
+  const planSummary: PlanSummaryEntry[] = useMemo(
+    () => summarizeRentalPlans(rentals, rentalPlans, planFiscalYear, centralResolver),
+    [rentals, rentalPlans, planFiscalYear, centralResolver],
+  );
+  async function saveRentalPlan(department: string, planAmount: number) {
+    const response = await fetch("/api/rental-plans", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ department, fiscalYear: Number(planFiscalYear), planAmount }),
+    });
+    if (!response.ok) throw new Error("Unable to save rental plan");
+    const saved = await response.json() as RentalPlan;
+    setRentalPlans((previous) => {
+      const others = previous.filter((plan) => !(plan.department === department && String(plan.fiscalYear) === String(planFiscalYear)));
+      return [...others, saved];
+    });
+  }
+
+  const currentFiscalMonthIndex = FISCAL_MONTHS.indexOf(String(Number(today.slice(5, 7))));
+  const [centralCostMonthIndex, setCentralCostMonthIndex] = useState(currentFiscalMonthIndex);
+  const [centralFiscalYear, setCentralFiscalYear] = useState(currentFiscalYear);
+  const [expandedPlanDepartment, setExpandedPlanDepartment] = useState<string | null>(null);
+  const [planDrillMode, setPlanDrillMode] = useState<"year" | "month">("year");
+  const [planDrillMonthIndex, setPlanDrillMonthIndex] = useState(currentFiscalMonthIndex);
+  useEffect(() => { setExpandedPlanDepartment(null); }, [planFiscalYear]);
+  const centralRentals = useMemo(
+    () => rentals.filter((record) => record.renterName.trim() === CENTRAL_RENTER_NAME && overlapsFiscalYear(record, centralFiscalYear)),
+    [rentals, centralFiscalYear],
+  );
+  const centralCostReachedCount = Number(centralFiscalYear) < Number(currentFiscalYear) ? FISCAL_MONTHS.length
+    : Number(centralFiscalYear) > Number(currentFiscalYear) ? 0
+      : currentFiscalMonthIndex + 1;
+  const centralYearTotal = FISCAL_MONTHS.slice(0, centralCostReachedCount)
+    .reduce((sum, month) => sum + centralMonthlyTotal(centralRentals, month, centralFiscalYear), 0);
+  const centralMonthTotal = centralCostMonthIndex < centralCostReachedCount
+    ? centralMonthlyTotal(centralRentals, FISCAL_MONTHS[centralCostMonthIndex], centralFiscalYear)
+    : 0;
+  const centralAllocatedCount = centralAllocations.filter((allocation) => String(allocation.fiscalYear) === String(centralFiscalYear)).length;
+  async function saveCentralAllocation(fiscalYear: number, month: string, project: string) {
+    const response = await fetch("/api/central-rental-allocations", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ fiscalYear, month, project }),
+    });
+    if (!response.ok) throw new Error("ไม่สามารถบันทึกการจัดสรรค่าเช่าส่วนกลางได้");
+    const saved = await response.json() as CentralAllocation;
+    setCentralAllocations((previous) => {
+      const others = previous.filter((allocation) => !(String(allocation.fiscalYear) === String(fiscalYear) && allocation.month === month));
+      return [...others, saved];
+    });
+  }
 
   function suggestedRate(code = machineCode, type = rateType) {
     const machine = machines.find((item) => item.code === code);
@@ -298,7 +624,7 @@ export default function RentalsPage() {
         ))}
       </datalist>
       <AppSidebar active="rentals" />
-      {showReport && <RentalReport records={filtered} criteria={reportCriteria} month={monthFilter} onClose={() => setShowReport(false)} />}
+      {showReport && <RentalReport records={filtered} criteria={reportCriteria} month={monthFilter} fiscalYear={fiscalYearFilter} onClose={() => setShowReport(false)} />}
       <section className="main-area">
         <header className="topbar">
           <div>
@@ -333,6 +659,116 @@ export default function RentalsPage() {
               <strong>{monthlyIncomeEstimate.toLocaleString("th-TH", { maximumFractionDigits: 0 })}</strong>
               <small>บาท</small>
             </article>
+          </section>
+          <section className="panel plan-panel">
+            <div className="panel-heading">
+              <div>
+                <h2>สรุปเทียบแผนงบประมาณ · ปีงบประมาณ {planFiscalYear}</h2>
+                <p>แยกตามหน่วยงาน/โครงการที่เช่า (เลือกปีงบประมาณอื่นได้จากตัวกรองด้านล่าง)</p>
+              </div>
+            </div>
+            {planSummary.length === 0 ? (
+              <div className="empty-state"><strong>ยังไม่มีข้อมูลแผนหรือค่าเช่าของปีนี้</strong><span>เริ่มตั้งแผนค่าเช่าได้จากตารางด้านล่างหลังมีข้อมูล</span></div>
+            ) : (
+              <>
+                <div className="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>หน่วยงาน/โครงการที่เช่า</th>
+                        <th className="number">แผนค่าเช่า (บาท)</th>
+                        <th>ค่าเช่าแต่ละเดือน (ต.ค.–ก.ย.)</th>
+                        <th className="number">ค่าเช่ารวม</th>
+                        <th className="number">ค่าเช่าที่เหลือ</th>
+                        <th>% ที่ใช้ไป</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {planSummary.map((entry) => (
+                        <Fragment key={entry.department}>
+                          <PlanRow
+                            entry={entry}
+                            canEdit={user?.role === "ADMIN"}
+                            expanded={expandedPlanDepartment === entry.department}
+                            onToggle={() => setExpandedPlanDepartment((current) => current === entry.department ? null : entry.department)}
+                            onSave={saveRentalPlan}
+                          />
+                          {expandedPlanDepartment === entry.department && (
+                            <PlanDrillDown
+                              department={entry.department}
+                              rentals={rentals}
+                              resolveDepartment={centralResolver}
+                              fiscalYear={planFiscalYear}
+                              mode={planDrillMode}
+                              monthIndex={planDrillMonthIndex}
+                              onModeChange={setPlanDrillMode}
+                              onMonthChange={setPlanDrillMonthIndex}
+                            />
+                          )}
+                        </Fragment>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </>
+            )}
+          </section>
+          <section className="panel">
+            <div className="panel-heading">
+              <div>
+                <h2>ค่าเช่าส่วนกลาง</h2>
+                <p>เครื่องจักรที่เช่าโดย &quot;{CENTRAL_RENTER_NAME}&quot; จัดสรรค่าเช่ารายเดือนไปยังโครงการต่างๆ ได้โดยตรง ไม่ต้องแยกรายการ</p>
+              </div>
+              {centralRentals.length > 0 && (
+                <button type="button" className="secondary" onClick={() => setShowCentralAllocation(true)}>จัดสรรค่าเช่า →</button>
+              )}
+            </div>
+            {centralRentals.length === 0 ? (
+              <div className="empty-state">
+                <strong>ยังไม่มีรายการเช่าโดย &quot;{CENTRAL_RENTER_NAME}&quot;</strong>
+                <span>เมื่อมีการบันทึกเช่าโดย &quot;{CENTRAL_RENTER_NAME}&quot; จะจัดสรรค่าเช่ารายเดือนได้จากที่นี่</span>
+              </div>
+            ) : (
+              <>
+                <div className="rental-toggle">
+                  <div className="segmented" role="group" aria-label="ช่วงเวลาที่แสดงค่าเช่ารวม">
+                    <button type="button" className={centralCostMode === "year" ? "seg-btn active" : "seg-btn"} onClick={() => setCentralCostMode("year")}>รายปี (ต.ค.–ปัจจุบัน)</button>
+                    <button type="button" className={centralCostMode === "month" ? "seg-btn active" : "seg-btn"} onClick={() => setCentralCostMode("month")}>รายเดือน</button>
+                  </div>
+                  <Select
+                    ariaLabel="เลือกปีงบประมาณของค่าเช่าส่วนกลาง"
+                    className="filter-select"
+                    value={centralFiscalYear}
+                    onChange={setCentralFiscalYear}
+                    options={fiscalYears.map((year) => ({ value: String(year), label: `ปีงบประมาณ ${year}` }))}
+                  />
+                  {centralCostMode === "month" && (
+                    <select className="month-select" aria-label="เลือกเดือน" value={centralCostMonthIndex} onChange={(event) => setCentralCostMonthIndex(Number(event.target.value))}>
+                      {FISCAL_MONTHS.slice(0, centralCostReachedCount).map((_, index) => (
+                        <option key={index} value={index}>{FISCAL_MONTH_LABELS[index]}</option>
+                      ))}
+                    </select>
+                  )}
+                </div>
+                <div className="rental-total">
+                  <strong>{(centralCostMode === "year" ? centralYearTotal : centralMonthTotal).toLocaleString("th-TH", { maximumFractionDigits: 0 })}</strong>
+                  <span>บาท {centralCostMode === "year" ? `ปีงบประมาณ ${centralFiscalYear} (ต.ค.–ปัจจุบัน)` : FISCAL_MONTH_LABELS[centralCostMonthIndex]}</span>
+                </div>
+                <div className="rental-group-list">
+                  <div className="rental-group-card">
+                    <div className="rental-group-main">
+                      <span>{centralRentals.length.toLocaleString("th-TH")} เครื่องจักร</span>
+                      <div className="rental-group-chips">
+                        {centralRentals.map((record) => <span className="rental-group-chip" key={record.id}>{record.machineryCode}</span>)}
+                      </div>
+                    </div>
+                    <span className={`rental-group-status ${centralCostReachedCount > 0 && centralAllocatedCount >= centralCostReachedCount ? "done" : "pending"}`}>
+                      {centralCostReachedCount === 0 ? "ยังไม่ถึงปีงบประมาณนี้" : centralAllocatedCount >= centralCostReachedCount ? "จัดสรรครบทุกเดือนที่ถึงแล้ว" : `จัดสรรแล้ว ${centralAllocatedCount}/${centralCostReachedCount} เดือน`}
+                    </span>
+                  </div>
+                </div>
+              </>
+            )}
           </section>
           <section className="panel">
             <div className="panel-heading">
@@ -460,6 +896,18 @@ export default function RentalsPage() {
           </section>
         </div>
       </section>
+      {showCentralAllocation && (
+        <CentralAllocationModal
+          centralRentals={centralRentals}
+          allocations={centralAllocations.filter((allocation) => String(allocation.fiscalYear) === String(centralFiscalYear))}
+          projectOptions={reportDepartments}
+          planFiscalYear={centralFiscalYear}
+          currentFiscalYear={currentFiscalYear}
+          currentFiscalMonthIndex={currentFiscalMonthIndex}
+          onClose={() => setShowCentralAllocation(false)}
+          onSave={saveCentralAllocation}
+        />
+      )}
       {showCreate && (
         <div className="modal-backdrop">
           <section

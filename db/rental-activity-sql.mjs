@@ -1,3 +1,5 @@
-// Rental status follows the month of the recorded start date, in Thailand time.
+// Rental status follows the rental's own recorded date range, in Thailand time, so a
+// multi-month contract (e.g. a 1-year lease booked once) stays "current" for its whole
+// term instead of only the calendar month it started in.
 // Do not mutate historical records or manufacture a physical return date.
-export const currentRentalSql = "status = 'ACTIVE' AND substr(start_date, 1, 7) = strftime('%Y-%m','now','+7 hours')";
+export const currentRentalSql = "status = 'ACTIVE' AND start_date <= strftime('%Y-%m-%d','now','+7 hours') AND expected_return_date >= strftime('%Y-%m-%d','now','+7 hours')";
