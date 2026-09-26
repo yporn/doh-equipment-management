@@ -410,7 +410,7 @@ export default function RentalsPage() {
 
 
   const rentalDepartments = useMemo(
-    () => [...new Set(machines.map((machine) => machine.currentDepartment?.trim()).filter((value): value is string => Boolean(value)))].sort((a, b) => a.localeCompare(b, "th")),
+    () => [...new Set([CENTRAL_RENTER_NAME, ...machines.map((machine) => machine.currentDepartment?.trim()).filter((value): value is string => Boolean(value))])].sort((a, b) => a.localeCompare(b, "th")),
     [machines],
   );
   const filtered = useMemo(() => {
@@ -442,7 +442,7 @@ export default function RentalsPage() {
     setMachineryFilter("");
     setRentalModeFilter("");
   }
-  const reportDepartments = [...new Set(rentals.map(record => record.renterName.trim()))].sort((a, b) => a.localeCompare(b, "th"));
+  const reportDepartments = [...new Set([CENTRAL_RENTER_NAME, ...rentals.map(record => record.renterName.trim())])].sort((a, b) => a.localeCompare(b, "th"));
   const reportCriteria = [
     fiscalYearFilter ? `ปีงบประมาณ ${fiscalYearFilter}` : "ทุกปีงบประมาณ",
     monthFilterLabel(monthFilter, fiscalYearFilter),
