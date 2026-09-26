@@ -245,34 +245,50 @@ function PlanDrillDown({ department, rentals, resolveDepartment, fiscalYear, mod
   );
 }
 
-function AllocationRow({ label, amount, current, projectOptions, onSave }: { label: string; amount: number; current: string; projectOptions: string[]; onSave: (project: string) => Promise<void> }) {
+function AllocationRow({ label, amount, current, projectOptions, canEdit, onSave }: { label: string; amount: number; current: string; projectOptions: string[]; canEdit: boolean; onSave: (project: string) => Promise<void> }) {
   const [value, setValue] = useState(current);
   const [saving, setSaving] = useState(false);
+  const [rowError, setRowError] = useState("");
   useEffect(() => { setValue(current); }, [current]);
   async function handleChange(next: string) {
+    const previous = value;
     setValue(next);
     setSaving(true);
-    try { await onSave(next); } finally { setSaving(false); }
+    setRowError("");
+    try {
+      await onSave(next);
+    } catch {
+      setValue(previous);
+      setRowError("บันทึกไม่สำเร็จ กรุณาลองใหม่");
+    } finally {
+      setSaving(false);
+    }
   }
   return (
     <tr>
       <td>{label}</td>
       <td>
-        <Select ariaLabel={`โครงการของเดือน ${label}`} value={value} onChange={handleChange} options={projectOptions.map((name) => ({ value: name, label: name }))} menuPortal />
-        {saving && <span className="muted"> กำลังบันทึก…</span>}
+        {canEdit ? (
+          <>
+            <Select ariaLabel={`โครงการของเดือน ${label}`} value={value} onChange={handleChange} options={projectOptions.map((name) => ({ value: name, label: name }))} menuPortal />
+            {saving && <span className="muted"> กำลังบันทึก…</span>}
+            {rowError && <span className="plan-row-error">{rowError}</span>}
+          </>
+        ) : value}
       </td>
       <td className="number">{amount.toLocaleString("th-TH", { maximumFractionDigits: 0 })} บาท</td>
     </tr>
   );
 }
 
-function CentralAllocationModal({ centralRentals, allocations, projectOptions, planFiscalYear, currentFiscalYear, currentFiscalMonthIndex, onClose, onSave }: {
+function CentralAllocationModal({ centralRentals, allocations, projectOptions, planFiscalYear, currentFiscalYear, currentFiscalMonthIndex, canEdit, onClose, onSave }: {
   centralRentals: Rental[];
   allocations: CentralAllocation[];
   projectOptions: string[];
   planFiscalYear: string;
   currentFiscalYear: string;
   currentFiscalMonthIndex: number;
+  canEdit: boolean;
   onClose: () => void;
   onSave: (fiscalYear: number, month: string, project: string) => Promise<void>;
 }) {
@@ -326,6 +342,7 @@ function CentralAllocationModal({ centralRentals, allocations, projectOptions, p
                     amount={amount}
                     current={current}
                     projectOptions={projectOptions}
+                    canEdit={canEdit}
                     onSave={(project) => onSave(Number(planFiscalYear), month, project)}
                   />
                 );
@@ -904,6 +921,7 @@ export default function RentalsPage() {
           planFiscalYear={centralFiscalYear}
           currentFiscalYear={currentFiscalYear}
           currentFiscalMonthIndex={currentFiscalMonthIndex}
+          canEdit={user?.role === "ADMIN"}
           onClose={() => setShowCentralAllocation(false)}
           onSave={saveCentralAllocation}
         />

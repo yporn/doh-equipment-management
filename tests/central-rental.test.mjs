@@ -62,3 +62,14 @@ test("central rental API and pages are wired with auth, schema init, and the sim
   assert.match(rentalsPage, /ยังไม่ถึงเดือนนี้/);
   assert.match(dashboardPage, /createCentralAllocationResolver/);
 });
+
+test("allocation dropdown reverts on a failed save and is read-only for non-admins", async () => {
+  const page = await readFile(new URL("../app/rentals/page.tsx", import.meta.url), "utf8");
+  const allocationRow = page.slice(page.indexOf("function AllocationRow"), page.indexOf("function CentralAllocationModal"));
+  // A failed onSave() must not leave the dropdown showing the unsaved value with no feedback.
+  assert.match(allocationRow, /catch\s*\{[^}]*setValue\(previous\)/s);
+  assert.match(allocationRow, /catch\s*\{[^}]*setRowError\(/s);
+  assert.match(allocationRow, /canEdit\s*\?/);
+  // The modal (and every AllocationRow in it) must be told whether the signed-in user may edit.
+  assert.match(page, /canEdit=\{user\?\.role === "ADMIN"\}/);
+});
