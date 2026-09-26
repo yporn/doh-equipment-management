@@ -479,7 +479,7 @@ export function EquipmentApp({
     <>
     <main className={`app-shell ${registryOnly ? "registry-view" : ""}`}>
       <AppSidebar active={registryOnly ? "machineries" : "dashboard"} />
-      <section className="workspace">
+      <section className="main-area">
         <header className="topbar">
           <div>
             <p className="eyebrow">ศูนย์สร้างทางขอนแก่น</p>
