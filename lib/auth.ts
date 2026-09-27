@@ -1,8 +1,11 @@
 import { env } from "cloudflare:workers";
 import { NextResponse } from "next/server";
 import { ensureAuthSchema } from "../db";
+import { hasPermission } from "./permissions.mjs";
 
-export type AuthUser = { id: string; username: string; displayName: string; role: "ADMIN" | "STAFF" };
+export type PermissionAction = "read" | "edit" | "delete";
+export type PermissionModule = "machineries" | "rentals" | "service" | "repairs" | "transfers" | "disposals";
+export type AuthUser = { id: string; username: string; displayName: string; role: "ADMIN" | "STAFF"; permissions: unknown };
 const encoder = new TextEncoder();
 const SESSION_COOKIE = "doh_session";
 
@@ -43,17 +46,28 @@ function cookieValue(request: Request, name: string) {
 export async function getCurrentUser(request: Request): Promise<AuthUser | null> {
   await ensureAuthSchema();
   const token = cookieValue(request, SESSION_COOKIE); if (!token || !env.DB) return null;
-  const row = await env.DB.prepare(`SELECT u.id, u.username, u.display_name AS displayName, u.role
+  const row = await env.DB.prepare(`SELECT u.id, u.username, u.display_name AS displayName, u.role, u.permissions AS permissionsJson
     FROM auth_sessions s JOIN users u ON u.id = s.user_id
     WHERE s.token_hash = ? AND s.expires_at > ? AND u.active = 1 LIMIT 1`)
-    .bind(await sha256(token), new Date().toISOString()).first<AuthUser>();
-  return row ?? null;
+    .bind(await sha256(token), new Date().toISOString()).first<{ id: string; username: string; displayName: string; role: "ADMIN" | "STAFF"; permissionsJson: string | null }>();
+  if (!row) return null;
+  const { permissionsJson, ...rest } = row;
+  let permissions: unknown = null;
+  try { permissions = permissionsJson ? JSON.parse(permissionsJson) : null; } catch { permissions = null; }
+  return { ...rest, permissions };
 }
 
 export async function requireUser(request: Request, role?: "ADMIN") {
   const user = await getCurrentUser(request);
   if (!user) return { user: null, response: NextResponse.json({ message: "กรุณาเข้าสู่ระบบ" }, { status: 401 }) };
   if (role && user.role !== role) return { user, response: NextResponse.json({ message: "คุณไม่มีสิทธิ์ดำเนินการนี้" }, { status: 403 }) };
+  return { user, response: null };
+}
+
+export async function requirePermission(request: Request, module: PermissionModule, action: PermissionAction) {
+  const user = await getCurrentUser(request);
+  if (!user) return { user: null, response: NextResponse.json({ message: "กรุณาเข้าสู่ระบบ" }, { status: 401 }) };
+  if (!hasPermission(user, module, action)) return { user, response: NextResponse.json({ message: "คุณไม่มีสิทธิ์ดำเนินการนี้" }, { status: 403 }) };
   return { user, response: null };
 }
 

@@ -4,14 +4,61 @@ import { FormEvent, useEffect, useState } from "react";
 import { useAuth } from "../auth-context";
 import AppSidebar from "../components/app-sidebar";
 import { ConfirmActionButton, ConfirmSubmitButton } from "../components/confirm-action";
+import { MODULES, ACTIONS, MODULE_LABELS, ACTION_LABELS } from "../../lib/permissions.mjs";
 
+type ModulePermissions = { read: boolean; edit: boolean; delete: boolean };
+type Permissions = Record<(typeof MODULES)[number], ModulePermissions>;
 type Account = {
   id: string;
   username: string;
   displayName: string;
   role: "ADMIN" | "STAFF";
   active: number;
+  permissions: Permissions;
 };
+
+function PermissionEditor({ account, saving, onSave }: { account: Account; saving: boolean; onSave: (permissions: Permissions) => Promise<void> }) {
+  const [permissions, setPermissions] = useState(account.permissions);
+  useEffect(() => { setPermissions(account.permissions); }, [account.permissions]);
+  const dirty = JSON.stringify(permissions) !== JSON.stringify(account.permissions);
+  function toggle(module: (typeof MODULES)[number], action: (typeof ACTIONS)[number]) {
+    setPermissions((previous) => ({ ...previous, [module]: { ...previous[module], [action]: !previous[module][action] } }));
+  }
+  return (
+    <div className="permission-editor">
+      <table className="permission-table">
+        <thead>
+          <tr>
+            <th>โมดูล</th>
+            {ACTIONS.map((action) => <th key={action}>{ACTION_LABELS[action]}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {MODULES.map((module) => (
+            <tr key={module}>
+              <td>{MODULE_LABELS[module]}</td>
+              {ACTIONS.map((action) => (
+                <td key={action}>
+                  <input
+                    type="checkbox"
+                    aria-label={`${MODULE_LABELS[module]} - ${ACTION_LABELS[action]}`}
+                    checked={permissions[module][action]}
+                    onChange={() => toggle(module, action)}
+                  />
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {dirty && (
+        <button type="button" className="secondary" disabled={saving} onClick={() => onSave(permissions)}>
+          {saving ? "กำลังบันทึก…" : "บันทึกสิทธิ์"}
+        </button>
+      )}
+    </div>
+  );
+}
 export default function UsersPage() {
   const { user } = useAuth();
   const [accounts, setAccounts] = useState<Account[]>([]);
@@ -57,6 +104,24 @@ export default function UsersPage() {
       return setError(result.message ?? "ไม่สามารถแก้ไขบัญชีได้");
     await load();
   }
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [savingPermissionsId, setSavingPermissionsId] = useState<string | null>(null);
+  async function savePermissions(account: Account, permissions: Permissions) {
+    setSavingPermissionsId(account.id);
+    setError("");
+    try {
+      const response = await fetch("/api/users", {
+        method: "PATCH",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ id: account.id, permissions }),
+      });
+      const result = (await response.json()) as { message?: string };
+      if (!response.ok) return setError(result.message ?? "ไม่สามารถแก้ไขสิทธิ์ได้");
+      await load();
+    } finally {
+      setSavingPermissionsId(null);
+    }
+  }
   if (user?.role !== "ADMIN")
     return (
       <main className="access-denied">
@@ -96,26 +161,45 @@ export default function UsersPage() {
             {message && <p className="success-message">{message}</p>}
             <div className="user-list">
               {accounts.map((account) => (
-                <article key={account.id}>
-                  <div className="avatar">
-                    {account.displayName.slice(0, 1)}
-                  </div>
-                  <div>
-                    <strong>{account.displayName}</strong>
-                    <span>
-                      @{account.username} ·{" "}
-                      {account.role === "ADMIN" ? "ผู้ดูแลระบบ" : "เจ้าหน้าที่"}
+                <div key={account.id} className="user-row">
+                  <article>
+                    <div className="avatar">
+                      {account.displayName.slice(0, 1)}
+                    </div>
+                    <div>
+                      <strong>{account.displayName}</strong>
+                      <span>
+                        @{account.username} ·{" "}
+                        {account.role === "ADMIN" ? "ผู้ดูแลระบบ" : "เจ้าหน้าที่"}
+                      </span>
+                    </div>
+                    <span
+                      className={`account-state ${account.active ? "active" : "inactive"}`}
+                    >
+                      {account.active ? "ใช้งาน" : "ปิดใช้งาน"}
                     </span>
-                  </div>
-                  <span
-                    className={`account-state ${account.active ? "active" : "inactive"}`}
-                  >
-                    {account.active ? "ใช้งาน" : "ปิดใช้งาน"}
-                  </span>
-                  <ConfirmActionButton className="secondary" tone={account.active ? "danger" : "primary"} title={account.active ? "ยืนยันการปิดบัญชี" : "ยืนยันการเปิดบัญชี"} message={`ต้องการ${account.active ? "ปิด" : "เปิด"}บัญชีของ ${account.displayName} ใช่หรือไม่?`} confirmLabel={account.active ? "ยืนยันการปิด" : "ยืนยันการเปิด"} disabled={account.id === user.id} onConfirm={() => toggle(account)}>
-                    {account.active ? "ปิดบัญชี" : "เปิดบัญชี"}
-                  </ConfirmActionButton>
-                </article>
+                    {account.role === "STAFF" && (
+                      <button
+                        type="button"
+                        className="secondary"
+                        onClick={() => setExpandedId(expandedId === account.id ? null : account.id)}
+                        aria-expanded={expandedId === account.id}
+                      >
+                        {expandedId === account.id ? "ปิดสิทธิ์ ▾" : "สิทธิ์การใช้งาน ▸"}
+                      </button>
+                    )}
+                    <ConfirmActionButton className="secondary" tone={account.active ? "danger" : "primary"} title={account.active ? "ยืนยันการปิดบัญชี" : "ยืนยันการเปิดบัญชี"} message={`ต้องการ${account.active ? "ปิด" : "เปิด"}บัญชีของ ${account.displayName} ใช่หรือไม่?`} confirmLabel={account.active ? "ยืนยันการปิด" : "ยืนยันการเปิด"} disabled={account.id === user.id} onConfirm={() => toggle(account)}>
+                      {account.active ? "ปิดบัญชี" : "เปิดบัญชี"}
+                    </ConfirmActionButton>
+                  </article>
+                  {account.role === "STAFF" && expandedId === account.id && (
+                    <PermissionEditor
+                      account={account}
+                      saving={savingPermissionsId === account.id}
+                      onSave={(permissions) => savePermissions(account, permissions)}
+                    />
+                  )}
+                </div>
               ))}
             </div>
           </section>

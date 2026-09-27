@@ -3,9 +3,11 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { authRequest, checkSession } from "../lib/auth-request.mjs";
+import { hasPermission } from "../lib/permissions.mjs";
+import type { PermissionAction, PermissionModule } from "../lib/auth";
 
-type User = { id: string; username: string; displayName: string; role: "ADMIN" | "STAFF" };
-const AuthContext = createContext<{ user: User | null; logout: () => Promise<void> }>({ user: null, logout: async () => {} });
+type User = { id: string; username: string; displayName: string; role: "ADMIN" | "STAFF"; permissions?: unknown };
+const AuthContext = createContext<{ user: User | null; logout: () => Promise<void>; can: (module: PermissionModule, action: PermissionAction) => boolean }>({ user: null, logout: async () => {}, can: () => false });
 export const useAuth = () => useContext(AuthContext);
 
 export default function AuthProvider({ children }: { children: React.ReactNode }) {
@@ -56,5 +58,6 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
       <a className="auth-login-link" href="/login">ไปหน้าเข้าสู่ระบบ</a>
     </section></main>
   );
-  return <AuthContext.Provider value={{ user, logout }}>{children}</AuthContext.Provider>;
+  const can = (module: PermissionModule, action: PermissionAction) => hasPermission(user, module, action);
+  return <AuthContext.Provider value={{ user, logout, can }}>{children}</AuthContext.Provider>;
 }

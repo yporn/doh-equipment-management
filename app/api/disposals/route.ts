@@ -2,7 +2,7 @@ import { and, desc, eq, getTableColumns } from "drizzle-orm";
 import { NextResponse } from "next/server";
 import { ensureDisposalSchema, getDb } from "../../../db";
 import { disposalRecords, machineries } from "../../../db/schema";
-import { requireUser } from "../../../lib/auth";
+import { requirePermission } from "../../../lib/auth";
 import { validateDisposal } from "../../../lib/disposals.mjs";
 
 function failure(error: unknown) {
@@ -23,7 +23,7 @@ function failure(error: unknown) {
 
 export async function GET(request: Request) {
   try {
-    const auth = await requireUser(request); if (auth.response) return auth.response;
+    const auth = await requirePermission(request, "disposals", "read"); if (auth.response) return auth.response;
     await ensureDisposalSchema();
     return NextResponse.json(await getDb().select({ ...getTableColumns(disposalRecords), machineryName: machineries.name, currentDepartment: machineries.currentDepartment, machinery: getTableColumns(machineries) })
       .from(disposalRecords).leftJoin(machineries, eq(disposalRecords.machineryCode, machineries.code))
@@ -33,7 +33,7 @@ export async function GET(request: Request) {
 
 async function save(request: Request, editing: boolean) {
   try {
-    const auth = await requireUser(request); if (auth.response) return auth.response;
+    const auth = await requirePermission(request, "disposals", "edit"); if (auth.response) return auth.response;
     const input = await request.json();
     if (!input || typeof input !== "object" || Array.isArray(input)) return NextResponse.json({ message: "ข้อมูลไม่ถูกต้อง" }, { status: 400 });
     if (editing && input.action === "DISPOSE") {
@@ -68,7 +68,7 @@ export async function PATCH(request: Request) { return save(request, true); }
 
 export async function DELETE(request: Request) {
   try {
-    const auth = await requireUser(request); if (auth.response) return auth.response;
+    const auth = await requirePermission(request, "disposals", "delete"); if (auth.response) return auth.response;
     const input = await request.json();
     if (!input || typeof input.id !== "string" || !input.id.trim() || typeof input.updatedAt !== "string" || !input.updatedAt.trim()) return NextResponse.json({ message: "กรุณาระบุรายการที่ต้องการลบ" }, { status: 400 });
     await ensureDisposalSchema();

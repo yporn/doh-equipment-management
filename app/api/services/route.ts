@@ -2,7 +2,7 @@ import { desc, eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 import { allocateServiceDocumentNumber, assignMissingServiceDocumentNumbers, ensureServiceSchema, getDb, getFiscalYear } from "../../../db";
 import { machineries, serviceRecords } from "../../../db/schema";
-import { requireUser } from "../../../lib/auth";
+import { requirePermission } from "../../../lib/auth";
 
 const serviceProviders = new Set(["ฝ่ายเครื่องกล", "ศูนย์บริการ"]);
 
@@ -51,7 +51,7 @@ function parseItems(value: unknown): ServiceItem[] {
 
 export async function GET(request: Request) {
   try {
-    const auth = await requireUser(request); if (auth.response) return auth.response;
+    const auth = await requirePermission(request, "service", "read"); if (auth.response) return auth.response;
     await assignMissingServiceDocumentNumbers();
     const rows = await getDb().select({
       id: serviceRecords.id,
@@ -81,7 +81,7 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
-    const auth = await requireUser(request); if (auth.response) return auth.response;
+    const auth = await requirePermission(request, "service", "edit"); if (auth.response) return auth.response;
     await ensureServiceSchema();
     const input = await request.json() as Record<string, unknown>;
     const machineryCode = String(input.machineryCode ?? "").trim();
@@ -130,7 +130,7 @@ export async function POST(request: Request) {
 
 export async function PATCH(request: Request) {
   try {
-    const auth = await requireUser(request); if (auth.response) return auth.response;
+    const auth = await requirePermission(request, "service", "edit"); if (auth.response) return auth.response;
     await ensureServiceSchema();
     const input = await request.json() as Record<string, unknown>;
     const id = String(input.id ?? "").trim();
@@ -180,7 +180,7 @@ export async function PATCH(request: Request) {
 
 export async function DELETE(request: Request) {
   try {
-    const auth = await requireUser(request); if (auth.response) return auth.response;
+    const auth = await requirePermission(request, "service", "delete"); if (auth.response) return auth.response;
     await ensureServiceSchema();
     const input = await request.json() as Record<string, unknown>;
     const id = String(input.id ?? "").trim();

@@ -52,7 +52,7 @@ test("persistent trip stores all items together and schema initialization is ide
 });
 test("both API methods require sign-in and creation checks registry visibility", async () => {
   const route = await readFile(new URL("../app/api/transfers/route.ts", import.meta.url), "utf8");
-  assert.equal((route.match(/requireUser\(request\)/g) || []).length, 3);
+  assert.equal((route.match(/requirePermission\(request, "transfers", /g) || []).length, 3);
   assert.match(route, /PATCH\(request: Request\).*change\(request, false\)/);
   assert.match(route, /DELETE\(request: Request\).*change\(request, true\)/);
   assert.match(route, /input.version !== transferVersion\(existing\)/);

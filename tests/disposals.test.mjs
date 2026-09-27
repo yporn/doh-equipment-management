@@ -155,7 +155,7 @@ test("disposal UI, API authorization and repair integration are wired", async ()
   for (const label of ["วันที่เสนอจำหน่าย", "เหตุผลที่เสนอจำหน่าย", "ผู้รับผิดชอบ", "วันที่อนุมัติ", "ปีงบประมาณ", "ล้างตัวกรอง", "ลบข้อมูล", "ลบและคืนเข้าบัญชี"]) assert.ok(page.includes(label));
   for (const field of ["documentNumber", "approvalDocument", "approver"]) assert.ok(!page.includes(field));
   assert.match(page, /ConfirmSubmitButton/);
-  assert.match(api, /requireUser\(request\)/);
+  assert.match(api, /requirePermission\(request, "disposals", "read"\)/);
   assert.match(api, /ensureDisposalSchema/);
   assert.match(api, /export async function DELETE/);
   assert.match(api, /eq\(disposalRecords.updatedAt, input.updatedAt\)/);

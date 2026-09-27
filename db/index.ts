@@ -55,6 +55,7 @@ export async function ensureAuthSchema() {
         password_salt TEXT NOT NULL,
         role TEXT DEFAULT 'STAFF' NOT NULL,
         active INTEGER DEFAULT 1 NOT NULL,
+        permissions TEXT,
         created_at TEXT NOT NULL,
         updated_at TEXT NOT NULL
       )`),
@@ -69,6 +70,10 @@ export async function ensureAuthSchema() {
       env.DB.prepare("CREATE UNIQUE INDEX IF NOT EXISTS auth_sessions_token_hash_unique ON auth_sessions (token_hash)"),
       env.DB.prepare("CREATE INDEX IF NOT EXISTS auth_sessions_user_id ON auth_sessions (user_id)"),
     ]);
+    const userColumns = await env.DB.prepare("PRAGMA table_info(users)").all<{ name: string }>();
+    if (!new Set(userColumns.results.map((column) => column.name)).has("permissions")) {
+      await env.DB.prepare("ALTER TABLE users ADD COLUMN permissions TEXT").run();
+    }
   });
 }
 

@@ -418,5 +418,5 @@ test("provides multi-account authentication and role-based administration", asyn
   assert.match(sidebar, /<a[^>]*href=\{path\}/); assert.doesNotMatch(sidebar, /next\/link/); for (const path of ["/machineries", "/rentals", "/service"]) assert.match(sidebar, new RegExp(`"${path}"`));
   for (const page of [usersPage, dashboardPage, rentalsPage, servicePage]) assert.match(page, /<AppSidebar active=/);
   assert.match(database, /CREATE TABLE IF NOT EXISTS users/); assert.match(database, /CREATE TABLE IF NOT EXISTS auth_sessions/);
-  for (const api of [machineryApi, rentalApi, serviceApi]) assert.match(api, /requireUser\(request\)/);
+  for (const api of [machineryApi, rentalApi, serviceApi]) assert.match(api, /requirePermission\(request, "\w+", "\w+"\)/);
 });

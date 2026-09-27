@@ -134,14 +134,20 @@ test("sidebar uses native links without router interception and API authorizatio
   assert.match(sidebar,/<a[^>]*href=\{path\}/);
   assert.match(sidebar,/aria-current=/);
   assert.doesNotMatch(sidebar,/window.location|preventDefault/);
-  for (const route of ["machineries","rentals","repairs","transfers","disposals","services","users"]) {
+  // "users" (account/permission management) stays role-gated via requireUser; every other module is
+  // gated per module+action via the granular requirePermission check.
+  for (const route of ["machineries","rentals","repairs","transfers","disposals","services"]) {
     const source = await readFile(new URL(`app/api/${route}/route.ts`,root),"utf8");
     const handlers = source.match(/export async function (GET|POST|PATCH|DELETE)/g) || [];
     assert.ok(handlers.length > 0);
     // Transfer PATCH/DELETE and disposal POST/PATCH share an authenticated mutation helper.
     const sharedHelper = ["transfers","disposals"].includes(route) ? 1 : 0;
-    assert.ok((source.match(/await requireUser\(request/g) || []).length >= handlers.length - sharedHelper,route);
+    assert.ok((source.match(/await requirePermission\(request/g) || []).length >= handlers.length - sharedHelper,route);
   }
+  const usersSource = await readFile(new URL("app/api/users/route.ts",root),"utf8");
+  const usersHandlers = usersSource.match(/export async function (GET|POST|PATCH|DELETE)/g) || [];
+  assert.ok(usersHandlers.length > 0);
+  assert.ok((usersSource.match(/await requireUser\(request, "ADMIN"\)/g) || []).length >= usersHandlers.length, "users");
   const auth = await readFile(new URL("lib/auth.ts",root),"utf8");
   assert.match(auth,/s.expires_at > \? AND u.active = 1/);
   assert.match(auth,/const user = await getCurrentUser\(request\)/);

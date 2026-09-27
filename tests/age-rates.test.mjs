@@ -78,7 +78,7 @@ test('rental handlers ignore forged prices, keep history and reject unavailable 
   const imports={
     'drizzle-orm':{sql,eq:()=>'',desc:()=>''}, 'next/server':{NextResponse:{json:(body,options)=>({body,status:options?.status??200})}},
     '../../../db':{ensureDisposalSchema:async()=>{},getDb:()=>db}, '../../../db/schema':{machineries:'machineries',rentals:'rentals'},
-    '../../../db/disposal-sql.mjs':{registryVisibilitySql:'1'}, '../../../lib/auth':{requireUser:async()=>({})}, '../../../lib/age-rates.mjs':ageRates
+    '../../../db/disposal-sql.mjs':{registryVisibilitySql:'1'}, '../../../lib/auth':{requirePermission:async()=>({})}, '../../../lib/age-rates.mjs':ageRates
   };
   vm.runInNewContext(ts.transpileModule(source,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText,{exports,require:n=>{assert.ok(n in imports,n);return imports[n];},crypto:{randomUUID:()=> 'new'},console});
   const input={machineryCode:machine.code,renterName:'PROJECT',approver:'Recorder',startDate:'2026-09-01',rateType:'MONTHLY',duration:2,rentalMode:'W',rateAmount:1};

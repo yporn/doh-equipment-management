@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { ensureTransferSchema, getDb } from "../../../db";
 import { machineries, transferRecords } from "../../../db/schema";
 import { registryVisibilitySql } from "../../../db/disposal-sql.mjs";
-import { requireUser } from "../../../lib/auth";
+import { requirePermission } from "../../../lib/auth";
 import { transferVersion, validateTransfer } from "../../../lib/transfers.mjs";
 
 function failure(error: unknown) {
@@ -14,7 +14,7 @@ function failure(error: unknown) {
 
 export async function GET(request: Request) {
   try {
-    const auth = await requireUser(request); if (auth.response) return auth.response;
+    const auth = await requirePermission(request, "transfers", "read"); if (auth.response) return auth.response;
     await ensureTransferSchema();
     const records = await getDb().select().from(transferRecords).orderBy(desc(transferRecords.transferDate), desc(transferRecords.createdAt));
     return NextResponse.json(records.map(row => ({ id: row.id, transferDate: row.transferDate, createdAt: row.createdAt, version: transferVersion(row), transporters: JSON.parse(row.transportersJson), items: JSON.parse(row.itemsJson) })));
@@ -23,7 +23,7 @@ export async function GET(request: Request) {
 
 async function change(request: Request, deleting: boolean) {
   try {
-    const auth = await requireUser(request); if (auth.response) return auth.response;
+    const auth = await requirePermission(request, "transfers", deleting ? "delete" : "edit"); if (auth.response) return auth.response;
     const input = await request.json();
     if (!input || typeof input.id !== "string" || !input.id.trim() || typeof input.version !== "string" || !input.version) return NextResponse.json({ message: "กรุณาระบุรายการขนย้ายและโหลดข้อมูลล่าสุดก่อนดำเนินการ" }, { status: 400 });
     await ensureTransferSchema();
@@ -56,7 +56,7 @@ export async function DELETE(request: Request) { return change(request, true); }
 
 export async function POST(request: Request) {
   try {
-    const auth = await requireUser(request); if (auth.response) return auth.response;
+    const auth = await requirePermission(request, "transfers", "edit"); if (auth.response) return auth.response;
     const input = await request.json();
     await ensureTransferSchema();
     const db = getDb();

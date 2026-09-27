@@ -2,10 +2,17 @@ import { env } from "cloudflare:workers";
 import { NextResponse } from "next/server";
 import { ensureAuthSchema } from "../../../db";
 import { hashPassword, requireUser } from "../../../lib/auth";
+import { normalizePermissions } from "../../../lib/permissions.mjs";
 
 export async function GET(request: Request) {
   const auth = await requireUser(request, "ADMIN"); if (auth.response) return auth.response;
-  return NextResponse.json((await env.DB.prepare("SELECT id, username, display_name AS displayName, role, active, created_at AS createdAt FROM users ORDER BY active DESC, display_name").all()).results);
+  const rows = (await env.DB.prepare("SELECT id, username, display_name AS displayName, role, active, permissions AS permissionsJson, created_at AS createdAt FROM users ORDER BY active DESC, display_name").all()).results as Record<string, unknown>[];
+  return NextResponse.json(rows.map((row) => {
+    const { permissionsJson, ...rest } = row;
+    let parsed: unknown = null;
+    try { parsed = typeof permissionsJson === "string" ? JSON.parse(permissionsJson) : null; } catch { parsed = null; }
+    return { ...rest, permissions: normalizePermissions(parsed) };
+  }));
 }
 
 export async function POST(request: Request) {
@@ -20,9 +27,17 @@ export async function POST(request: Request) {
 
 export async function PATCH(request: Request) {
   const auth = await requireUser(request, "ADMIN"); if (auth.response) return auth.response;
-  const input = await request.json() as Record<string, unknown>; const id = String(input.id ?? ""); const active = input.active === true ? 1 : 0;
-  if (!id || id === auth.user?.id) return NextResponse.json({ message: "ไม่สามารถปิดบัญชีที่กำลังใช้งานอยู่" }, { status: 400 });
-  await env.DB.prepare("UPDATE users SET active = ?, updated_at = ? WHERE id = ?").bind(active, new Date().toISOString(), id).run();
+  const input = await request.json() as Record<string, unknown>; const id = String(input.id ?? "");
+  if (!id) return NextResponse.json({ message: "ไม่พบบัญชีผู้ใช้งาน" }, { status: 400 });
+  const now = new Date().toISOString();
+  if ("permissions" in input) {
+    const permissions = normalizePermissions(input.permissions);
+    await env.DB.prepare("UPDATE users SET permissions = ?, updated_at = ? WHERE id = ?").bind(JSON.stringify(permissions), now, id).run();
+    return NextResponse.json({ message: "อัปเดตสิทธิ์การใช้งานเรียบร้อยแล้ว", permissions });
+  }
+  if (id === auth.user?.id) return NextResponse.json({ message: "ไม่สามารถปิดบัญชีที่กำลังใช้งานอยู่" }, { status: 400 });
+  const active = input.active === true ? 1 : 0;
+  await env.DB.prepare("UPDATE users SET active = ?, updated_at = ? WHERE id = ?").bind(active, now, id).run();
   if (!active) await env.DB.prepare("DELETE FROM auth_sessions WHERE user_id = ?").bind(id).run();
   return NextResponse.json({ message: "อัปเดตบัญชีเรียบร้อยแล้ว" });
 }

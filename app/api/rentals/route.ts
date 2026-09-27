@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { ensureDisposalSchema, getDb } from "../../../db";
 import { machineries, rentals } from "../../../db/schema";
 import { registryVisibilitySql } from "../../../db/disposal-sql.mjs";
-import { requireUser } from "../../../lib/auth";
+import { requirePermission } from "../../../lib/auth";
 import { rentalRate, validDate } from "../../../lib/age-rates.mjs";
 
 const rateTypes = new Set(["DAILY", "WEEKLY", "MONTHLY", "YEARLY"]);
@@ -22,7 +22,7 @@ function calculateEndDate(startDate: string, duration: number, rateType: RateTyp
 
 export async function GET(request: Request) {
   try {
-    const auth = await requireUser(request); if (auth.response) return auth.response;
+    const auth = await requirePermission(request, "rentals", "read"); if (auth.response) return auth.response;
     await ensureDisposalSchema();
     const rows = await getDb().select({
       id: rentals.id, machineryCode: rentals.machineryCode, machineryName: machineries.name,
@@ -40,7 +40,7 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
-    const auth = await requireUser(request); if (auth.response) return auth.response;
+    const auth = await requirePermission(request, "rentals", "edit"); if (auth.response) return auth.response;
     await ensureDisposalSchema();
     const input = await request.json() as Record<string, unknown>;
     const machineryCode = String(input.machineryCode ?? "").trim();
@@ -77,7 +77,7 @@ export async function POST(request: Request) {
 
 export async function PATCH(request: Request) {
   try {
-    const auth = await requireUser(request); if (auth.response) return auth.response;
+    const auth = await requirePermission(request, "rentals", "edit"); if (auth.response) return auth.response;
     await ensureDisposalSchema();
     const input = await request.json() as Record<string, unknown>;
     const id = String(input.id ?? "").trim();
@@ -119,7 +119,7 @@ export async function PATCH(request: Request) {
 
 export async function DELETE(request: Request) {
   try {
-    const auth = await requireUser(request); if (auth.response) return auth.response;
+    const auth = await requirePermission(request, "rentals", "delete"); if (auth.response) return auth.response;
     await ensureDisposalSchema(); const input = await request.json() as Record<string, unknown>; const id = String(input.id ?? "").trim();
     if (!id) return NextResponse.json({ message: "ไม่พบรหัสรายการเช่า" }, { status: 400 });
     const db = getDb(); const [record] = await db.select().from(rentals).where(eq(rentals.id, id)).limit(1);

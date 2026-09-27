@@ -44,3 +44,4 @@ yarn-error.log*
 # bare "page.tsx" rule from an unrelated project that would otherwise
 # silently exclude every page.tsx in this app from version control.
 !/**/page.tsx
+tsconfig.tsbuildinfo

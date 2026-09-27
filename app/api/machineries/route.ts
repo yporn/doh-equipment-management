@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import registry from "../../../data/machineries.json";
 import { ensureDisposalSchema, ensureTransferSchema, refreshMachineryState, getDb } from "../../../db";
 import { disposalRecords, machineries } from "../../../db/schema";
-import { requireUser } from "../../../lib/auth";
+import { requirePermission } from "../../../lib/auth";
 import { registryVisibilitySql } from "../../../db/disposal-sql.mjs";
 import { acquisitionInfo, currentMachine, validDate } from "../../../lib/age-rates.mjs";
 
@@ -78,7 +78,7 @@ async function syncOfficialRegistry() {
 
 export async function GET(request: Request) {
   try {
-    const auth = await requireUser(request); if (auth.response) return auth.response;
+    const auth = await requirePermission(request, "machineries", "read"); if (auth.response) return auth.response;
     await syncOfficialRegistry();
     await importWorkbook2DamagedStatus();
     const rows = await getDb().select().from(machineries).where(sql.raw(registryVisibilitySql)).orderBy(asc(machineries.code));
@@ -91,7 +91,7 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
-    const auth = await requireUser(request); if (auth.response) return auth.response;
+    const auth = await requirePermission(request, "machineries", "edit"); if (auth.response) return auth.response;
     await syncOfficialRegistry();
     const input = await request.json() as Record<string, unknown>;
     if (input.condition === "MAINTENANCE") return NextResponse.json({ message: "สถานะซ่อมบำรุงกำหนดจากระบบงานซ่อมเท่านั้น" }, { status: 400 });
@@ -138,7 +138,7 @@ export async function POST(request: Request) {
 
 export async function PATCH(request: Request) {
   try {
-    const auth = await requireUser(request); if (auth.response) return auth.response;
+    const auth = await requirePermission(request, "machineries", "edit"); if (auth.response) return auth.response;
     await syncOfficialRegistry();
     await ensureDisposalSchema();
     const input = await request.json() as Record<string, unknown>;

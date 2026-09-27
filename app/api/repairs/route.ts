@@ -2,7 +2,7 @@ import { desc, eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 import { ensureDisposalSchema, getDb } from "../../../db";
 import { machineries, repairRecords } from "../../../db/schema";
-import { requireUser } from "../../../lib/auth";
+import { requirePermission } from "../../../lib/auth";
 
 const validStatuses = new Set(["WAITING", "WAITING_PARTS", "IN_PROGRESS", "COMPLETED"]);
 const validRepairTypes = new Set(["SELF", "OUTSOURCED"]);
@@ -17,7 +17,7 @@ function parseList(value: unknown) {
 
 export async function GET(request: Request) {
   try {
-    const auth = await requireUser(request); if (auth.response) return auth.response;
+    const auth = await requirePermission(request, "repairs", "read"); if (auth.response) return auth.response;
     await ensureDisposalSchema();
     const rows = await getDb().select({
       id: repairRecords.id, machineryCode: repairRecords.machineryCode, machineryName: machineries.name,
@@ -66,7 +66,7 @@ async function isMachineryDepartment(department: string) {
 
 export async function POST(request: Request) {
   try {
-    const auth = await requireUser(request); if (auth.response) return auth.response;
+    const auth = await requirePermission(request, "repairs", "edit"); if (auth.response) return auth.response;
     await ensureDisposalSchema(); const input = await request.json() as Record<string, unknown>; const valid = await validate(input);
     if (!valid) return NextResponse.json({ message: "กรุณากรอกข้อมูลงานซ่อมที่จำเป็นให้ครบและถูกต้อง" }, { status: 400 });
     const db = getDb();
@@ -88,7 +88,7 @@ export async function POST(request: Request) {
 
 export async function PATCH(request: Request) {
   try {
-    const auth = await requireUser(request); if (auth.response) return auth.response;
+    const auth = await requirePermission(request, "repairs", "edit"); if (auth.response) return auth.response;
     await ensureDisposalSchema(); const input = await request.json() as Record<string, unknown>; const id = String(input.id ?? "");
     if (!id) return NextResponse.json({ message: "ข้อมูลงานซ่อมไม่ถูกต้อง" }, { status: 400 });
     const db = getDb(); const [previous] = await db.select().from(repairRecords).where(eq(repairRecords.id, id)).limit(1);
@@ -109,7 +109,7 @@ export async function PATCH(request: Request) {
 
 export async function DELETE(request: Request) {
   try {
-    const auth = await requireUser(request); if (auth.response) return auth.response;
+    const auth = await requirePermission(request, "repairs", "delete"); if (auth.response) return auth.response;
     await ensureDisposalSchema(); const input = await request.json() as Record<string, unknown>; const id = String(input.id ?? ""); const db = getDb();
     const [record] = await db.select().from(repairRecords).where(eq(repairRecords.id, id)).limit(1);
     if (!record) return NextResponse.json({ message: "ไม่พบงานซ่อม" }, { status: 404 });
