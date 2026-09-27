@@ -1,0 +1,1 @@
+ALTER TABLE `service_records` ADD `meter_unreadable` integer DEFAULT false NOT NULL;

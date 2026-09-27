@@ -32,6 +32,7 @@ type ServiceRecord = {
   documentNumber: string | null;
   meterReading: number | null;
   meterUnit: "KILOMETER" | "HOUR" | null;
+  meterUnreadable: boolean;
   provider: string | null;
   technician: string | null;
   items: ServiceItem[];
@@ -134,6 +135,7 @@ export default function ServicePage() {
   const [editing, setEditing] = useState<ServiceRecord | null>(null);
   const [selected, setSelected] = useState<ServiceRecord | null>(null);
   const [items, setItems] = useState<ServiceItem[]>([]);
+  const [meterUnreadable, setMeterUnreadable] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState("");
 
@@ -237,6 +239,7 @@ export default function ServicePage() {
   function openCreate() {
     setEditing(null);
     setItems([]);
+    setMeterUnreadable(false);
     setError("");
     setShowCreate(true);
   }
@@ -251,6 +254,7 @@ export default function ServicePage() {
       })),
     );
     setSelected(null);
+    setMeterUnreadable(record.meterUnreadable);
     setError("");
     setShowCreate(true);
   }
@@ -281,6 +285,7 @@ export default function ServicePage() {
           serviceDate: form.get("serviceDate"),
           meterReading: form.get("meterReading"),
           meterUnit: form.get("meterUnit"),
+          meterUnreadable,
           provider: form.get("provider"),
           technician: form.get("technician"),
           note: form.get("note"),
@@ -463,17 +468,21 @@ export default function ServicePage() {
                       </td>
                       <td>
                         <strong>
-                          {record.meterReading !== null
-                            ? record.meterReading.toLocaleString("th-TH")
-                            : "—"}
+                          {record.meterUnreadable
+                            ? "มิเตอร์เสีย"
+                            : record.meterReading !== null
+                              ? record.meterReading.toLocaleString("th-TH")
+                              : "—"}
                         </strong>
-                        <span className="muted">
-                          {record.meterUnit === "KILOMETER"
-                            ? "กิโลเมตร"
-                            : record.meterUnit === "HOUR"
-                              ? "ชั่วโมง"
-                              : ""}
-                        </span>
+                        {!record.meterUnreadable && (
+                          <span className="muted">
+                            {record.meterUnit === "KILOMETER"
+                              ? "กิโลเมตร"
+                              : record.meterUnit === "HOUR"
+                                ? "ชั่วโมง"
+                                : ""}
+                          </span>
+                        )}
                       </td>
                       <td>
                         <strong>{record.items[0]?.description ?? "—"}</strong>
@@ -597,6 +606,7 @@ export default function ServicePage() {
                     type="number"
                     min="0"
                     step="0.1"
+                    disabled={meterUnreadable}
                     defaultValue={editing?.meterReading ?? ""}
                   />
                 </label>
@@ -604,11 +614,20 @@ export default function ServicePage() {
                   หน่วยมิเตอร์
                   <select
                     name="meterUnit"
+                    disabled={meterUnreadable}
                     defaultValue={editing?.meterUnit ?? "KILOMETER"}
                   >
                     <option value="KILOMETER">กิโลเมตร</option>
                     <option value="HOUR">ชั่วโมง</option>
                   </select>
+                </label>
+                <label className="wide service-meter-unreadable">
+                  <input
+                    type="checkbox"
+                    checked={meterUnreadable}
+                    onChange={(event) => setMeterUnreadable(event.target.checked)}
+                  />
+                  มิเตอร์เสีย / อ่านค่าไม่ได้
                 </label>
                 <label>
                   ผู้ดำเนินการ
@@ -797,12 +816,14 @@ export default function ServicePage() {
                 <div>
                   <span>ค่ามิเตอร์</span>
                   <strong>
-                    {selected.meterReading?.toLocaleString("th-TH") ?? "—"}{" "}
-                    {selected.meterUnit === "KILOMETER"
-                      ? "กิโลเมตร"
-                      : selected.meterUnit === "HOUR"
-                        ? "ชั่วโมง"
-                        : ""}
+                    {selected.meterUnreadable
+                      ? "มิเตอร์เสีย"
+                      : <>{selected.meterReading?.toLocaleString("th-TH") ?? "—"}{" "}
+                        {selected.meterUnit === "KILOMETER"
+                          ? "กิโลเมตร"
+                          : selected.meterUnit === "HOUR"
+                            ? "ชั่วโมง"
+                            : ""}</>}
                   </strong>
                 </div>
                 <div>
@@ -877,12 +898,14 @@ export default function ServicePage() {
                 <div>
                   <dt>ค่ามิเตอร์</dt>
                   <dd>
-                    {selected.meterReading?.toLocaleString("th-TH") ?? "—"}{" "}
-                    {selected.meterUnit === "KILOMETER"
-                      ? "กิโลเมตร"
-                      : selected.meterUnit === "HOUR"
-                        ? "ชั่วโมง"
-                        : ""}
+                    {selected.meterUnreadable
+                      ? "มิเตอร์เสีย"
+                      : <>{selected.meterReading?.toLocaleString("th-TH") ?? "—"}{" "}
+                        {selected.meterUnit === "KILOMETER"
+                          ? "กิโลเมตร"
+                          : selected.meterUnit === "HOUR"
+                            ? "ชั่วโมง"
+                            : ""}</>}
                   </dd>
                 </div>
                 <div>

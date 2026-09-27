@@ -96,6 +96,7 @@ export const serviceRecords = sqliteTable("service_records", {
   documentSequence: integer("document_sequence"),
   meterReading: real("meter_reading"),
   meterUnit: text("meter_unit", { enum: ["KILOMETER", "HOUR"] }),
+  meterUnreadable: integer("meter_unreadable", { mode: "boolean" }).notNull().default(false),
   provider: text("provider"),
   technician: text("technician"),
   itemsJson: text("items_json").notNull(),

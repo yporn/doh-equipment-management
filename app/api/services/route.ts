@@ -63,6 +63,7 @@ export async function GET(request: Request) {
       documentNumber: serviceRecords.documentNumber,
       meterReading: serviceRecords.meterReading,
       meterUnit: serviceRecords.meterUnit,
+      meterUnreadable: serviceRecords.meterUnreadable,
       provider: serviceRecords.provider,
       technician: serviceRecords.technician,
       itemsJson: serviceRecords.itemsJson,
@@ -95,7 +96,8 @@ export async function POST(request: Request) {
       return NextResponse.json({ message: "ไม่พบเครื่องจักรที่เลือก" }, { status: 404 });
     }
     const optionalNumber = (value: unknown) => value === "" || value === null || value === undefined ? null : Number(value);
-    const meterReading = optionalNumber(input.meterReading);
+    const meterUnreadable = Boolean(input.meterUnreadable);
+    const meterReading = meterUnreadable ? null : optionalNumber(input.meterReading);
     const meterUnit = String(input.meterUnit ?? "");
     if (meterReading !== null && (!Number.isFinite(meterReading) || meterReading < 0)) {
       return NextResponse.json({ message: "ค่ามิเตอร์ต้องเป็นศูนย์หรือจำนวนบวก" }, { status: 400 });
@@ -110,7 +112,7 @@ export async function POST(request: Request) {
     const record = {
       id: crypto.randomUUID(), machineryCode, serviceDate,
       ...document,
-      meterReading, meterUnit: meterReading === null ? null : meterUnit as "KILOMETER" | "HOUR",
+      meterReading, meterUnit: meterReading === null ? null : meterUnit as "KILOMETER" | "HOUR", meterUnreadable,
       provider,
       technician: String(input.technician ?? "").trim() || null,
       itemsJson: JSON.stringify(items),
@@ -147,7 +149,8 @@ export async function PATCH(request: Request) {
     if (!(await db.select({ id: machineries.id }).from(machineries).where(eq(machineries.code, machineryCode)).limit(1)).length) {
       return NextResponse.json({ message: "ไม่พบเครื่องจักรที่เลือก" }, { status: 404 });
     }
-    const meterReading = input.meterReading === "" || input.meterReading === null || input.meterReading === undefined ? null : Number(input.meterReading);
+    const meterUnreadable = Boolean(input.meterUnreadable);
+    const meterReading = meterUnreadable || input.meterReading === "" || input.meterReading === null || input.meterReading === undefined ? null : Number(input.meterReading);
     const meterUnit = String(input.meterUnit ?? "");
     if (meterReading !== null && (!Number.isFinite(meterReading) || meterReading < 0)) {
       return NextResponse.json({ message: "ค่ามิเตอร์ต้องเป็นศูนย์หรือจำนวนบวก" }, { status: 400 });
@@ -159,7 +162,7 @@ export async function PATCH(request: Request) {
     if (!serviceProviders.has(provider)) return NextResponse.json({ message: "กรุณาเลือกผู้ให้บริการ/อู่ให้ถูกต้อง" }, { status: 400 });
     const document = !existing.documentNumber || existing.fiscalYear !== getFiscalYear(serviceDate) ? await allocateServiceDocumentNumber(serviceDate) : {};
     await db.update(serviceRecords).set({
-      machineryCode, serviceDate, meterReading,
+      machineryCode, serviceDate, meterReading, meterUnreadable,
       ...document,
       meterUnit: meterReading === null ? null : meterUnit as "KILOMETER" | "HOUR",
       provider,

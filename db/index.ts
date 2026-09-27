@@ -178,6 +178,7 @@ export async function ensureServiceSchema() {
         document_sequence INTEGER,
         meter_reading REAL,
         meter_unit TEXT,
+        meter_unreadable INTEGER DEFAULT 0 NOT NULL,
         provider TEXT,
         technician TEXT,
         items_json TEXT NOT NULL,
@@ -198,6 +199,7 @@ export async function ensureServiceSchema() {
     if (!columnNames.has("document_number")) await env.DB.prepare("ALTER TABLE service_records ADD COLUMN document_number TEXT").run();
     if (!columnNames.has("fiscal_year")) await env.DB.prepare("ALTER TABLE service_records ADD COLUMN fiscal_year INTEGER").run();
     if (!columnNames.has("document_sequence")) await env.DB.prepare("ALTER TABLE service_records ADD COLUMN document_sequence INTEGER").run();
+    if (!columnNames.has("meter_unreadable")) await env.DB.prepare("ALTER TABLE service_records ADD COLUMN meter_unreadable INTEGER DEFAULT 0 NOT NULL").run();
     await env.DB.prepare("CREATE UNIQUE INDEX IF NOT EXISTS service_records_document_number_unique ON service_records (document_number)").run();
   });
 }

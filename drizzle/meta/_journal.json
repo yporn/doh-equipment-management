@@ -127,6 +127,13 @@
       "when": 1790063910256,
       "tag": "0017_unusual_sharon_ventura",
       "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "6",
+      "when": 1790514535236,
+      "tag": "0018_pretty_star_brand",
+      "breakpoints": true
     }
   ]
 }
