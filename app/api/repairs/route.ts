@@ -23,6 +23,7 @@ export async function GET(request: Request) {
       id: repairRecords.id, machineryCode: repairRecords.machineryCode, machineryName: machineries.name,
       repairDate: repairRecords.repairDate, workSystemsJson: repairRecords.workSystemsJson,
       repairType: repairRecords.repairType,
+      meterReading: repairRecords.meterReading, meterUnit: repairRecords.meterUnit, meterUnreadable: repairRecords.meterUnreadable,
       symptom: repairRecords.symptom, cause: repairRecords.cause, repairDetails: repairRecords.repairDetails,
       reporter: repairRecords.reporter, responsiblePerson: repairRecords.responsiblePerson, provider: repairRecords.provider,
       partsJson: repairRecords.partsJson, totalCost: repairRecords.totalCost, status: repairRecords.status,
@@ -48,7 +49,15 @@ async function validate(input: Record<string, unknown>) {
   if (requestedCompletedDate && (!/^\d{4}-\d{2}-\d{2}$/.test(requestedCompletedDate) || requestedCompletedDate < repairDate)) return null;
   if (!requestedCompletedDate && requestedStatus === "COMPLETED") return null;
   const status: RepairStatus = requestedCompletedDate ? "COMPLETED" : requestedStatus;
-  return { machineryCode, repairDate, workSystems, repairType, reporter, status, completedDate: requestedCompletedDate || null };
+  const meterUnreadable = Boolean(input.meterUnreadable);
+  const meterReading = meterUnreadable || input.meterReading === "" || input.meterReading === null || input.meterReading === undefined ? null : Number(input.meterReading);
+  const meterUnit = String(input.meterUnit ?? "");
+  if (meterReading !== null && (!Number.isFinite(meterReading) || meterReading < 0)) return null;
+  if (meterReading !== null && !["KILOMETER", "HOUR"].includes(meterUnit)) return null;
+  return {
+    machineryCode, repairDate, workSystems, repairType, reporter, status, completedDate: requestedCompletedDate || null,
+    meterReading, meterUnit: meterReading === null ? null : meterUnit as "KILOMETER" | "HOUR", meterUnreadable,
+  };
 }
 
 async function isMachineryDepartment(department: string) {
@@ -66,6 +75,7 @@ export async function POST(request: Request) {
     const now = new Date().toISOString();
     const record = { id: crypto.randomUUID(), machineryCode: valid.machineryCode, repairDate: valid.repairDate,
       workSystemsJson: JSON.stringify(valid.workSystems), repairType: valid.repairType, symptom: "", cause: null,
+      meterReading: valid.meterReading, meterUnit: valid.meterUnit, meterUnreadable: valid.meterUnreadable,
       repairDetails: String(input.repairDetails ?? "").trim() || null, reporter: valid.reporter,
       responsiblePerson: null, provider: null,
       partsJson: "[]", totalCost: 0, status: valid.status,
@@ -88,6 +98,7 @@ export async function PATCH(request: Request) {
     if (!(await isMachineryDepartment(valid.reporter))) return NextResponse.json({ message: "กรุณาเลือกผู้แจ้งจากหน่วยงานในบัญชีเครื่องจักร" }, { status: 400 });
     const updates = { machineryCode: valid.machineryCode, repairDate: valid.repairDate, workSystemsJson: JSON.stringify(valid.workSystems),
       repairType: valid.repairType, repairDetails: String(input.repairDetails ?? "").trim() || null,
+      meterReading: valid.meterReading, meterUnit: valid.meterUnit, meterUnreadable: valid.meterUnreadable,
       reporter: valid.reporter, status: valid.status,
       completedDate: valid.completedDate,
       note: String(input.note ?? "").trim() || null, updatedAt: new Date().toISOString() };

@@ -140,6 +140,9 @@ export async function ensureRepairSchema() {
         repair_date TEXT NOT NULL,
         work_systems_json TEXT NOT NULL,
         repair_type TEXT,
+        meter_reading REAL,
+        meter_unit TEXT,
+        meter_unreadable INTEGER DEFAULT 0 NOT NULL,
         symptom TEXT NOT NULL,
         cause TEXT,
         repair_details TEXT,
@@ -158,9 +161,13 @@ export async function ensureRepairSchema() {
       env.DB.prepare("CREATE INDEX IF NOT EXISTS idx_repair_records_status_date ON repair_records (status, repair_date)"),
     ]);
     const columns = await env.DB.prepare("PRAGMA table_info(repair_records)").all<{ name: string }>();
-    if (!new Set(columns.results.map((column) => column.name)).has("repair_type")) {
+    const repairColumnNames = new Set(columns.results.map((column) => column.name));
+    if (!repairColumnNames.has("repair_type")) {
       await env.DB.prepare("ALTER TABLE repair_records ADD COLUMN repair_type TEXT").run();
     }
+    if (!repairColumnNames.has("meter_reading")) await env.DB.prepare("ALTER TABLE repair_records ADD COLUMN meter_reading REAL").run();
+    if (!repairColumnNames.has("meter_unit")) await env.DB.prepare("ALTER TABLE repair_records ADD COLUMN meter_unit TEXT").run();
+    if (!repairColumnNames.has("meter_unreadable")) await env.DB.prepare("ALTER TABLE repair_records ADD COLUMN meter_unreadable INTEGER DEFAULT 0 NOT NULL").run();
   });
 }
 
